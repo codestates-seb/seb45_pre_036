@@ -16,9 +16,29 @@
 - 팀원1(FE) 박지민
 - 팀원2(FE) 신예준
 
-### 🛠 개발 환경
- 
+### 🛠 개발 환경 및 사용 언어
+#### Environment
+<img align=left src="https://img.shields.io/badge/visualstudiocode-007ACC?style=for-the-badge&logo=visualstudiocode&logoColor=white">
+<img align=left src="https://img.shields.io/badge/git-F05032?style=for-the-badge&logo=git&logoColor=white">
+<img align=left src="https://img.shields.io/badge/github-181717?style=for-the-badge&logo=github&logoColor=white">
 
+<br>
+
+#### Development
+<img align=left src="https://img.shields.io/badge/javascript-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black"> 
+<img align=left src="https://img.shields.io/badge/java-007396?style=for-the-badge&logo=java&logoColor=white">
+<img align=left src="https://img.shields.io/badge/react-61DAFB?style=for-the-badge&logo=react&logoColor=black"> 
+<img align=left src="https://img.shields.io/badge/spring-6DB33F?style=for-the-badge&logo=spring&logoColor=white"> 
+
+<br>
+
+#### Communication
+<img align=left src="https://img.shields.io/badge/discord-5865F2?style=for-the-badge&logo=discord&logoColor=white">
+<img align=left src="https://img.shields.io/badge/notion-000000?style=for-the-badge&logo=notion&logoColor=white">
+<img align=left src="https://img.shields.io/badge/zoom-2D8CFF?style=for-the-badge&logo=zoom&logoColor=white">
+
+<br>
+<br>
 
 ## 주요 기능
 
