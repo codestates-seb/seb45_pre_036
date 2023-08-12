@@ -1,17 +1,24 @@
 .header__container {
+    box-sizing: border-box;
+    width: 100%;
+    padding: 0 8px;
     height: 56px;
-    border-bottom-color: rgb(214, 217, 220);
-    border-bottom-width: 1px;
-    border-top-color: rgb(244, 130, 37);
-    border-top-width: 3px;
+    border-bottom: 1px solid rgb(214, 217, 220);
+    border-top: 3px solid rgb(244, 130, 37);
     position: fixed;
     z-index: 5050;
     display: flex;
     justify-content: space-between;
 }
 
+.header__logo {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
 .header__logo img {
-    height: 20px;
+    height: 30px;
 }
 
 .header__nav-container{
@@ -26,6 +33,15 @@
 .header__nav-list{
     list-style: none;
     padding: 0;
+    display: flex;
+
+}
+
+.header__nav-list div {
+    display: flex;
+    padding: 0 8px;
+    align-items: center;
+    justify-content: center;
 
 }
 
