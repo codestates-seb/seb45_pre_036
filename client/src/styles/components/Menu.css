@@ -1,0 +1,9 @@
+.menu__container{
+    padding-top: 24px;
+    position: sticky;
+    top: 56px;
+    width: 164px;
+    text-align: left;
+    max-height: 776px;
+    
+}
