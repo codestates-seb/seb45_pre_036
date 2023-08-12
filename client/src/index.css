@@ -5,7 +5,8 @@ body {
   vertical-align: baseline;
   color: rgb(35,38,41);
   margin: 0;
-  padding-top: 56px;
+  height: 100vh;
+  /* padding-top: 56px; */
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
     sans-serif;
