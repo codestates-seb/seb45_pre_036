@@ -1,0 +1,24 @@
+.footer__container{
+    background-color: rgb(35, 38, 41);
+    color: #BABFC4;
+    font-size: 11px;
+    display: flex;
+    padding: 16px;
+}
+
+.footer__logo-container{
+    width: 64px;
+}
+
+/* .footer__content{} */
+
+.footer__content-title{
+    font-weight: 700;
+}
+
+.footer__content-list{
+    list-style: none;
+    padding: 0;
+}
+
+/* .footer__content-item{} */
