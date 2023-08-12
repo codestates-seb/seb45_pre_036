@@ -1,4 +1,5 @@
 .header__container {
+    margin: 0 8px;
     height: 56px;
     border-bottom-color: rgb(214, 217, 220);
     border-bottom-width: 1px;
