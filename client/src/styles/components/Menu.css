@@ -4,6 +4,13 @@
     top: 56px;
     width: 164px;
     text-align: left;
-    max-height: 776px;
-    
+    max-height: 776px; 
 }
+
+.menu {}
+
+.menu__item{}
+
+.submenu{}
+
+.submenu__item{}
