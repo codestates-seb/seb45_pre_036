@@ -1,0 +1,35 @@
+.header__container {
+    height: 56px;
+    border-bottom-color: rgb(214, 217, 220);
+    border-bottom-width: 1px;
+    border-top-color: rgb(244, 130, 37);
+    border-top-width: 3px;
+    position: fixed;
+    z-index: 5050;
+    display: flex;
+    justify-content: space-between;
+}
+
+.header__logo img {
+    height: 20px;
+}
+
+.header__nav-container{
+    display: flex;
+    justify-content: space-between;
+}
+
+/* .header__nav-profile {} */
+
+/* .header__nav {} */
+
+.header__nav-list{
+    list-style: none;
+    padding: 0;
+
+}
+
+.header__nav-item img{
+    width: 16px;
+    height: 16px;
+}
