@@ -13,7 +13,7 @@ const Signup = () => {
             <label htmlFor="email">
               Email
             </label>
-            <input id="email" type="text"></input>
+            <input id="email" type="email"></input>
           </div>
           <div className="signup-form__item">
             <label htmlFor="password">Password</label>

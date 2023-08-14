@@ -9,7 +9,7 @@ const Login = () => {
           <label htmlFor="email">
             Email
           </label>
-          <input id="email" type="text"></input>
+          <input id="email" type="email"></input>
         </div>
         <div className="login-form__item">
           <label htmlFor="password">Password</label>
