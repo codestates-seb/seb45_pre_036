@@ -1,0 +1,12 @@
+{
+  "name": "seb45_pre_036",
+  "version": "1.0.0",
+  "description": "백엔드 스프링 + 프론트엔드 리액트",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}

@@ -1,0 +1,22 @@
+* {
+display: flex;
+flex : 1 0 0 ;
+font-size: 16px;
+box-sizing: border-box;
+}
+
+.userInfo__container {
+    display: flex;
+    margin: 0.5rem;
+    flex: 0 0 4rem;
+  }
+
+.userInfo__wrapper{
+
+  }
+.userInfo__input{
+
+}
+.userInfo__inputWrapper{
+    
+}
