@@ -10,7 +10,7 @@ const Login = () => {
                 <input className='login-form__input' type='password' id='password'></input>
                 <button className='login-form__button' >Log in</button>
                 <hr className='login-form__divider' />
-                <button className='login-form__github-button' type='submit'><img className='login-form__github-logo' src alt/>Log in with Github</button>
+                <button className='login-form__github-button' type='submit'><img className='login-form__github-logo' src='' alt=''/>Log in with Github</button>
             </form>
             <p className='login-form__signup-text'>Don't have an account? <a href className="login-form__signup-link">Sign up</a></p>
         </div>
