@@ -5,40 +5,30 @@ const Login = () => {
     <container className="login-container">
       <div className="login-form__logo">Logo</div>
       <form className="login-form__form" onSubmit>
-        <div className="login-form__item">
-          <label className="login-form__label" htmlFor="email">
+        <div className="login-form__item top">
+          <label htmlFor="email">
             Email
           </label>
-          <input className="login-form__input" id="email" type="text"></input>
+          <input id="email" type="text"></input>
         </div>
         <div className="login-form__item">
-          <label className="login-form__label" htmlFor="password">
-            Password
-          </label>
-          <input
-            className="login-form__input"
-            type="password"
-            id="password"
-          ></input>
+          <label htmlFor="password">Password</label>
+          <input type="password" id="password"></input>
         </div>
-        <div className="login-form__item">
+        <div className="login-form__item login">
           <button className="login-form__button">Log in</button>
         </div>
-        <div className="login-form__item">
-          <hr className="login-form__divider" />
+        <div className="login-form__item divider">
+          <hr />
         </div>
-        <div className="login-form__item">
-          <button className="login-form__github-button" type="submit">
-            <img className="login-form__github-logo" src="" alt="" />
-            Log in with Github
-          </button>
+        <div className="login-form__item bottom">
+          <button className="login-form__button oauth__github-button" type="submit">
+            <img className="login-form__github-logo" src="" alt="" />Log in with Github</button>
         </div>
       </form>
       <p className="login-form__signup-text">
         Don't have an account?{" "}
-        <a href className="login-form__signup-link">
-          Sign up
-        </a>
+        <a href className="login-form__signup-link">Sign up</a>
       </p>
     </container>
   );

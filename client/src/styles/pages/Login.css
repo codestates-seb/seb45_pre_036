@@ -15,20 +15,11 @@ body {
 
 /* .login-form__logo{} */
 
-/* .login-form__container {
-  background-color: white;
-  border-radius: 8px;
-  width: 100%;
-  height: 234px;
-  padding: 24px;
-  box-shadow: 0px 10px 24px 0px rgba(0, 0, 0, 0.05); */
-
 .login-form__form {
   margin-top: 40px;
   background-color: white;
   border-radius: 8px;
   width: 100%;
-  height: 234px;
   padding: 24px;
   box-shadow: 0px 10px 24px 0px rgba(0, 0, 0, 0.05);
   display: flex;
@@ -40,9 +31,30 @@ body {
 .login-form__item {
   display: flex;
   flex-direction: column;
+  justify-content: center;
+  flex: 1;
+  padding: 2px 0;
+  margin-top: 10px;
 }
 
-.login-form__label {
+.login-form__item.top {
+  padding-top: 0;
+  margin-top: 0;
+}
+
+.login-form__item.bottom {
+  padding-bottom: 0;
+}
+
+.login-form__item.login {
+  margin-top: 20px;
+}
+
+.login-form__item.divider {
+  height: 10px;
+}
+
+.login-form__item label {
   text-align: left;
   font-size: 15px;
   font-weight: 600;
@@ -50,7 +62,7 @@ body {
   padding: 0 2px;
 }
 
-.login-form__input {
+.login-form__item input {
   border: 1px solid rgb(186, 191, 196);
   border-radius: 6px;
   padding: 7.8px 9.1px;
@@ -65,19 +77,14 @@ body {
   color: white;
 }
 
-.login-form__divider {
+.login-form__item hr {
   width: 100%;
-  border: 1pax solid rgb(186, 191, 196);
-  margin: 1px;
+  border: 1px solid rgb(186, 191, 196);
+  /* margin: 1px; */
 }
 
-.login-form__github-button {
-  margin: 2px 0;
+.oauth__github-button {
   background-color: rgb(47, 51, 55);
-  border: 2px solid rgba(0, 0, 0, 0);
-  border-radius: 6px;
-  padding: 10.4px;
-  color: white;
 }
 
 /* .login-form__github-logo {
