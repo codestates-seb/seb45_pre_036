@@ -1,21 +1,77 @@
-.login-form{}
+body {
+  background-color: rgb(214, 217, 220);
+  display: flex;
+  justify-content: center;
+}
 
-.login-form__logo{}
+.login-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 288px;
+}
 
-.login-form__form{}
+/* .login-form__logo{} */
 
-.login-form__label{}
+.login-form__container {
+  background-color: white;
+  border-radius: 8px;
+  height: 234px;
+  padding: 24px;
+  box-shadow: 0px 10px 24px 0px rgba(0, 0, 0, 0.05);
+}
 
-.login-form__input{}
+.login-form__form {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
 
-.login-form__button{}
+.login-form__label {
+  text-align: left;
+  font-size: 15px;
+  font-weight: 600;
+  margin: 2px 0;
+  padding: 0 2px;
+}
 
-.login-form__divider{}
+.login-form__input {
+  border: 1px solid rgb(186, 191, 196);
+  border-radius: 6px;
+  padding: 7.8px 9.1px;
+}
 
-.login-form__github-button{}
+.login-form__button {
+  margin: 2px 0;
+  background-color: rgb(10, 149, 255);
+  border: 2px solid rgba(0, 0, 0, 0);
+  border-radius: 6px;
+  padding: 10.4px;
+  color: white;
+}
 
-.login-form__github-logo{}
+.login-form__divider {
+  width: 100%;
+  border: 1pax solid rgb(186, 191, 196);
+  margin: 1px;
+}
 
-.login-form__signup-text{}
+.login-form__github-button {
+  margin: 2px 0;
+  background-color: rgb(47, 51, 55);
+  border: 2px solid rgba(0, 0, 0, 0);
+  border-radius: 6px;
+  padding: 10.4px;
+  color: white;
+}
 
-.login-form__signup-link{}
+/* .login-form__github-logo {
+} */
+
+.login-form__signup-text {
+  text-align: center;
+}
+
+.login-form__signup-link {
+  text-decoration: none;
+}
