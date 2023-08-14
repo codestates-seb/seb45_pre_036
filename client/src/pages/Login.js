@@ -22,7 +22,7 @@ const Login = () => {
           <hr />
         </div>
         <div className="login-form__item bottom">
-          <button className="login-form__button oauth__github-button" type="submit">
+          <button type='button' className="login-form__button oauth__github-button" >
             <img className="login-form__github-logo" src="" alt="" />Log in with Github</button>
         </div>
       </form>
