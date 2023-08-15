@@ -24,21 +24,25 @@ public class Answer extends Auditable {
     @Column(nullable = false)
     private String content;
 
-    @Column(nullable = false)
-    private Adopt adopt = Adopt.NONE;
+//    @Column(nullable = false)
+//    private Adopt adopt = Adopt.NONE;
 
     @ManyToOne
-    @JoinColumn(name = "member_id")
+    @JoinColumn(name = "MEMBER_ID")
     private Member member;
 
     @ManyToOne
-    @JoinColumn(name = "question_id")
+    @JoinColumn(name = "QUESTION_ID")
     private Question question;
 
+    @OneToMany(mappedBy = "answer")
     private List<Comment> comments;
 
-    public enum Adopt {
-        NONE,
-        ADOPTED;
-    }
+    // answer 객체 -> List<Comment> comments 변수
+    // [ [comment1], [comment2], ... ]
+
+//    public enum Adopt {
+//        NONE,
+//        ADOPTED;
+//    }
 }

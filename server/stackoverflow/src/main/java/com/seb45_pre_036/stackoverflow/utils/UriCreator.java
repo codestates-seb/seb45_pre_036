@@ -12,5 +12,8 @@ public class UriCreator {
                 .path(defaultUrl + "/{resource-id}")
                 .buildAndExpand(resourceId)
                 .toUri();
+
+        // members/{member-id}
+        // h
     }
 }

@@ -3,6 +3,7 @@ package com.seb45_pre_036.stackoverflow.answer.controller;
 import com.seb45_pre_036.stackoverflow.answer.dto.AnswerDto;
 import com.seb45_pre_036.stackoverflow.answer.entity.Answer;
 import com.seb45_pre_036.stackoverflow.answer.mapper.AnswerMapper;
+import com.seb45_pre_036.stackoverflow.answer.repository.AnswerRepository;
 import com.seb45_pre_036.stackoverflow.answer.service.AnswerService;
 import com.seb45_pre_036.stackoverflow.dto.MultiResponseDto;
 import com.seb45_pre_036.stackoverflow.dto.SingleResponseDto;
@@ -33,6 +34,9 @@ public class AnswerController {
         this.mapper = mapper;
     }
 
+    public AnswerRepository answerRepository;
+
+
     @PostMapping
     public ResponseEntity postAnswer(@RequestBody @Valid AnswerDto.Post answerPostDto) {
 
@@ -40,6 +44,18 @@ public class AnswerController {
         URI location = UriCreator.createUri(ANSWER_DEFAULT_URL, answer.getAnswerId());
 
         return ResponseEntity.created(location).build();
+//
+//        Answer answer = mapper.answerPostDtoToAnswer(answerPostDto);
+//        Answer createdAnswer = answerService.createAnswer(answer);
+//
+//
+//        // Member member = mapper.memberPostDtoToMember(memberPostDto);
+//        //        Member createdMember = memberService.createMember(member);
+//
+//        return new ResponseEntity(new SingleResponseDto<>(
+//                mapper.answerToAnswerResponseDto(createdAnswer)), HttpStatus.CREATED);
+
+
     }
 
     @GetMapping("/{answer-id}")
@@ -53,9 +69,15 @@ public class AnswerController {
 
     @GetMapping
     public ResponseEntity getAnswers(@RequestParam @Positive int page,
-                                     @RequestParam @Positive int size) {
+                                     @RequestParam @Positive int size,
+                                     @PathVariable long questionId) {
         Page<Answer> pageAnswers = answerService.findAnswers(page - 1, size);
         List<Answer> answers = pageAnswers.getContent();
+
+        // /answers/{question-id}
+        //
+
+        answerRepository.findById(questionId);
 
         return new ResponseEntity<>(
                 new MultiResponseDto<>(mapper.answersToAnswerResponseDtos(answers),
