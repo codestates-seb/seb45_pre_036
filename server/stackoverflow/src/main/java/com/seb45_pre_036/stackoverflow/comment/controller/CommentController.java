@@ -9,7 +9,6 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
@@ -21,7 +20,6 @@ import java.util.List;
 @Validated
 @RequiredArgsConstructor
 public class CommentController {
-
     private final CommentService commentService;
     private final CommentMapper mapper;
 

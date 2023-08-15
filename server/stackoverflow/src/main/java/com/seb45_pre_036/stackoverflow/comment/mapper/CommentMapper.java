@@ -12,7 +12,7 @@ import java.util.stream.Collectors;
 @Mapper(componentModel = "spring")
 public interface CommentMapper {
 
-//    Comment commentPostDtoToComment(CommentDto.PostDto commentPostDto);
+    //    Comment commentPostDtoToComment(CommentDto.PostDto commentPostDto);
     default Comment commentPostDtoToComment (CommentDto.PostDto commentPostDto) {
         Member member = new Member();
         member.setMemberId(commentPostDto.getMemberId());
@@ -27,7 +27,7 @@ public interface CommentMapper {
 
         return comment;
     }
-//    Comment commentPatchDtoToComment(CommentDto.PatchDto commentPatchDto);
+    //    Comment commentPatchDtoToComment(CommentDto.PatchDto commentPatchDto);
     default Comment commentPatchDtoToComment (CommentDto.PatchDto commentPatchDto) {
         Comment comment = new Comment();
         comment.setCommentId(commentPatchDto.getCommentId());
@@ -36,7 +36,7 @@ public interface CommentMapper {
         return comment;
     }
 
-//    CommentDto.ResponseDto commentToCommentResponseDto(Comment comment);
+    //    CommentDto.ResponseDto commentToCommentResponseDto(Comment comment);
     default CommentDto.ResponseDto commentToCommentResponseDto(Comment comment) {
         CommentDto.ResponseDto commentResponseDto = new CommentDto.ResponseDto(
                 comment.getCommentId(),
@@ -68,4 +68,7 @@ public interface CommentMapper {
                 .map(comment -> commentToCommentResponseDto(comment))
                 .collect(Collectors.toList());
     }
+
+
 }
+

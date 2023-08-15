@@ -1,6 +1,7 @@
 package com.seb45_pre_036.stackoverflow.comment.dto;
 
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -8,7 +9,8 @@ import javax.validation.constraints.NotBlank;
 import java.time.LocalDateTime;
 
 public class CommentDto {
-    @Getter @Setter
+    @Getter
+    @Setter
     public static class PostDto {
         private long memberId;
         private long answerId;
@@ -28,6 +30,7 @@ public class CommentDto {
 
     @Getter @Setter
     @AllArgsConstructor
+    @Builder
     public static class ResponseDto {
         private long commentId;
         private long memberId;
