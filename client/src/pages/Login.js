@@ -24,11 +24,11 @@ const Login = () => {
       password: enteredPassword,
     });
     const { memberId } = res.data;
-    // 어떤 키값을 가지고 오는 지 확인 필요
+    // 어떤 키값을 가지고 오는지 확인 필요
     setAuthState({ isLoggedIn: true, memberId });
   };
 
-
+  // 토큰 유효성 체크 및 토큰 요청
 
   return (
     <container className="login-container">
