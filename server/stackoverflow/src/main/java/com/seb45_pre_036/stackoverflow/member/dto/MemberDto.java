@@ -1,8 +1,11 @@
 package com.seb45_pre_036.stackoverflow.member.dto;
 
+import com.seb45_pre_036.stackoverflow.answer.dto.AnswerDto;
 import com.seb45_pre_036.stackoverflow.answer.entity.Answer;
+import com.seb45_pre_036.stackoverflow.question.dto.QuestionDto;
 import com.seb45_pre_036.stackoverflow.question.entity.Question;
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -44,28 +47,19 @@ public class MemberDto {
         private String email;
         private String nickName;
         private LocalDateTime createdAt;
-    }
-
-    @Getter
-    @Setter
-    @AllArgsConstructor
-    public static class PatchResponse{
-        private long memberId;
-        private String email;
-        private String nickName;
         private LocalDateTime modifiedAt;
     }
 
     @Getter
     @Setter
-    @AllArgsConstructor
+    @Builder
     public static class MyPageResponse{
         private long memberId;
         private String email;
         private String nickName;
 
-//        private List<QuestionDto.ResponseDto> questions;
-//        private List<AnswerDto.ResponseDto> answers;
+        private List<QuestionDto.Response> questions;
+        private List<AnswerDto.Response> answers;
     }
 
 

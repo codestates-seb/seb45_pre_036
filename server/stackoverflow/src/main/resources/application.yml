@@ -25,11 +25,10 @@ server:
   servlet:
     encoding:
       force-response: true
-#mail:
-#  address:
-#    admin: admin@gmail.com
-#jwt:
-#  key:
-#    secret: ${JWT_SECRET_KEY}
-#  access-token-expiration-minutes: 30
-#  refresh-token-expiration-minutes: 420
+mail:
+  address:
+    admin: admin@gmail.com
+jwt:
+#  key: ${JWT_SECRET_KEY}
+  access-token-expiration-minutes: 30
+  refresh-token-expiration-minutes: 420
