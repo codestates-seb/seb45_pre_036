@@ -1,6 +1,8 @@
 package com.seb45_pre_036.stackoverflow.question.entity;
 
 import com.seb45_pre_036.stackoverflow.answer.entity.Answer;
+import com.seb45_pre_036.stackoverflow.audit.Auditable;
+import com.seb45_pre_036.stackoverflow.comment.entity.Comment;
 import com.seb45_pre_036.stackoverflow.member.entity.Member;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -15,22 +17,23 @@ import java.util.List;
 @Getter
 @Setter
 @NoArgsConstructor
-public class Question {
+public class Question extends Auditable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long questionId;
     private String title;
     private String content;
-    private LocalDateTime createdAt;
-    private LocalDateTime modifiedAt;
+
 
     @ManyToOne
-    private Member member = new Member();
+    private Member member;
 
-    //@OneToMany(mappedBy = "question")
-    //private List<Answer> answers = new ArrayList<>();
+    @OneToMany(mappedBy = "question")
+    private List<Answer> answers = new ArrayList<>();
 
+    @OneToMany(mappedBy = "question")
+    private List<Comment> comments = new ArrayList<>();
 
 
 

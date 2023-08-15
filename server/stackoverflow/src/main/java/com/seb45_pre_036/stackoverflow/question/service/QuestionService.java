@@ -20,16 +20,15 @@ import java.util.Optional;
 public class QuestionService {
 
     private final QuestionRepository questionRepository;
-    private final QuestionMapper questionMapper;
 
-    public QuestionService(QuestionRepository questionRepository, QuestionMapper questionMapper) {
+
+    public QuestionService(QuestionRepository questionRepository) {
         this.questionRepository = questionRepository;
-        this.questionMapper = questionMapper;
     }
 
 
     public Question findByQuestionId(long questionId) {
-        Optional<Question> optionalQuestion = questionRepository.findByQuestionId(questionId);
+        Optional<Question> optionalQuestion = questionRepository.findById(questionId);
         Question findQuestion = optionalQuestion
                 .orElseThrow(() -> new BusinessLogicException(ExceptionCode.QUESTION_NOT_FOUND));
 
@@ -59,12 +58,12 @@ public class QuestionService {
     public Page<Question> findQuestions(int page, int size){
 
         return questionRepository.findAll(
-                PageRequest.of(page,size, Sort.by("questionOd").descending()));
+                PageRequest.of(page,size, Sort.by("questionId").descending()));
     }
 
     public void deleteQuestion(long questionId){
-        Question findQuestion = findByQuestionId(questionId);
-        questionRepository.delete(findQuestion);
+        Question Question = findByQuestionId(questionId);
+        questionRepository.delete(Question);
     }
 
 
