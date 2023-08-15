@@ -4,7 +4,7 @@ body {
   justify-content: center;
 }
 
-.login-container {
+.signup-container {
   margin-top: 200px;
   display: flex;
   flex-direction: column;
@@ -13,9 +13,7 @@ body {
   width: 288px;
 }
 
-/* .login-form__logo{} */
-
-.login-form__form {
+.signup-form__form {
   margin-top: 40px;
   background-color: white;
   border-radius: 8px;
@@ -28,7 +26,7 @@ body {
   width: 100%;
 }
 
-.login-form__item {
+.signup-form__item {
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -37,24 +35,24 @@ body {
   margin-top: 10px;
 }
 
-.login-form__item.top {
+.signup-form__item.top {
   padding-top: 0;
   margin-top: 0;
 }
 
-.login-form__item.bottom {
+.signup-form__item.bottom {
   padding-bottom: 0;
 }
 
-.login-form__item.login {
+.signup-form__item.signup {
   margin-top: 20px;
 }
 
-.login-form__item.divider {
+.signup-form__item.divider {
   height: 10px;
 }
 
-.login-form__item label {
+.signup-form__item label {
   text-align: left;
   font-size: 15px;
   font-weight: 600;
@@ -62,13 +60,13 @@ body {
   padding: 0 2px;
 }
 
-.login-form__item input {
+.signup-form__item input {
   border: 1px solid rgb(186, 191, 196);
   border-radius: 6px;
   padding: 7.8px 9.1px;
 }
 
-.login-form__button {
+.signup-form__button {
   margin: 2px 0;
   background-color: rgb(10, 149, 255);
   border: 2px solid rgba(0, 0, 0, 0);
@@ -77,7 +75,7 @@ body {
   color: white;
 }
 
-.login-form__item hr {
+.signup-form__item hr {
   width: 100%;
   border: 1px solid rgb(186, 191, 196);
   /* margin: 1px; */
@@ -88,14 +86,14 @@ body {
 }
 
 /* .login-form__github-logo {
-} */
+  } */
 
-.login-form__signup-text {
+.signup-form__login-text {
   margin-top: 40px;
   text-align: center;
 }
 
-.login-form__signup-link {
+.signup-form__login-link {
   text-decoration: none;
   color: #0074cc;
 }
