@@ -1,16 +1,13 @@
-// import Header from './components/Header';
-// import Footer from './components/Footer';
-import Login from './pages/Login';
-import './styles/App.css';
+import Login from "./pages/Login";
+import "./styles/App.css";
+import { AuthProvider } from "./auth/AuthContext";
 
 function App() {
   return (
-    <div>
-      {/* <Header />
-      <Footer /> */}
+    <AuthProvider>
       <Login />
-    </div>
-    );
+    </AuthProvider>
+  );
 }
 
 export default App;
