@@ -58,8 +58,8 @@ public class MemberDto {
         private String email;
         private String nickName;
 
-        private List<QuestionDto.Response> questions;
-        private List<AnswerDto.Response> answers;
+        private List<QuestionDto.DetailResponse> questions;
+        private List<AnswerDto.Responses> answers;
     }
 
 

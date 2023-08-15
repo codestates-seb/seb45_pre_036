@@ -27,13 +27,17 @@ public class Question extends Auditable {
 
 
     @ManyToOne
+    @JoinColumn(name = "MEMBER_ID")
     private Member member;
+    // member / question -> 1/N
 
     @OneToMany(mappedBy = "question")
     private List<Answer> answers = new ArrayList<>();
 
     @OneToMany(mappedBy = "question")
     private List<Comment> comments = new ArrayList<>();
+
+
 
 
 

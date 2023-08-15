@@ -28,7 +28,7 @@ public interface QuestionMapper {
         return question;
 
     }
-    Question quesrionPatchDtoToQuestion(QuestionDto.Patch questionPatchDto);
+    Question questionPatchDtoToQuestion(QuestionDto.Patch questionPatchDto);
     default QuestionDto.Response questionToQuestionResponseDto(Question question){
 
         QuestionDto.Response response = QuestionDto.Response.builder()
@@ -43,8 +43,10 @@ public interface QuestionMapper {
                 question.getMember().getMemberId(),
                 question.getMember().getEmail(),
                 question.getMember().getNickName(),
-                question.getMember().getCreatedAt()
+                question.getMember().getCreatedAt(),
+                question.getMember().getModifiedAt()
         );
+
 
         response.setMemberInfo(memberResponseDto);
 
@@ -65,7 +67,8 @@ public interface QuestionMapper {
                 question.getMember().getMemberId(),
                 question.getMember().getEmail(),
                 question.getMember().getNickName(),
-                question.getMember().getCreatedAt()
+                question.getMember().getCreatedAt(),
+                question.getMember().getModifiedAt()
         );
 
 //        answer,coment List를 담아야함

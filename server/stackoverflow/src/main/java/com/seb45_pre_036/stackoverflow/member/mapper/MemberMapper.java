@@ -32,9 +32,9 @@ public interface MemberMapper {
 
         List<Question> getQuestions = member.getQuestions();
 
-        List<QuestionDto.Response> questionResponseDtos
+        List<QuestionDto.DetailResponse> questionResponseDtos
                 = getQuestions.stream()
-                .map(question -> QuestionDto.Response.builder()
+                .map(question -> QuestionDto.DetailResponse.builder()
                         .questionId(question.getQuestionId())
                                 .title(question.getTitle())
                                 .content(question.getContent())
@@ -52,9 +52,9 @@ public interface MemberMapper {
 
         List<Answer> getAnswers = member.getAnswers();
 
-        List<AnswerDto.Response> answerResponseDtos
+        List<AnswerDto.Responses> answerResponseDtos
                 = getAnswers.stream()
-                .map(answer -> AnswerDto.Response.builder()
+                .map(answer -> AnswerDto.Responses.builder()
                         .answerId(answer.getAnswerId())
                         .content(answer.getContent())
                         .createdAt(answer.getCreatedAt())

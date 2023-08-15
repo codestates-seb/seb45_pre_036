@@ -14,6 +14,7 @@ public class CommentDto {
     public static class PostDto {
         private long memberId;
         private long answerId;
+        private long questionId;
 
         @NotBlank(message = "댓글 내용을 작성해주세요.")
         private String content;

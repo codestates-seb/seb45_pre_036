@@ -2,6 +2,7 @@ package com.seb45_pre_036.stackoverflow.comment.entity;
 
 import com.seb45_pre_036.stackoverflow.answer.entity.Answer;
 import com.seb45_pre_036.stackoverflow.member.entity.Member;
+import com.seb45_pre_036.stackoverflow.question.entity.Question;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
@@ -35,5 +36,9 @@ public class Comment {
     @ManyToOne
     @JoinColumn(name = "ANSWER_ID")
     private Answer answer;
+
+    @ManyToOne
+    @JoinColumn(name = "QUESTION_ID")
+    private Question question;
 
 }

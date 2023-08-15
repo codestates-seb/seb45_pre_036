@@ -5,6 +5,7 @@ import com.seb45_pre_036.stackoverflow.comment.entity.Comment;
 import com.seb45_pre_036.stackoverflow.comment.mapper.CommentMapper;
 import com.seb45_pre_036.stackoverflow.comment.service.CommentService;
 import com.seb45_pre_036.stackoverflow.dto.MultiResponseDto;
+import com.seb45_pre_036.stackoverflow.utils.UriCreator;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.http.HttpStatus;
@@ -13,6 +14,7 @@ import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.net.URI;
 import java.util.List;
 
 @RestController
@@ -23,14 +25,23 @@ public class CommentController {
     private final CommentService commentService;
     private final CommentMapper mapper;
 
+    private final static String COMMENT_DEFAULT_URL = "/comments";
+
     // 댓글 생성
     @PostMapping
     public ResponseEntity postComment(@Valid @RequestBody CommentDto.PostDto commentPostDto) {
         Comment comment = mapper.commentPostDtoToComment(commentPostDto);
         Comment savedComment = commentService.createComment(comment);
 
-        CommentDto.ResponseDto responseDto = mapper.commentToCommentResponseDto(savedComment);
-        return new ResponseEntity<>(responseDto, HttpStatus.CREATED);
+        URI location = UriCreator.createUri(COMMENT_DEFAULT_URL, savedComment.getCommentId());
+
+        return ResponseEntity.created(location).build();
+
+
+        //
+//        CommentDto.ResponseDto responseDto = mapper.commentToCommentResponseDto(savedComment);
+//        return new ResponseEntity<>(responseDto, HttpStatus.CREATED);
+
     }
 
 

@@ -36,7 +36,7 @@ public class AnswerDto {
         private String content;
         private long memberId;
         private String email;
-        private String nickname;
+        private String nickName;
         private long questionId;
         private LocalDateTime createdAt;
         private LocalDateTime modifiedAt;
@@ -52,7 +52,7 @@ public class AnswerDto {
         private String content;
         private long memberId;
         private String email;
-        private String nickname;
+        private String nickName;
         private long questionId;
         List<CommentDto.ResponseDto> comments;
         private LocalDateTime createdAt;
