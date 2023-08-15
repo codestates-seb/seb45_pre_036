@@ -22,6 +22,8 @@ repositories {
 }
 
 dependencies {
+<<<<<<< HEAD
+=======
 	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
 	implementation 'org.springframework.boot:spring-boot-starter-validation'
 	implementation 'org.springframework.boot:spring-boot-starter-web'
@@ -41,6 +43,7 @@ dependencies {
 	runtimeOnly	'io.jsonwebtoken:jjwt-jackson:0.11.5'
 
 
+>>>>>>> ce87c75a0d15eb833ae924a8743f0a7b7f91a26a
 
 }
 
