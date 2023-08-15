@@ -39,6 +39,12 @@ public class AnswerService {
                 Sort.by("answerId").descending()));
     }
 
+    @Transactional(readOnly = true)
+    public Page<Answer> findAnswersByQuestionId(int page, int size, long questionId) {
+        return answerRepository.findAllByQuestionId(PageRequest.of(page, size,
+                Sort.by("answerId").descending()), questionId);
+    }
+
     public Answer updateAnswer(Answer answer) {
         Answer findAnswer = findVerifiedAnswer(answer.getAnswerId());
 
