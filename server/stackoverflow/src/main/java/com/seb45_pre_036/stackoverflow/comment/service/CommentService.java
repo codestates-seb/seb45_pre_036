@@ -1,23 +1,21 @@
 package com.seb45_pre_036.stackoverflow.comment.service;
 
-import com.seb45_pre_036.stackoverflow.answer.service.AnswerService;
-import com.seb45_pre_036.stackoverflow.comment.dto.CommentDto;
 import com.seb45_pre_036.stackoverflow.comment.entity.Comment;
-import com.seb45_pre_036.stackoverflow.comment.mapper.CommentMapper;
 import com.seb45_pre_036.stackoverflow.comment.repository.CommentRepository;
 import com.seb45_pre_036.stackoverflow.exception.BusinessLogicException;
 import com.seb45_pre_036.stackoverflow.exception.ExceptionCode;
-import com.seb45_pre_036.stackoverflow.member.service.MemberService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
+@Transactional
 public class CommentService {
 
     private final CommentRepository commentRepository;
@@ -58,4 +56,6 @@ public class CommentService {
 
         commentRepository.delete(findComment);
     }
+
+
 }
