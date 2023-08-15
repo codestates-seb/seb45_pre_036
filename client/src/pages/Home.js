@@ -11,6 +11,7 @@ const Home = () => {
       <div className='home__container'>
         <div className='userInfo__container'>
           <div className='userInfo__wrapper'>
+          {/* <img src="..styles/경로/이미지파일명.jpg" alt="프로필 사진"/> */}
             <div className="userInfo__input">
              <div className="userInfo__inputWrapper">
                 </div>
