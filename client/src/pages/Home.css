@@ -5,6 +5,12 @@ font-size: 16px;
 box-sizing: border-box;
 }
 
+body {
+    background-color: rgb(214, 217, 220);
+    display: flex;
+    justify-content: center;
+  }
+  
 .userInfo__container {
     display: flex;
     margin: 0.5rem;
@@ -18,5 +24,5 @@ box-sizing: border-box;
 
 }
 .userInfo__inputWrapper{
-    
+
 }
