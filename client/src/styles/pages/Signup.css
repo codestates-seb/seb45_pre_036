@@ -4,6 +4,23 @@ body {
   justify-content: center;
 }
 
+.signup {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+}
+
+.signup-message {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.signup-message__title {
+  font-size: 21px;
+  text-align: left;
+  padding: 50px;
+}
+
 .signup-container {
   margin-top: 200px;
   display: flex;

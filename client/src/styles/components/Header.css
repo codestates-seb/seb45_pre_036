@@ -1,51 +1,121 @@
 .header__container {
-    box-sizing: border-box;
-    width: 100%;
-    padding: 0 8px;
-    height: 56px;
-    border-bottom: 1px solid rgb(214, 217, 220);
-    border-top: 3px solid rgb(244, 130, 37);
-    position: fixed;
-    z-index: 5050;
-    display: flex;
-    justify-content: space-between;
+  box-sizing: border-box;
+  background-color: white;
+  width: 100vw;
+  padding: 0 8px;
+  height: 56px;
+  border-bottom: 1px solid rgb(214, 217, 220);
+  border-top: 3px solid rgb(244, 130, 37);
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 5050;
+  display: flex;
+  justify-content: space-between;
 }
 
 .header__logo {
-    display: flex;
-    align-items: center;
-    justify-content: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .header__logo img {
-    height: 30px;
+  height: 30px;
 }
 
-.header__nav-container{
-    display: flex;
-    justify-content: space-between;
+.header__nav-container {
+  display: flex;
+  justify-content: space-between;
 }
 
 /* .header__nav-profile {} */
 
 /* .header__nav {} */
 
-.header__nav-list{
-    list-style: none;
-    padding: 0;
-    display: flex;
-
+.header__nav-list {
+  list-style: none;
+  padding: 0;
+  display: flex;
 }
 
 .header__nav-list div {
-    display: flex;
-    padding: 0 8px;
-    align-items: center;
-    justify-content: center;
-
+  display: flex;
+  padding: 0 8px;
+  align-items: center;
+  justify-content: center;
 }
 
-.header__nav-item img{
-    width: 16px;
-    height: 16px;
+.header__nav-item img {
+  width: 16px;
+  height: 16px;
+}
+
+.login-header__container {
+  box-sizing: border-box;
+  background-color: white;
+  width: 100vw;
+  padding: 0 8px;
+  height: 56px;
+  border-bottom: 1px solid rgb(214, 217, 220);
+  border-top: 3px solid rgb(244, 130, 37);
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 5050;
+  display: flex;
+  justify-content: space-between;
+}
+
+.login-header__logo {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.login-header__logo img {
+  height: 30px;
+}
+
+.login-header__nav-container {
+  display: flex;
+  align-items: center;
+}
+
+.login-header__nav-item {
+  border: none;
+  padding: 8px 10px;
+  height: 33px;
+  cursor: pointer;
+  background-color: rgb(225, 236, 244);
+  border-radius: 6px;
+  color: rgb(57, 115, 157);
+}
+
+.login-header__nav-item.signup-btn {
+  background-color: rgb(10, 149, 255);
+  margin-left: 8px;
+  color: white;
+}
+
+.login-btn:hover {
+  background-color: hsl(206, 79%, 77%);
+}
+.signup-btn:hover {
+  background-color: hsl(206, 100%, 40%);
+}
+
+.login-btn:active {
+  background-color: hsl(206, 71%, 63%);
+  border: 4px solid rgb(225, 236, 244);
+  width: 60.625px;
+  height: 41px;
+}
+
+.signup-btn:active {
+  background-color: hsl(206, 100%, 35%);
+  border: 4px solid rgb(225, 236, 244);
+  width: 69.625px;
+  height: 41px;
+  margin-left: 0px;
 }
