@@ -66,11 +66,19 @@ body {
     color: #6a737c;
 }
 
+.answer__number{
+    color: #6a737c;
+}
+
 .answer__name{
     color: #6a737c;
 }
 
 .view__count{
+    color: #6a737c;
+}
+
+.view__number{
     color: #6a737c;
 }
 
