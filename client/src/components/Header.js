@@ -1,13 +1,12 @@
 import { useContext } from "react";
 import "../styles/components/Header.css";
-import {logo} from "../static/logo.png";
 import { AuthContext } from "../auth/AuthContext";
 
 const LoginHeader = () => {
   return (
     <header className="login-header__container">
       <a className="login-header__logo" href="/">
-        <img src={logo} alt="Stack Overflow logo" />
+        <img src={require("../static/logo.png")} alt="Stack Overflow logo" />
       </a>
       <div className="login-header__nav-container">
         <button className="login-header__nav-item login-btn">Login</button>
@@ -21,7 +20,7 @@ const UserHeader = () => {
   return (
     <header className="header__container">
       <a className="header__logo" href>
-        <img src={logo} alt="stackoverflow logo" />
+        <img src={require("../static/logo.png")} alt="stackoverflow logo" />
       </a>
       <div className="header__nav-container">
         <div className="header__nav-profile">profile</div>
