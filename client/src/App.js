@@ -1,15 +1,13 @@
-// import Login from "./pages/Login";
+import Login from "./pages/Login";
 import "./styles/App.css";
 import { AuthProvider } from "./auth/AuthContext";
-import Signup from "./pages/Signup";
-// import Header from "./components/Header";
+// import Signup from "./pages/Signup";
 
 function App() {
   return (
     <AuthProvider>
-      {/* <Header /> */}
-      {/* <Login />  */}
-      <Signup />
+      <Login /> 
+      {/* <Signup /> */}
     </AuthProvider>
   );
 }

@@ -60,7 +60,7 @@ const Header = () => {
   const {authState} = useContext(AuthContext);
   return (
     <>
-    { authState.isLoggedIn ? <UserHeader/> : <LoginHeader />}
+    { authState.isLoggedIn ? <LoginHeader/> : <LoginHeader />}
     </>
   )
 }
