@@ -1,13 +1,21 @@
 .footer__container{
     background-color: rgb(35, 38, 41);
     color: #BABFC4;
+    width: 100%;
     font-size: 11px;
     display: flex;
     padding: 16px;
 }
 
-.footer__logo-container{
-    width: 64px;
+.footer__logo-container {
+    padding: 4px;
+    margin-right: 10px;
+}
+
+.footer__logo-container img {
+    object-fit: cover;
+    width: 30px;
+    height: auto;
 }
 
 /* .footer__content{} */

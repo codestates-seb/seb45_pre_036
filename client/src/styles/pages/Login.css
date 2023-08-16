@@ -13,7 +13,11 @@ body {
   width: 288px;
 }
 
-/* .login-form__logo{} */
+.login-form__logo img{
+  object-fit: cover;
+  width: 50px;
+  height: auto;
+}
 
 .login-form__form {
   margin-top: 40px;
