@@ -3,36 +3,48 @@ import Header from '../component/Header'
 import Footer from '../components/Footer'
 import Menu from '../components/Menu'
 import './Home.css';
+/* import Nav from '../components/Nav' -> 헤더 밑으로 */
 
 const Home = () => {
   return (
     <div>
-    <Header />
-      <div className='home__container'>
-        <div className='userInfo__container'>
-          <div className='userInfo__wrapper'>
-          {/* <img src="..styles/경로/이미지파일명.jpg" alt="프로필 사진"/> */}
-            <div className="userInfo__input">
-             <div className="userInfo__inputWrapper">
+      <div className='question__container'>
+          <Header/>
+          
+        <div className='question__wrapper'>
+          <div className='top__container'>
+            <p id='home__title'>Top Questions</p>
+            <button id="askQuestion__Button">Ask Question</button>
+          </div>
+          <div className='question_wrapper'>
+            <div className='post__summary'>
+              <div className='answer__summary'>
+                <div className='vote__count'>0 votes
+                  <div className='vote__number'></div>
+                  <div className='vote__name'></div>
+                </div>
+                <div className='answer__count'>1 answer
+                  <div className='answer__number'></div>
+                  <div className='answer__name'></div>
+                </div>
+                <div className='view__count'>23 views
+                  <div className='view__number'></div>
+                  <div className='view__name'></div>
                 </div>
               </div>
+              <div className='question__title'>Question title</div>
+              <div className='answerer__container'>
+                <div className='answerer__colorbox'></div>
+                <div className='answerer__name'></div>
+              </div>
+            </div>
           </div>
         </div>
-        <section className='about'>
-          <p>About</p>
-          <div className='about__container'></div>
-        </section>
-        <section className='questions'>Questions
-          <p>Questions</p>
-          <div className='questions__container'></div>
-        </section>
-        <section className='answers'>Answers
-        <p>Answers</p>
-          <div className='answers_container'></div>
-        </section>
-        <Footer />
       </div>
-      </div>
+
+
+
+    </div>
   );
 }
 
