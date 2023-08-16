@@ -8,6 +8,7 @@ import com.seb45_pre_036.stackoverflow.question.mapper.QuestionMapper;
 import com.seb45_pre_036.stackoverflow.question.service.QuestionService;
 import com.seb45_pre_036.stackoverflow.utils.UriCreator;
 import org.springframework.data.domain.Page;
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
@@ -39,26 +40,34 @@ public class QuestionController {
     public ResponseEntity postQuestion(@RequestBody @Valid QuestionDto.Post questionPostDto){
 
         Question question = questionService.createQuestion(mapper.questionPostDtoToQuestion(questionPostDto));
-        URI locaition = UriCreator.createUri(QUESTION_DEFAULT_URL, question.getQuestionId());
+        URI location = UriCreator.createUri(QUESTION_DEFAULT_URL, question.getQuestionId());
 
-        return ResponseEntity.created(locaition).build();
+        return ResponseEntity.created(location).build();
     }
 
     @PatchMapping("/{question-id}")
     public ResponseEntity patchQuestion(@PathVariable("question-id")@Positive long questionId,
-                                        @Valid @RequestBody QuestionDto.Patch questionPatchDto){
-        questionPatchDto.setQuestionId(questionId);
-        Question question = questionService.updateQuestion(mapper.questionPatchDtoToQuestion(questionPatchDto));
+                                        @Valid @RequestBody QuestionDto.Patch questionPatchDto,
+                                        @RequestHeader(HttpHeaders.AUTHORIZATION) String accessToken){
 
-        return new ResponseEntity<>(new SingleResponseDto<>(mapper.questionToQuestionResponseDto(question)),HttpStatus.OK);
+        questionPatchDto.setQuestionId(questionId);
+
+        Question question
+                = questionService.updateQuestion(mapper.questionPatchDtoToQuestion(questionPatchDto), accessToken);
+
+        return new ResponseEntity<>(
+                new SingleResponseDto<>(
+                        mapper.questionToQuestionDetailResponseDto(question)),HttpStatus.OK);
+
+
     }
     @GetMapping("/{question-id}")
-    public ResponseEntity getQuestion(@PathVariable("question-id")@Positive long questionId){
+    public ResponseEntity getQuestion(@PathVariable("question-id") @Positive long questionId){
 
         Question question = questionService.findQuestion(questionId);
 
         return new ResponseEntity<>(
-                new SingleResponseDto<>(mapper.questionToQuestionResponseDto(question)),HttpStatus.OK);
+                new SingleResponseDto<>(mapper.questionToQuestionDetailResponseDto(question)), HttpStatus.OK);
     }
 
     @GetMapping
@@ -68,12 +77,13 @@ public class QuestionController {
         List<Question> questions = pageQuestions.getContent();
 
         return new ResponseEntity(
-                new MultiResponseDto<>(mapper.questionsToQuestionResponseDtos(questions),pageQuestions),HttpStatus.OK);
+                new MultiResponseDto<>(mapper.questionsToQuestionResponseDtos(questions), pageQuestions), HttpStatus.OK);
     }
 
     @DeleteMapping("/{question-id}")
-    public ResponseEntity deleteQuestion(@PathVariable("question-id")@Positive long questionId){
-        questionService.deleteQuestion(questionId);
+    public ResponseEntity deleteQuestion(@PathVariable("question-id") @Positive long questionId,
+                                         @RequestHeader(HttpHeaders.AUTHORIZATION) String accessToken){
+        questionService.deleteQuestion(questionId, accessToken);
 
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }

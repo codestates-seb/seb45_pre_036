@@ -1,9 +1,11 @@
 package com.seb45_pre_036.stackoverflow.comment.entity;
 
 import com.seb45_pre_036.stackoverflow.answer.entity.Answer;
+import com.seb45_pre_036.stackoverflow.audit.Auditable;
 import com.seb45_pre_036.stackoverflow.member.entity.Member;
 import com.seb45_pre_036.stackoverflow.question.entity.Question;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
 
@@ -13,9 +15,8 @@ import java.time.LocalDateTime;
 @Getter
 @Setter
 @Entity
-@ToString
-@Table(name = "COMMENT")
-public class Comment {
+@NoArgsConstructor
+public class Comment extends Auditable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -25,10 +26,6 @@ public class Comment {
     @Column(nullable = false)
     private String content;
 
-    private LocalDateTime createdAt;
-
-    private LocalDateTime modifiedAt;
-
     @ManyToOne
     @JoinColumn(name = "MEMBER_ID")
     private Member member;
@@ -37,8 +34,5 @@ public class Comment {
     @JoinColumn(name = "ANSWER_ID")
     private Answer answer;
 
-    @ManyToOne
-    @JoinColumn(name = "QUESTION_ID")
-    private Question question;
 
 }

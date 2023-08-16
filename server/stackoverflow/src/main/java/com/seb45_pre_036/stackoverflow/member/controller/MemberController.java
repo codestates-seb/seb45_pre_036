@@ -42,8 +42,6 @@ public class MemberController {
 
         return ResponseEntity.created(location).build();
 
-//        return new ResponseEntity(
-//                new SingleResponseDto<>(mapper.memberToMyPageResponseDto(createdMember)), HttpStatus.CREATED);
     }
 
     @PatchMapping("{member-id}")
@@ -58,7 +56,7 @@ public class MemberController {
                 new SingleResponseDto<>(mapper.memberToMyPageResponseDto(member)), HttpStatus.OK);
     }
 
-    @GetMapping("{member-id}")
+    @GetMapping("/myPage/{member-id}")
     public ResponseEntity getMember(@PathVariable("member-id") @Positive long memberId,
                                     @RequestHeader(HttpHeaders.AUTHORIZATION) String accessToken){
 

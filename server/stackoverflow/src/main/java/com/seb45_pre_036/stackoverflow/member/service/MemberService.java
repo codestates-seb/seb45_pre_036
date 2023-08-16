@@ -25,16 +25,14 @@ public class MemberService {
     private final PasswordEncoder passwordEncoder;
     private final JwtTokenizer jwtTokenizer;
 
-    public MemberService(MemberRepository memberRepository,
-                         CustomAuthorityUtils customAuthorityUtils,
-                         PasswordEncoder passwordEncoder,
-                         JwtTokenizer jwtTokenizer) {
+
+    public MemberService(MemberRepository memberRepository, CustomAuthorityUtils customAuthorityUtils,
+                         PasswordEncoder passwordEncoder, JwtTokenizer jwtTokenizer) {
         this.memberRepository = memberRepository;
         this.customAuthorityUtils = customAuthorityUtils;
         this.passwordEncoder = passwordEncoder;
         this.jwtTokenizer = jwtTokenizer;
     }
-
 
     // 검증된 회원 조회
     public Member findVerifiedMember(long memberId){
@@ -102,14 +100,12 @@ public class MemberService {
     }
 
 
-
     public Page<Member> findMembers(int page, int size){
 
         return memberRepository.findAll(
                 PageRequest.of(page, size, Sort.by("memberId").descending()));
 
     }
-
 
     public void deleteMember(long memberId, String accessToken){
 

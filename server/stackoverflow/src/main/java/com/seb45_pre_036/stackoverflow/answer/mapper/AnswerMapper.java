@@ -28,34 +28,20 @@ public interface AnswerMapper {
 
         answer.setMember(member);
         answer.setQuestion(question);
+
         answer.setContent(answerPostDto.getContent());
 
         return answer;
     }
+
     Answer answerPatchDtoToAnswer(AnswerDto.Patch answerPatchDto);
-    default AnswerDto.Response answerToAnswerResponseDto(Answer answer) {
-        AnswerDto.Response response = AnswerDto.Response.builder()
-                                        .answerId(answer.getAnswerId())
-                                        .content(answer.getContent())
-                                        .memberId(answer.getMember().getMemberId())
-                                        .email(answer.getMember().getEmail())
-                                        .nickName(answer.getMember().getNickName())
-                                        .questionId(answer.getQuestion().getQuestionId())
-                                        .createdAt(answer.getCreatedAt())
-                                        .modifiedAt(answer.getModifiedAt())
-                                        .build();
-        return response;
-    }
-    default List<AnswerDto.Response> answerToAnswerResponseDtos(List<Answer> answers) {
-        return answers.stream()
-                .map(answer -> answerToAnswerResponseDto(answer))
-                .collect(Collectors.toList());
-    }
+
 
     /*
-    * with comments
-    */
-    default AnswerDto.Responses answersToAnswerResponseDto(Answer answer) {
+     * with comments
+     */
+    default AnswerDto.Responses answerToAnswerResponsesDto(Answer answer) {
+
         AnswerDto.Responses response = AnswerDto.Responses.builder()
                 .answerId(answer.getAnswerId())
                 .content(answer.getContent())
@@ -67,15 +53,18 @@ public interface AnswerMapper {
                 .modifiedAt(answer.getModifiedAt())
                 .build();
 
+        // answer 엔티티 -> List<Comment> -> List<AnswerDto.CommentResponse>
+
         List<Comment> comments = answer.getComments();
 
-        List<CommentDto.ResponseDto> commentDto = comments.stream()
-                .map(comment -> new CommentDto.ResponseDto(comment.getCommentId(),
-                        comment.getMember().getMemberId(),
+        List<AnswerDto.CommentResponse> commentDto = comments.stream()
+                .map(comment -> new AnswerDto.CommentResponse(
+                        comment.getCommentId(),
+                        comment.getContent(),
                         comment.getAnswer().getAnswerId(),
+                        comment.getMember().getMemberId(),
                         comment.getMember().getEmail(),
-                        comment.getMember().getEmail(),
-                        comment.getAnswer().getContent(),
+                        comment.getMember().getNickName(),
                         comment.getCreatedAt(),
                         comment.getModifiedAt()))
                 .collect(Collectors.toList());
@@ -85,9 +74,8 @@ public interface AnswerMapper {
         return response;
     }
 
-    default List<AnswerDto.Responses> answersToAnswerResponseDtos(List<Answer> answers) {
-        return answers.stream()
-                .map(answer -> answersToAnswerResponseDto(answer))
-                .collect(Collectors.toList());
-    }
+    List<AnswerDto.Response> answerToAnswerResponseDtos(List<Answer> answers);
+
+    List<AnswerDto.Responses> answersToAnswerResponseDtos(List<Answer> answers);
+
 }

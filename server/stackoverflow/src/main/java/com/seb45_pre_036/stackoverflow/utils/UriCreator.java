@@ -13,7 +13,6 @@ public class UriCreator {
                 .buildAndExpand(resourceId)
                 .toUri();
 
-        // members/{member-id}
-        // h
+
     }
 }

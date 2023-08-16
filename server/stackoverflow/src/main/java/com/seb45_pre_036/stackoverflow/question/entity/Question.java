@@ -25,20 +25,13 @@ public class Question extends Auditable {
     private String title;
     private String content;
 
-
     @ManyToOne
     @JoinColumn(name = "MEMBER_ID")
     private Member member;
-    // member / question -> 1/N
 
-    @OneToMany(mappedBy = "question")
+
+    @OneToMany(mappedBy = "question", cascade = CascadeType.REMOVE)
     private List<Answer> answers = new ArrayList<>();
-
-    @OneToMany(mappedBy = "question")
-    private List<Comment> comments = new ArrayList<>();
-
-
-
 
 
 }

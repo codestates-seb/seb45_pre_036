@@ -56,9 +56,16 @@ public class SecurityConfiguration {
                 .authorizeHttpRequests(authorize -> authorize
                         .antMatchers(HttpMethod.POST, "/members").permitAll()
                         .antMatchers(HttpMethod.PATCH, "/members/**").hasRole("USER")
-                        .antMatchers(HttpMethod.GET, "/members").hasRole("USER")
-                        .antMatchers(HttpMethod.GET, "/members/**").hasRole("USER")
+//                        .antMatchers(HttpMethod.GET, "/members").hasRole("USER")
+                        .antMatchers(HttpMethod.GET, "/members/myPage/**").hasRole("USER")
                         .antMatchers(HttpMethod.DELETE, "/members/**").hasRole("USER")
+                        .antMatchers(HttpMethod.POST, "/questions/ask").hasRole("USER")
+                        .antMatchers(HttpMethod.PATCH, "/questions/**").hasRole("USER")
+                        .antMatchers(HttpMethod.DELETE, "/questions/**").hasRole("USER")
+                        .antMatchers(HttpMethod.PATCH, "/answers/**").hasRole("USER")
+                        .antMatchers(HttpMethod.DELETE, "/answers/**").hasRole("USER")
+                        .antMatchers(HttpMethod.PATCH, "/comments/**").hasRole("USER")
+                        .antMatchers(HttpMethod.DELETE, "/comments/**").hasRole("USER")
                         .anyRequest().permitAll()
                 );
         return http.build();

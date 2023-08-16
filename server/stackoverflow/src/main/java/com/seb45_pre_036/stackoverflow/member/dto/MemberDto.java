@@ -18,7 +18,6 @@ import java.util.List;
 public class MemberDto {
     @Getter
     public static class Post{
-
         @NotBlank
         private String email;
         @NotBlank
@@ -41,13 +40,39 @@ public class MemberDto {
 
     @Getter
     @Setter
-    @AllArgsConstructor
+    @Builder
     public static class Response{
         private long memberId;
         private String email;
         private String nickName;
         private LocalDateTime createdAt;
         private LocalDateTime modifiedAt;
+    }
+
+
+    @Builder
+    @Getter @Setter
+    public static class AnswerResponse {
+        private long answerId;
+        private String content;
+        private LocalDateTime createdAt;
+        private LocalDateTime modifiedAt;
+        private long questionId;
+
+
+    }
+
+    @Getter
+    @Setter
+    @Builder
+    public static class QuestionResponse{
+        private long questionId;
+        private String title;
+        private String content;
+        private LocalDateTime createdAt;
+        private LocalDateTime modifiedAt;
+
+
     }
 
     @Getter
@@ -58,11 +83,9 @@ public class MemberDto {
         private String email;
         private String nickName;
 
-        private List<QuestionDto.DetailResponse> questions;
-        private List<AnswerDto.Responses> answers;
+        private List<MemberDto.QuestionResponse> questions;
+        private List<MemberDto.AnswerResponse> answers;
     }
-
-
 
 
 }

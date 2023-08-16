@@ -22,93 +22,82 @@ public interface QuestionMapper {
 
         Question question = new Question();
         question.setTitle(questionPostDto.getTitle());
+
         question.setContent(questionPostDto.getContent());
         question.setMember(member);
 
         return question;
-
     }
+
     Question questionPatchDtoToQuestion(QuestionDto.Patch questionPatchDto);
+
     default QuestionDto.Response questionToQuestionResponseDto(Question question){
 
         QuestionDto.Response response = QuestionDto.Response.builder()
                 .questionId(question.getQuestionId())
                 .memberId(question.getMember().getMemberId())
+                .email(question.getMember().getEmail())
+                .nickName(question.getMember().getNickName())
                 .title(question.getTitle())
                 .content(question.getContent())
-                .createdAt(question.getCreatedAt()).build();
-
-
-        MemberDto.Response memberResponseDto = new MemberDto.Response(
-                question.getMember().getMemberId(),
-                question.getMember().getEmail(),
-                question.getMember().getNickName(),
-                question.getMember().getCreatedAt(),
-                question.getMember().getModifiedAt()
-        );
-
-
-        response.setMemberInfo(memberResponseDto);
+                .createdAt(question.getCreatedAt())
+                .modifiedAt(question.getModifiedAt())
+                .build();
 
         return response;
 
     }
+
+    List<QuestionDto.Response> questionsToQuestionResponseDtos(List<Question> questions);
+
+
     default QuestionDto.DetailResponse questionToQuestionDetailResponseDto(Question question){
+
         QuestionDto.DetailResponse detailResponse = QuestionDto.DetailResponse.builder()
                 .questionId(question.getQuestionId())
                 .memberId(question.getMember().getMemberId())
+                .email(question.getMember().getEmail())
+                .nickName(question.getMember().getNickName())
                 .title(question.getTitle())
                 .content(question.getContent())
                 .createdAt(question.getCreatedAt())
-                .modifiedAt(question.getModifiedAt()).build();
-
-
-        MemberDto.Response memberResponseDto = new MemberDto.Response(
-                question.getMember().getMemberId(),
-                question.getMember().getEmail(),
-                question.getMember().getNickName(),
-                question.getMember().getCreatedAt(),
-                question.getMember().getModifiedAt()
-        );
-
-//        answer,coment List를 담아야함
-//        private List<AnswerDto.Response> answers;
-
-        detailResponse.setMemberInfo(memberResponseDto);
+                .modifiedAt(question.getModifiedAt())
+                .build();
 
 
         List<Answer> answers = question.getAnswers();
 
-        List<AnswerDto.Response> answerDtoResponses =
-        answers.stream().map(answer -> AnswerDto.Response.builder()
+        List<QuestionDto.AnswerResponse> answerDtoResponses =
+        answers.stream().map(answer -> QuestionDto.AnswerResponse.builder()
                 .answerId(answer.getAnswerId())
                 .content(answer.getContent())
-                .memberId(answer.getMember().getMemberId())
-                //email?nickName 가져와야 할까?
                 .createdAt(answer.getCreatedAt())
                 .modifiedAt(answer.getModifiedAt())
+                .memberId(answer.getMember().getMemberId())
+                .email(answer.getMember().getEmail())
+                .nickName(answer.getMember().getNickName())
+                .questionId(answer.getQuestion().getQuestionId())
+                .comments(answer.getComments().stream()
+                        .map(comment -> QuestionDto.CommentResponse.builder()
+                                .commentId(comment.getCommentId())
+                                .content(comment.getContent())
+                                .answerId(comment.getAnswer().getAnswerId())
+                                .memberId(comment.getMember().getMemberId())
+                                .email(comment.getMember().getEmail())
+                                .nickName(comment.getMember().getNickName())
+                                .createdAt(comment.getCreatedAt())
+                                .modifiedAt(comment.getModifiedAt())
+                                .build())
+                        .collect(Collectors.toList()))
                 .build()
         ).collect(Collectors.toList());
 
         detailResponse.setAnswers(answerDtoResponses);
 
-        List<Comment> comments = question.getComments();
-
-        List<CommentDto.ResponseDto> commentDtoResponses=
-        comments.stream().map(comment -> CommentDto.ResponseDto.builder()
-                        .commentId(comment.getCommentId())
-                        .content(comment.getContent())
-                        .memberId(comment.getMember().getMemberId())
-                        //email?nickName 가져와야 할까?
-                        .answerId(comment.getAnswer().getAnswerId())
-                        .createdAt(comment.getCreatedAt())
-                        .modifiedAt(comment.getModifiedAt())
-                        .build()).collect(Collectors.toList());
-
-        detailResponse.setComments(commentDtoResponses);
 
         return detailResponse;
+
     }
-    List<QuestionDto.Response> questionsToQuestionResponseDtos(List<Question> questions);
+
 
 }

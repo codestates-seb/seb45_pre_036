@@ -13,7 +13,6 @@ import javax.persistence.*;
 import java.util.List;
 
 @NoArgsConstructor
-@AllArgsConstructor
 @Getter @Setter
 @Entity
 public class Answer extends Auditable {
@@ -25,9 +24,6 @@ public class Answer extends Auditable {
     @Column(nullable = false)
     private String content;
 
-//    @Column(nullable = false)
-//    private Adopt adopt = Adopt.NONE;
-
     @ManyToOne
     @JoinColumn(name = "MEMBER_ID")
     private Member member;
@@ -36,11 +32,7 @@ public class Answer extends Auditable {
     @JoinColumn(name = "QUESTION_ID")
     private Question question;
 
-    @OneToMany(mappedBy = "answer")
+    @OneToMany(mappedBy = "answer", cascade = CascadeType.REMOVE)
     private List<Comment> comments;
 
-    public enum Adopt {
-        NONE,
-        ADOPTED;
-    }
 }

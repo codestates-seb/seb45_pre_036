@@ -11,8 +11,4 @@ import java.util.List;
 
 public interface AnswerRepository extends JpaRepository<Answer, Long> {
 
-    @Query("SELECT a FROM ANSWER a WHERE a.questionId = :questionId")
-    default Page<Answer> findAllByQuestionId(Pageable pageable, long questionId) {
-        return findAll(pageable);
-    }
 }

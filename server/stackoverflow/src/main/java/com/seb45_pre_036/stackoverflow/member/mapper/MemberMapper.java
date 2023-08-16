@@ -32,17 +32,14 @@ public interface MemberMapper {
 
         List<Question> getQuestions = member.getQuestions();
 
-        List<QuestionDto.DetailResponse> questionResponseDtos
+        List<MemberDto.QuestionResponse> questionResponseDtos
                 = getQuestions.stream()
-                .map(question -> QuestionDto.DetailResponse.builder()
+                .map(question -> MemberDto.QuestionResponse.builder()
                         .questionId(question.getQuestionId())
                                 .title(question.getTitle())
                                 .content(question.getContent())
                                 .createdAt(question.getCreatedAt())
                                 .modifiedAt(question.getModifiedAt())
-                                .memberId(question.getMember().getMemberId()) // 해당 부분 필요 없을 듯
-                                .email(question.getMember().getEmail())
-                                .nickName(question.getMember().getNickName()) // 해당 부분 필요 없을 듯
                                 .build()
                         ).collect(Collectors.toList());
 
@@ -52,16 +49,14 @@ public interface MemberMapper {
 
         List<Answer> getAnswers = member.getAnswers();
 
-        List<AnswerDto.Responses> answerResponseDtos
+        List<MemberDto.AnswerResponse> answerResponseDtos
                 = getAnswers.stream()
-                .map(answer -> AnswerDto.Responses.builder()
+                .map(answer -> MemberDto.AnswerResponse.builder()
                         .answerId(answer.getAnswerId())
                         .content(answer.getContent())
                         .createdAt(answer.getCreatedAt())
                         .modifiedAt(answer.getModifiedAt())
-                        .memberId(answer.getMember().getMemberId()) // 해당 부분 필요 없을 듯
-                        .email(answer.getMember().getEmail()) // 해당 부분 필요 없을 듯
-                        .nickName(answer.getMember().getNickName()) // 해당 부분 필요 없을 듯
+                        .questionId(answer.getQuestion().getQuestionId())
                         .build()
                 ).collect(Collectors.toList());
 
@@ -71,6 +66,6 @@ public interface MemberMapper {
 
     }
 
-    List<MemberDto.MyPageResponse> membersToMemberResponseDtos(List<Member> members);
+    List<MemberDto.Response> membersToMemberResponseDtos(List<Member> members);
 
 }

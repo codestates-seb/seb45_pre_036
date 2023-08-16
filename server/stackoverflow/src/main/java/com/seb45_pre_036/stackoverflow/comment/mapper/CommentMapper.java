@@ -13,65 +13,43 @@ import java.util.stream.Collectors;
 @Mapper(componentModel = "spring")
 public interface CommentMapper {
 
-    //    Comment commentPostDtoToComment(CommentDto.PostDto commentPostDto);
     default Comment commentPostDtoToComment (CommentDto.PostDto commentPostDto) {
+
         Member member = new Member();
         member.setMemberId(commentPostDto.getMemberId());
 
         Answer answer = new Answer();
         answer.setAnswerId(commentPostDto.getAnswerId());
 
-        Question question = new Question();
 
         Comment comment = new Comment();
         comment.setMember(member);
         comment.setAnswer(answer);
-        comment.setQuestion(question);
         comment.setContent(commentPostDto.getContent());
 
         return comment;
     }
-    //    Comment commentPatchDtoToComment(CommentDto.PatchDto commentPatchDto);
-    default Comment commentPatchDtoToComment (CommentDto.PatchDto commentPatchDto) {
-        Comment comment = new Comment();
-        comment.setCommentId(commentPatchDto.getCommentId());
-        comment.setContent(commentPatchDto.getContent());
 
-        return comment;
-    }
+    Comment commentPatchDtoToComment (CommentDto.PatchDto commentPatchDto);
 
-    //    CommentDto.ResponseDto commentToCommentResponseDto(Comment comment);
     default CommentDto.ResponseDto commentToCommentResponseDto(Comment comment) {
+
         CommentDto.ResponseDto commentResponseDto = new CommentDto.ResponseDto(
                 comment.getCommentId(),
-                comment.getMember().getMemberId(),
-                comment.getAnswer().getAnswerId(),
                 comment.getContent(),
+                comment.getAnswer().getAnswerId(),
+                comment.getMember().getMemberId(),
                 comment.getMember().getEmail(),
                 comment.getMember().getNickName(),
                 comment.getCreatedAt(),
                 comment.getModifiedAt()
         );
 
-        /*
-        commentResponseDto.setCommentId(comment.getCommentId());
-        commentResponseDto.setMemberId(comment.getMember().getMemberId());
-        commentResponseDto.setAnswerId(comment.getAnswer().getAnswerId());
-        commentResponseDto.setContent(comment.getContent());
-        commentResponseDto.setEmail(comment.getMember().getEmail());
-        commentResponseDto.setNickName(comment.getMember().getNickName());
-        commentResponseDto.setCreatedAt(comment.getCreatedAt());
-        commentResponseDto.setModifiedAt(comment.getModifiedAt());
-         */
-
         return commentResponseDto;
+
     }
 
-    default List<CommentDto.ResponseDto> commentsToCommentResponseDtos(List<Comment> comments) {
-        return comments.stream()
-                .map(comment -> commentToCommentResponseDto(comment))
-                .collect(Collectors.toList());
-    }
+    List<CommentDto.ResponseDto> commentsToCommentResponseDtos(List<Comment> comments);
 
 
 }

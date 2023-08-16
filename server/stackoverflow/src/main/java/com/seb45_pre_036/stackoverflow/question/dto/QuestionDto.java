@@ -38,35 +38,24 @@ public class QuestionDto {
 
     @Getter
     @Setter
-    @AllArgsConstructor
     @Builder
     public static class Response{
 
         private long questionId;
         private long memberId;
+        private String email;
+        private String nickName;
         private String title;
         private String content;
         private LocalDateTime createdAt;
-        private MemberDto.Response memberInfo;
-
-
-
-    }
-
-    @Getter
-    @Setter
-    @AllArgsConstructor
-    public static class PatchResponse{
-
-        private long questionId;
-        private String title;
-        private String content;
         private LocalDateTime modifiedAt;
+
+
     }
+
 
     @Getter
     @Setter
-    @AllArgsConstructor
     @Builder
     public static class DetailResponse{
         private long questionId;
@@ -77,12 +66,39 @@ public class QuestionDto {
         private long memberId;
         private String email;
         private String nickName;
-        private MemberDto.Response memberInfo;
-        private List<AnswerDto.Response> answers;
-        private List<CommentDto.ResponseDto> comments;
+        private List<QuestionDto.AnswerResponse> answers;
     }
 
+    @Builder
+    @Getter @Setter
+    public static class AnswerResponse { // Question 필요한 responseDto
+        private long answerId;
+        private String content;
+        private LocalDateTime createdAt;
+        private LocalDateTime modifiedAt;
+        private long memberId;
+        private String email;
+        private String nickName;
+        private long questionId;
+        private List<QuestionDto.CommentResponse> comments;
 
+    }
+
+    @Getter @Setter
+    @Builder
+    public static class CommentResponse {
+        private long commentId;
+        private String content;
+
+        private long answerId;
+
+        private long memberId;
+        private String email;
+        private String nickName;
+
+        private LocalDateTime createdAt;
+        private LocalDateTime modifiedAt;
+    }
 
 
 
