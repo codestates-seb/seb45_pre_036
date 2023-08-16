@@ -1,23 +1,22 @@
 * {
     box-sizing: border-box;
-}
-
-main {
-    margin: 0;
-    padding: 0;
-    --black-200: #333333; 
     --black-100: hsl(210,8%,75%);
+    --black-200: #333333; 
 }
 
-.container {
+
+/* .container {
     display: flex;
     flex-direction: column;    
-}
+} */
 
         .top__line {
             display: flex;
             flex-direction: row;
             margin: 10px 0 0 0;
+            margin: 0;
+            padding: 0;
+
         }
 
                 img {
@@ -84,10 +83,17 @@ main {
                     font-size: 21px;
                     margin: 0 0 5px 0;
                 }
+
+                /* 가로 길이 맞춰야 함 - 우측에 여백 */
                 .contents__box {
-                    justify-content: space-around;
                     flex: 1;
                     margin: 0 0 20px 0;
                     padding: 30px;
                     text-align: center;
                 }
+
+
+/* 질문/퀘스천 색상 적용 안 되는 중 */
+.title {
+    color: 0074CC;
+}

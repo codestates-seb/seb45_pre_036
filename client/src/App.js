@@ -1,17 +1,20 @@
 import Header from './components/Header';
 import Footer from './components/Footer';
-import MyPage from './components/MyPage';
-
+import UsernameBox from './components/UsernameBox';
+import ProfileContents from './components/ProfileContents';
+import React, {useState} from 'react';
+import ProfilePage from './components/Edit';
 import './styles/App.css';
+
 
 function App() {
   return (
-    <div>
-      <Header />
-      <Footer />
-      <MyPage />
-    </div>
-    );
+    <>
+    <UsernameBox />
+    <ProfileContents />
+    <ProfilePage />
+    </>
+  )
 }
 
 export default App;
