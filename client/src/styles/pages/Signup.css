@@ -1,0 +1,116 @@
+body {
+  background-color: rgb(214, 217, 220);
+  display: flex;
+  justify-content: center;
+}
+
+.signup {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+}
+
+.signup-message {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.signup-message__title {
+  font-size: 21px;
+  text-align: left;
+  padding: 50px;
+}
+
+.signup-container {
+  margin-top: 200px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 288px;
+}
+
+.signup-form__form {
+  margin-top: 40px;
+  background-color: white;
+  border-radius: 8px;
+  width: 100%;
+  padding: 24px;
+  box-shadow: 0px 10px 24px 0px rgba(0, 0, 0, 0.05);
+  display: flex;
+  flex-direction: column;
+  align-items: space-between;
+  width: 100%;
+}
+
+.signup-form__item {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  flex: 1;
+  padding: 2px 0;
+  margin-top: 10px;
+}
+
+.signup-form__item.top {
+  padding-top: 0;
+  margin-top: 0;
+}
+
+.signup-form__item.bottom {
+  padding-bottom: 0;
+}
+
+.signup-form__item.signup {
+  margin-top: 20px;
+}
+
+.signup-form__item.divider {
+  height: 10px;
+}
+
+.signup-form__item label {
+  text-align: left;
+  font-size: 15px;
+  font-weight: 600;
+  margin: 2px 0;
+  padding: 0 2px;
+}
+
+.signup-form__item input {
+  border: 1px solid rgb(186, 191, 196);
+  border-radius: 6px;
+  padding: 7.8px 9.1px;
+}
+
+.signup-form__button {
+  margin: 2px 0;
+  background-color: rgb(10, 149, 255);
+  border: 2px solid rgba(0, 0, 0, 0);
+  border-radius: 6px;
+  padding: 10.4px;
+  color: white;
+}
+
+.signup-form__item hr {
+  width: 100%;
+  border: 1px solid rgb(186, 191, 196);
+  /* margin: 1px; */
+}
+
+.oauth__github-button {
+  background-color: rgb(47, 51, 55);
+}
+
+/* .login-form__github-logo {
+  } */
+
+.signup-form__login-text {
+  margin-top: 40px;
+  text-align: center;
+}
+
+.signup-form__login-link {
+  text-decoration: none;
+  color: #0074cc;
+}

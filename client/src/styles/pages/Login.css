@@ -1,0 +1,101 @@
+body {
+  background-color: rgb(214, 217, 220);
+  display: flex;
+  justify-content: center;
+}
+
+.login-container {
+  margin-top: 200px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 288px;
+}
+
+/* .login-form__logo{} */
+
+.login-form__form {
+  margin-top: 40px;
+  background-color: white;
+  border-radius: 8px;
+  width: 100%;
+  padding: 24px;
+  box-shadow: 0px 10px 24px 0px rgba(0, 0, 0, 0.05);
+  display: flex;
+  flex-direction: column;
+  align-items: space-between;
+  width: 100%;
+}
+
+.login-form__item {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  flex: 1;
+  padding: 2px 0;
+  margin-top: 10px;
+}
+
+.login-form__item.top {
+  padding-top: 0;
+  margin-top: 0;
+}
+
+.login-form__item.bottom {
+  padding-bottom: 0;
+}
+
+.login-form__item.login {
+  margin-top: 20px;
+}
+
+.login-form__item.divider {
+  height: 10px;
+}
+
+.login-form__item label {
+  text-align: left;
+  font-size: 15px;
+  font-weight: 600;
+  margin: 2px 0;
+  padding: 0 2px;
+}
+
+.login-form__item input {
+  border: 1px solid rgb(186, 191, 196);
+  border-radius: 6px;
+  padding: 7.8px 9.1px;
+}
+
+.login-form__button {
+  margin: 2px 0;
+  background-color: rgb(10, 149, 255);
+  border: 2px solid rgba(0, 0, 0, 0);
+  border-radius: 6px;
+  padding: 10.4px;
+  color: white;
+}
+
+.login-form__item hr {
+  width: 100%;
+  border: 1px solid rgb(186, 191, 196);
+  /* margin: 1px; */
+}
+
+.oauth__github-button {
+  background-color: rgb(47, 51, 55);
+}
+
+/* .login-form__github-logo {
+} */
+
+.login-form__signup-text {
+  margin-top: 40px;
+  text-align: center;
+}
+
+.login-form__signup-link {
+  text-decoration: none;
+  color: #0074cc;
+}
