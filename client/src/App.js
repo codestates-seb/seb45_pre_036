@@ -1,6 +1,6 @@
 import Header from './components/Header';
 import Footer from './components/Footer';
-import MyPage from './pages/MyPage';
+import MyPage from './components/MyPage';
 
 import './styles/App.css';
 
