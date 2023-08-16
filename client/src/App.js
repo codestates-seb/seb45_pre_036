@@ -8,12 +8,14 @@ import Login from "./pages/Login";
 import { AuthProvider } from "./auth/AuthContext";
 // import Signup from "./pages/Signup";
 import './styles/App.css';
+import Menu from "./components/Menu";
 
 
 function App() {
   return (
     <AuthProvider>
       <Login /> 
+      <Menu />
       {/* <Signup /> */}
     </AuthProvider>
   );

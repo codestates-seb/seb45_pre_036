@@ -1,3 +1,5 @@
+import '../styles/components/Menu.css'
+
 const Menu = () => {
   return (
     <nav className="menu__container">
