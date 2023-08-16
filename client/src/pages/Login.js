@@ -23,7 +23,7 @@ const Login = () => {
     e.preventDefault();
     try {
       
-      const res = await axios.post("", {
+      const res = await axios.post("/auth/login", {
         email: enteredEmail,
         password: enteredPassword,
       });
@@ -33,7 +33,7 @@ const Login = () => {
       setAuthState({ isLoggedIn: true, memberId });
   
       const accessToken = res.headers['access-token'];
-      const refreshToken = res.headers['refrech-token'];
+      const refreshToken = res.headers['refresh-token'];
   
       localStorage.setItem('accessToken', accessToken);
       localStorage.setItem('refreshToken', refreshToken);
