@@ -4,7 +4,7 @@ export const AuthContext = createContext();
 
 export const AuthProvider = (props) => {
   const [authState, setAuthState] = useState({ isLoggedIn: false });
-  //authState를 그냥 isLoggedin으로 할까
+  //authState를 그냥 isLoggedIn으로 할까
 
   return (
     <AuthContext.Provider value={{ authState, setAuthState }}>
