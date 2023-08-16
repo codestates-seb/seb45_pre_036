@@ -1,51 +1,91 @@
 .header__container {
-    box-sizing: border-box;
-    width: 100%;
-    padding: 0 8px;
-    height: 56px;
-    border-bottom: 1px solid rgb(214, 217, 220);
-    border-top: 3px solid rgb(244, 130, 37);
-    position: fixed;
-    z-index: 5050;
-    display: flex;
-    justify-content: space-between;
+  box-sizing: border-box;
+  width: 100%;
+  padding: 0 8px;
+  height: 56px;
+  border-bottom: 1px solid rgb(214, 217, 220);
+  border-top: 3px solid rgb(244, 130, 37);
+  position: fixed;
+  z-index: 5050;
+  display: flex;
+  justify-content: space-between;
 }
 
 .header__logo {
-    display: flex;
-    align-items: center;
-    justify-content: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .header__logo img {
-    height: 30px;
+  height: 30px;
 }
 
-.header__nav-container{
-    display: flex;
-    justify-content: space-between;
+.header__nav-container {
+  display: flex;
+  justify-content: space-between;
 }
 
 /* .header__nav-profile {} */
 
 /* .header__nav {} */
 
-.header__nav-list{
-    list-style: none;
-    padding: 0;
-    display: flex;
-
+.header__nav-list {
+  list-style: none;
+  padding: 0;
+  display: flex;
 }
 
 .header__nav-list div {
-    display: flex;
-    padding: 0 8px;
-    align-items: center;
-    justify-content: center;
-
+  display: flex;
+  padding: 0 8px;
+  align-items: center;
+  justify-content: center;
 }
 
-.header__nav-item img{
-    width: 16px;
-    height: 16px;
+.header__nav-item img {
+  width: 16px;
+  height: 16px;
+}
+
+.login-header__container {
+  box-sizing: border-box;
+  width: 100%;
+  padding: 0 8px;
+  height: 56px;
+  border-bottom: 1px solid rgb(214, 217, 220);
+  border-top: 3px solid rgb(244, 130, 37);
+  position: fixed;
+  z-index: 5050;
+  display: flex;
+  justify-content: space-between;
+}
+
+.login-header__logo {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.login-header__logo img {
+  height: 30px;
+}
+
+.login-header__nav-container {
+  display: flex;
+  align-items: center;
+}
+
+.login-header__nav-item {
+  padding: 0 8px;
+  cursor: pointer;
+  background-color: #0079d3;
+  border: none;
+  color: white;
+  font-size: 16px;
+}
+
+.login-btn:hover,
+.signup-btn:hover {
+  background-color: #005a9c;
 }

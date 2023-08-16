@@ -8,6 +8,8 @@ const Login = () => {
   const { setAuthState } = useContext(AuthContext);
   const [ enteredEmail, setEmail ] = useState('');
   const [ enteredPassword, setPassword] = useState(''); 
+  const [ errorMessage, setErrorMessage] = useState(null);
+
 
   const emailChangeHandler = (e) => {
     setEmail(e.target.value);
@@ -19,13 +21,26 @@ const Login = () => {
 
   const loginHandler = async (e) => {
     e.preventDefault();
-    const res = await axios.post("", {
-      email: enteredEmail,
-      password: enteredPassword,
-    });
-    const { memberId } = res.data;
-    // 어떤 키값을 가지고 오는지 확인 필요
-    setAuthState({ isLoggedIn: true, memberId });
+    try {
+      
+      const res = await axios.post("", {
+        email: enteredEmail,
+        password: enteredPassword,
+      });
+      
+      const { memberId } = res.data;
+      // 어떤 키값을 가지고 오는지 확인 필요
+      setAuthState({ isLoggedIn: true, memberId });
+  
+      const accessToken = res.headers['access-token'];
+      const refreshToken = res.headers['refrech-token'];
+  
+      localStorage.setItem('accessToken', accessToken);
+      localStorage.setItem('refreshToken', refreshToken);
+      
+    } catch (error) {
+      setErrorMessage('Invalid email or password');
+    }
   };
 
   // 토큰 유효성 체크 및 토큰 요청
