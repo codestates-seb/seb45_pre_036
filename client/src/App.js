@@ -9,12 +9,11 @@ import './styles/App.css';
 
 function App() {
   return (
-    <>
-    <UsernameBox />
-    <ProfileContents />
-    <ProfilePage />
-    </>
-  )
+    <div>
+      <Header />
+      <Footer />
+    </div>
+  );
 }
 
 export default App;

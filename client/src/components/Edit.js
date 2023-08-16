@@ -8,8 +8,6 @@ const ProfilePage = () => {
         setName(e.target.value);
     }
 
-    const handleChange =
-
     const handleSubmit = (e) => {
         e.preventDefault();
     }
