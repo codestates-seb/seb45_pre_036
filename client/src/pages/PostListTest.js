@@ -2,7 +2,7 @@ import { useState, useRef, useEffect } from "react";
 // import axios from "axios";
 import Post from "../components/Post";
 import Menu from "../components/Menu";
-import '../styles/pages/PostList.css';
+import "../styles/pages/PostList.css";
 
 const dummy = {
   data: [
@@ -49,10 +49,10 @@ const PostList = () => {
   const getPosts = async () => {
     setLoading(true);
     try {
-      setTimeout(()=>{
-        setPost((prev)=>[...prev, ...dummy.data]);
-        setHasmore(page<dummy.pageInfo.totalPages);
-      }, 1000) // network latency 고려
+      setTimeout(() => {
+        setPost((prev) => [...prev, ...dummy.data]);
+        setHasmore(page < dummy.pageInfo.totalPages);
+      }, 1000); // network latency 고려
     } catch (err) {
       console.log(err);
     } finally {
@@ -83,11 +83,13 @@ const PostList = () => {
 
   return (
     <div className="main-container">
-      <Menu />
+      <div className="side-menu">
+        <Menu />
+      </div>
       <main className="post-list__main">
         <div className="post-list__header">
           <h1 className="post-list__header-title">All Questions</h1>
-          <button className="post-list__header-create">Add New Question</button>
+          <button className="post-list__header-ask">Ask Question</button>
         </div>
         <div className="post-list__container">
           {posts.map((post, idx) => (
@@ -99,7 +101,9 @@ const PostList = () => {
           ))}
           {/* 마지막 포스트면 ref 넣어주기. */}
           {loading && <div className="post-list__loading">Loading...</div>}
-          {!hasmore && <div className="post-list__no-more-posts">No more posts</div>}
+          {!hasmore && (
+            <div className="post-list__no-more-posts">No more posts</div>
+          )}
         </div>
       </main>
     </div>
