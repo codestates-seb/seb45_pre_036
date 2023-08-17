@@ -1,6 +1,6 @@
 import { useState, useRef, useEffect } from "react";
 // import axios from "axios";
-import Post from "../components/Post";
+import PostTest from "../components/PostTest";
 import Menu from "../components/Menu";
 import "../styles/pages/PostList.css";
 
@@ -35,7 +35,7 @@ const dummy = {
   },
 };
 
-const PostList = () => {
+const PostListTest = () => {
   const [posts, setPost] = useState([]);
   const [page, setPage] = useState(dummy.pageInfo.page);
   // for pagination logging
@@ -93,7 +93,7 @@ const PostList = () => {
         </div>
         <div className="post-list__container">
           {posts.map((post, idx) => (
-            <Post
+            <PostTest
               key={post.id}
               post={post}
               ref={idx === posts.length - 1 ? lastPostRef : null}
@@ -110,4 +110,4 @@ const PostList = () => {
   );
 };
 
-export default PostList;
+export default PostListTest;

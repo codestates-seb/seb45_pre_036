@@ -10,7 +10,7 @@ import Login from "./pages/Login";
 import Signup from "./pages/Signup";
 import Header from "./components/Header";
 import Logout from "./pages/Logout";
-import Test from "./pages/test";
+import Test from "./pages/Test";
 import PostListTest from "./pages/PostListTest";
 
 function App() {
