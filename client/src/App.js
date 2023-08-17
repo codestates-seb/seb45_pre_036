@@ -9,6 +9,7 @@ import "./styles/App.css";
 import Login from "./pages/Login";
 import Signup from "./pages/Signup";
 import Header from "./components/Header";
+import Logout from "./pages/Logout";
 
 function App() {
   return (
@@ -18,6 +19,8 @@ function App() {
         <Routes>
           <Route path="/" element={<Login />} />
           <Route path="/signup" element={<Signup />} />
+          <Route path="/logout" element={<Logout />} />
+
         </Routes>
       </BrowserRouter>
     </AuthProvider>

@@ -1,0 +1,109 @@
+body {
+  background-color: rgb(214, 217, 220);
+  display: flex;
+  justify-content: center;
+}
+
+.logout-confirm {
+  margin-top: 50px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 288px;
+}
+
+.logout-confirm__title {
+  font-size: 24px;
+  text-align: center;
+  padding: 5px;
+}
+
+.logout-confirm__container {
+  margin-top: 20px;
+  background-color: white;
+  border-radius: 8px;
+  width: 100%;
+  padding: 24px;
+  box-shadow: 0px 10px 24px 0px rgba(0, 0, 0, 0.05);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+
+.logout-confirm__logo-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    border-bottom: 1px solid rgb(214, 217, 220);
+}
+
+.logout-confirm__logo-container img {
+  object-fit: cover;
+  margin-top: 30px;
+  width: 50px;
+  height: auto;
+}
+
+.logout-confirm__site-name {
+  font-size: 30px;
+  text-align: center;
+  padding: 10px;
+  margin-top: 0;
+  margin-bottom: 30px;
+
+}
+
+.logout-confirm__checkbox {
+    margin: 20px 0;
+    vertical-align: baseline;
+}
+
+.logout-confirm__buttons.logout,
+.logout-confirm__buttons.cancel {
+  border: none;
+  padding: 8px 10px;
+  height: 33px;
+  cursor: pointer;
+  background-color: rgb(225, 236, 244);
+  border-radius: 6px;
+  color: rgb(57, 115, 157);
+  margin: 4px 15px;
+}
+
+.logout-confirm__buttons.logout {
+  background-color: rgb(10, 149, 255);
+  color: white;
+  width: 72px;
+}
+
+.logout-confirm__buttons.logout:hover {
+  background-color: hsl(206, 100%, 40%);
+}
+
+.logout-confirm__buttons.logout:active {
+  background-color: hsl(206, 100%, 35%);
+  border: 4px solid rgb(225, 236, 244);
+  border-radius: 6px;
+  width: 80px;
+  height: 41px;
+  margin: 0 11px;
+}
+
+.logout-confirm__buttons.cancel:hover {
+    background-color: hsl(206, 79%, 77%);
+}
+
+
+.logout-confirm__buttons.cancel:active{
+    background-color: hsl(206, 71%, 63%);
+    border: 4px solid rgb(225, 236, 244);
+    border-radius: 6px;
+    width: 68.447px;
+    height: 41px;
+    margin: 0 11px;
+}
+

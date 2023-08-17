@@ -52,11 +52,14 @@ body {
 
 .login-form__item.login {
   margin-top: 20px;
+  padding-bottom: 20px;
+  border-bottom: 1px solid rgb(186, 191, 196);
 }
 
-.login-form__item.divider {
+/* .login-form__item.divider hr {
   height: 10px;
-}
+  border: 1px solid rgb(186, 191, 196);
+} */
 
 .login-form__item label {
   text-align: left;
@@ -81,14 +84,9 @@ body {
   color: white;
 }
 
-.login-form__item hr {
-  width: 100%;
-  border: 1px solid rgb(186, 191, 196);
-  /* margin: 1px; */
-}
-
 .oauth__github-button {
   background-color: rgb(47, 51, 55);
+  margin-top: 10px;
 }
 
 /* .login-form__github-logo {

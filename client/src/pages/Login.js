@@ -77,9 +77,9 @@ const Login = () => {
           <div className="login-form__item login">
             <button className="login-form__button">Log in</button>
           </div>
-          <div className="login-form__item divider">
+          {/* <div className="login-form__item divider">
             <hr />
-          </div>
+          </div> */}
           <div className="login-form__item bottom">
             <button
               type="button"
