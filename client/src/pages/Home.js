@@ -1,6 +1,5 @@
 import React from 'react';
 import Header from '../component/Header'
-import Footer from '../components/Footer'
 import Menu from '../components/Menu'
 import './Home.css';
 /* import Nav from '../components/Nav' -> 헤더 밑으로 */
@@ -10,7 +9,7 @@ const Home = () => {
     <div>
       <div className='question__container'>
           <Header/>
-          
+          <Menu />
         <div className='question__wrapper'>
           <div className='top__container'>
             <p id='home__title'>Top Questions</p>
