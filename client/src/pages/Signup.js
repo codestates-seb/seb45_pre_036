@@ -1,5 +1,6 @@
 import Header from "../components/Header";
-import '../styles/pages/Signup.css';
+import "../styles/pages/Signup.css";
+import { Link } from "react-router-dom";
 
 const Signup = () => {
   return (
@@ -10,6 +11,12 @@ const Signup = () => {
           <h1 className="signup-message__title">Welcome to stackoverflow</h1>
         </container>
         <container className="signup-container">
+          <div className="login-form__logo">
+            <img
+              src={require("../static/logo-short.png")}
+              alt="stackoverflow logo img only"
+            />
+          </div>
           <form className="signup-form__form" onSubmit>
             <div className="signup-form__item top">
               <label htmlFor="nickname">Display name</label>
@@ -53,9 +60,9 @@ const Signup = () => {
           </form>
           <p className="signup-form__login-text">
             Already have an account?{" "}
-            <a href className="signup-form__login-link">
+            <Link to={'/'} className="signup-form__login-link">
               Log in
-            </a>
+            </Link>
           </p>
         </container>
       </div>

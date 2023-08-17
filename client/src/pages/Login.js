@@ -3,6 +3,7 @@ import axios from "axios";
 // import jwt from "jsonwebtoken";
 import { useContext, useState } from "react";
 import { AuthContext } from "../auth/AuthContext";
+import { Link } from "react-router-dom";
 
 const Login = () => {
   const { setAuthState } = useContext(AuthContext);
@@ -91,9 +92,9 @@ const Login = () => {
         </form>
         <p className="login-form__signup-text">
           Don't have an account?{" "}
-          <a href className="login-form__signup-link">
+          <Link to={'/signup'} className="login-form__signup-link">
             Sign up
-          </a>
+          </Link>
         </p>
       </container>
     </>
