@@ -3,8 +3,6 @@ import axios from "axios";
 // import jwt from "jsonwebtoken";
 import { useContext, useState } from "react";
 import { AuthContext } from "../auth/AuthContext";
-import Header from "../components/Header";
-import Footer from "../components/Footer";
 
 const Login = () => {
   const { setAuthState } = useContext(AuthContext);
@@ -54,7 +52,6 @@ const Login = () => {
 
   return (
     <>
-      {/* <Header /> */}
       <container className="login-container">
         <div className="login-form__logo"><img src={require("../static/logo-short.png")} alt="stackoverflow logo img only" /></div>
         <form className="login-form__form" onSubmit={loginHandler}>

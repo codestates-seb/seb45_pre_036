@@ -1,27 +1,28 @@
 import { useContext } from "react";
 import "../styles/components/Header.css";
 import { AuthContext } from "../auth/AuthContext";
+import { Link } from "react-router-dom";
 
 const LoginHeader = () => {
   return (
     <header className="login-header__container">
-      <a className="login-header__logo" href="/">
+      <Link to={'/'} className="login-header__logo" >
         <img src={require("../static/logo.png")} alt="Stack Overflow logo" />
-      </a>
+      </Link>
       <div className="login-header__nav-container">
-        <button className="login-header__nav-item login-btn">Login</button>
-        <button className="login-header__nav-item signup-btn">Signup</button>
+        <Link to={'/'}><button className="login-header__nav-item login-btn">Login</button></Link>
+        <Link to={'/signup'}><button className="login-header__nav-item signup-btn">Signup</button></Link>
       </div>
     </header>
   );
 };
 
-const UserHeader = () => {
+export const UserHeader = () => {
   return (
     <header className="header__container">
-      <a className="header__logo" href>
+      <Link to={'/'} className="header__logo">
         <img src={require("../static/logo.png")} alt="stackoverflow logo" />
-      </a>
+      </Link>
       <div className="header__nav-container">
         <div className="header__nav-profile">profile</div>
         <nav className="header__nav">
