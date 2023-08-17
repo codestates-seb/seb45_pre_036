@@ -23,20 +23,28 @@ const Login = () => {
   const loginHandler = async (e) => {
     e.preventDefault();
     try {
-      const res = await axios.post("/auth/login", {
+      const res = await axios.post("http://localhost:5050/auth/login", {
         email: enteredEmail,
         password: enteredPassword,
       });
 
       const { memberId } = res.data;
-      // 어떤 키값을 가지고 오는지 확인 필요
-      setAuthState({ isLoggedIn: true, memberId });
 
-      const accessToken = res.headers["access-token"];
-      const refreshToken = res.headers["refresh-token"];
+      // 사실 어떤 게 맞는지 서버 테스트 해봐야 함.
+      const accessToken = res.headers["Authorization"];
+      // const accessToken = res.data.headers["Authorization"];
+      // const accessToken = res.data.accessToken;
+      // const accessToken = res.data.Authorization;
 
+      // 액세스 토큰에 맞춰서 변경 필요
+      const refreshToken = res.headers["Refresh"];
+
+      // 일단 로컬에 저장.
       localStorage.setItem("accessToken", accessToken);
       localStorage.setItem("refreshToken", refreshToken);
+
+      setAuthState({ isLoggedIn: true, memberId });
+
     } catch (error) {
       setErrorMessage("Invalid email or password");
     }
@@ -46,7 +54,7 @@ const Login = () => {
 
   return (
     <>
-      <Header />
+      {/* <Header /> */}
       <container className="login-container">
         <div className="login-form__logo"><img src={require("../static/logo-short.png")} alt="stackoverflow logo img only" /></div>
         <form className="login-form__form" onSubmit={loginHandler}>
@@ -91,7 +99,6 @@ const Login = () => {
           </a>
         </p>
       </container>
-      <Footer />
     </>
   );
 };
