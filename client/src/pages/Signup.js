@@ -1,8 +1,57 @@
 import Header from "../components/Header";
 import "../styles/pages/Signup.css";
 import { Link } from "react-router-dom";
+import { LoginFunc } from "../auth/LoginFunc";
+import { useContext, useState } from "react";
+import { AuthContext } from "../auth/AuthContext";
+import { useNavigate } from "react-router-dom";
+import axios from "axios";
+
+// sign up 하고 그 state받아서 로그인으로 내린 담에 로그인 요청도 갈 수 있게 해야 함.
 
 const Signup = () => {
+  const [newEmail, setNewEmail] = useState("");
+  const [newPassword, setNewPassword] = useState("");
+  const [newName, setNewName] = useState("");
+  const [errorMessage, setErrorMessage] = useState(null);
+  const { setAuthState } = useContext(AuthContext);
+  const navigate = useNavigate();
+
+  const newNameChangeHandler = (e) => {
+    setNewName(e.target.value);
+  };
+
+  const newEmailChangeHandler = (e) => {
+    setNewEmail(e.target.value);
+  };
+
+  const newPasswordChangeHandler = (e) => {
+    setNewPassword(e.target.value);
+  };
+
+  const signupHandler = async (e) => {
+    e.preventDefault();
+    try {
+      const res = await axios.post("http://localhost:8080/members/signup", {
+        nickname: newName,
+        email: newEmail,
+        password: newPassword,
+      });
+      res.status();
+    } catch (error) {
+      setErrorMessage("Signup is denied");
+    }
+
+    LoginFunc(newEmail, newPassword, setAuthState, (errorMessage) =>{
+      if(errorMessage){
+        setErrorMessage("Signup is denied");
+      } else {
+        navigate('/test-success');
+        // 이후 홈페이지로 이동하게끔.
+      }
+    })
+  };
+
   return (
     <>
       <Header />
@@ -17,18 +66,28 @@ const Signup = () => {
               alt="stackoverflow logo img only"
             />
           </div>
-          <form className="signup-form__form" onSubmit>
+          <form className="signup-form__form" onSubmit={signupHandler}>
             <div className="signup-form__item top">
               <label htmlFor="nickname">Display name</label>
-              <input id="nickname" type="text"></input>
+              <input id="nickname" type="text" value={newName} onChange={newNameChangeHandler}></input>
             </div>
             <div className="signup-form__item">
               <label htmlFor="email">Email</label>
-              <input id="email" type="email"></input>
+              <input
+                id="email"
+                type="email"
+                value={newEmail}
+                onChange={newEmailChangeHandler}
+              ></input>
             </div>
             <div className="signup-form__item">
               <label htmlFor="password">Password</label>
-              <input type="password" id="password"></input>
+              <input
+                type="password"
+                id="password"
+                value={newPassword}
+                onChange={newPasswordChangeHandler}
+              ></input>
               <p>
                 Passwords must contain at least eight characters, including at
                 least 1 letter and 1 number.
@@ -60,7 +119,7 @@ const Signup = () => {
           </form>
           <p className="signup-form__login-text">
             Already have an account?{" "}
-            <Link to={'/'} className="signup-form__login-link">
+            <Link to={"/"} className="signup-form__login-link">
               Log in
             </Link>
           </p>

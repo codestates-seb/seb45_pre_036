@@ -4,6 +4,7 @@ import axios from "axios";
 import { useContext, useState } from "react";
 import { AuthContext } from "../auth/AuthContext";
 import { Link } from "react-router-dom";
+import { LoginFunc } from "../auth/LoginFunc";
 
 const Login = () => {
   const { setAuthState } = useContext(AuthContext);
@@ -21,32 +22,36 @@ const Login = () => {
 
   const loginHandler = async (e) => {
     e.preventDefault();
-    try {
-      const res = await axios.post("http://localhost:5050/auth/login", {
-        email: enteredEmail,
-        password: enteredPassword,
-      });
 
-      const { memberId } = res.data;
+    LoginFunc(enteredEmail, enteredPassword, setAuthState, setErrorMessage)
+    
+    // 이하 로직을 Loginfunc에 담음: 회원가입 후 로그인 다시하는 번거로움 없애기 위해서
+    // try {
+    //   const res = await axios.post("http://localhost:8080/auth/login", {
+    //     email: enteredEmail,
+    //     password: enteredPassword,
+    //   });
 
-      // 사실 어떤 게 맞는지 서버 테스트 해봐야 함.
-      const accessToken = res.headers["Authorization"];
-      // const accessToken = res.data.headers["Authorization"];
-      // const accessToken = res.data.accessToken;
-      // const accessToken = res.data.Authorization;
+    //   const { memberId } = res.data;
 
-      // 액세스 토큰에 맞춰서 변경 필요
-      const refreshToken = res.headers["Refresh"];
+    //   // 사실 어떤 게 맞는지 서버 테스트 해봐야 함.
+    //   const accessToken = res.headers["Authorization"];
+    //   // const accessToken = res.data.headers["Authorization"];
+    //   // const accessToken = res.data.accessToken;
+    //   // const accessToken = res.data.Authorization;
 
-      // 일단 로컬에 저장.
-      localStorage.setItem("accessToken", accessToken);
-      localStorage.setItem("refreshToken", refreshToken);
+    //   // 액세스 토큰에 맞춰서 변경 필요
+    //   const refreshToken = res.headers["Refresh"];
 
-      setAuthState({ isLoggedIn: true, memberId });
+    //   // 일단 로컬에 저장.
+    //   localStorage.setItem("accessToken", accessToken);
+    //   localStorage.setItem("refreshToken", refreshToken);
 
-    } catch (error) {
-      setErrorMessage("Invalid email or password");
-    }
+    //   setAuthState({ isLoggedIn: true, memberId });
+
+    // } catch (error) {
+    //   setErrorMessage("Invalid email or password");
+    // }
   };
 
   // 토큰 유효성 체크 및 토큰 요청
@@ -77,9 +82,6 @@ const Login = () => {
           <div className="login-form__item login">
             <button className="login-form__button">Log in</button>
           </div>
-          {/* <div className="login-form__item divider">
-            <hr />
-          </div> */}
           <div className="login-form__item bottom">
             <button
               type="button"

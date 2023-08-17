@@ -10,6 +10,7 @@ import Login from "./pages/Login";
 import Signup from "./pages/Signup";
 import Header from "./components/Header";
 import Logout from "./pages/Logout";
+import Test from "./pages/test";
 
 function App() {
   return (
@@ -20,7 +21,7 @@ function App() {
           <Route path="/" element={<Login />} />
           <Route path="/signup" element={<Signup />} />
           <Route path="/logout" element={<Logout />} />
-
+          <Route path="/test-success" element={<Test />} />
         </Routes>
       </BrowserRouter>
     </AuthProvider>
