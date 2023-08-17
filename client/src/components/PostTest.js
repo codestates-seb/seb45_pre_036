@@ -1,3 +1,5 @@
+import '../styles/components/Post.css';
+
 const Post = ({ post }) => {
 
     return (

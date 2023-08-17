@@ -11,6 +11,7 @@ import Signup from "./pages/Signup";
 import Header from "./components/Header";
 import Logout from "./pages/Logout";
 import Test from "./pages/test";
+import PostListTest from "./pages/PostListTest";
 
 function App() {
   return (
@@ -22,6 +23,7 @@ function App() {
           <Route path="/signup" element={<Signup />} />
           <Route path="/logout" element={<Logout />} />
           <Route path="/test-success" element={<Test />} />
+          <Route path="/questions" element={<PostListTest />} />
         </Routes>
       </BrowserRouter>
     </AuthProvider>
