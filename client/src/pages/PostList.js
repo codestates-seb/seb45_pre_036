@@ -22,7 +22,7 @@ const PostList = () => {
       );
       setPost((prev) => [...prev, res.data]);
       // setPost((prev) => [...prev, ...res.data]);
-      // 스프레드로 줘야하는지, 아닌지 체크가 필요함. 
+      // 스프레드로 줘야하는지, 아닌지 체크가 필요함.
 
       setHasmore(res.data.length === 10);
       // 10개 미만으로 주면 더이상 줄게 없다는 거잖아. 그럼 false가 되는거지.
@@ -55,14 +55,16 @@ const PostList = () => {
   }, [page]);
 
   return (
-    <div>
-      <Menu />
-      <main>
-        <div>
-          <h1>All Questions</h1>
-          <button>Add New Question</button>
+    <div className="main-container">
+      <div className="side-menu">
+        <Menu />
+      </div>
+      <main className="post-list__main">
+        <div className="post-list__header">
+          <h1 className="post-list__header-title">All Questions</h1>
+          <button className="post-list__header-ask">Add New Question</button>
         </div>
-        <div>
+        <div className="post-list__container">
           {posts.map((post, idx) => (
             <Post
               key={post.id}
@@ -71,8 +73,8 @@ const PostList = () => {
             />
           ))}
           {/* 마지막 포스트면 ref 넣어주기.  */}
-          {loading && <div>Loading...</div>}
-          {!hasmore && <div>No more posts</div>}
+          {loading && <div className="post-list__loading">Loading...</div>}
+          {!hasmore && <div className="post-list__no-more-posts">No more posts</div>}
         </div>
       </main>
     </div>

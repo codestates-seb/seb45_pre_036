@@ -5,13 +5,14 @@
 .post__info {}
 
 .post__info-list {
-    list-style: none;
-    padding: 0;
-    margin: 0;
+    display: flex;
+    flex-direction: column;
+    
+
 }
 
 .post__info-item {
-    
+
 }
 
 .post__content {}

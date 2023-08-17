@@ -97,7 +97,7 @@ const PostList = () => {
               ref={idx === posts.length - 1 ? lastPostRef : null}
             />
           ))}
-          {/* 마지막 포스트면 ref 넣어주기.  */}
+          {/* 마지막 포스트면 ref 넣어주기. */}
           {loading && <div className="post-list__loading">Loading...</div>}
           {!hasmore && <div className="post-list__no-more-posts">No more posts</div>}
         </div>

@@ -5,11 +5,11 @@ const Post = ({ post }) => {
     return (
         <div className="post">
             <div className="post__info">
-                <ul className="post__info-list">
-                    <li className="post__info-item">0 votes</li>
-                    <li className="post__info-item">{post.answers.length}answers</li>
-                    <li className="post__info-item">{post.count}views</li>
-                </ul>
+                <div className="post__info-list">
+                    <div className="post__info-item">0 votes</div>
+                    <div className="post__info-item">0 answers</div>
+                    <div className="post__info-item">0 views</div>
+                </div>
             </div>
             <div className="post__content">
                 <h1 className="post__content-title">{post.title}</h1>
@@ -20,7 +20,7 @@ const Post = ({ post }) => {
                 <ul className="post__meta-list">
                     <li className="post__meta-item">{post.createdAt}</li>
                     <li className="post__meta-item">{post.modifiedAt}</li>
-                    <li className="post__meta-item">{post.nickname}</li>
+                    <li className="post__meta-item">{post.nickName}</li>
                 </ul>
             </div>
         </div>
