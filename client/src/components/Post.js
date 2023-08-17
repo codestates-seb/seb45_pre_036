@@ -1,26 +1,25 @@
-const Post = () => {
+const Post = (props) => {
 
     return (
-        <div>
-            <div>
-                <ul>
-                    <li></li>
-                    <li></li>
-                    <li></li>
+        <div className="post">
+            <div className="post__info">
+                <ul className="post__info-list">
+                    <li className="post__info-item">votes</li>
+                    <li className="post__info-item">answers</li>
+                    <li className="post__info-item">views</li>
                 </ul>
             </div>
-            <div>
-                <h1></h1>
-                <p></p>
+            <div className="post__content">
+                <h1 className="post__content-title">post title</h1>
+                <p className="post__content-text">post content</p>
             </div>
-            <div>
-                <ul>
-                    <li></li>
-                    <li></li>
-                    <li></li>
+            <div className="post__meta">
+                <ul className="post__meta-list">
+                    <li className="post__meta-item">createdAt</li>
+                    <li className="post__meta-item">updatedAt</li>
+                    <li className="post__meta-item">author</li>
                 </ul>
             </div>
-
         </div>
     )
 }
