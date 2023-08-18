@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 
 // question: memberId는 어떻게 주어지는 거지?
-// async/await 잘 써졌는지 확인
+// async/await 잘 써졌는지 여쭤보기
 // (line 9) 가입 직후 nickName은 뭐가 되어 있는 거지? nickName 초기값에 이게 반영되어 있어야 함
 
 const Profile = () => {
