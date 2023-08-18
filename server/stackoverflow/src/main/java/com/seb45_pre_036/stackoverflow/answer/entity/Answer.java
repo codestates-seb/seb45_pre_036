@@ -1,5 +1,7 @@
 package com.seb45_pre_036.stackoverflow.answer.entity;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonValue;
 import com.seb45_pre_036.stackoverflow.audit.Auditable;
 import com.seb45_pre_036.stackoverflow.comment.entity.Comment;
 import com.seb45_pre_036.stackoverflow.member.entity.Member;
@@ -35,4 +37,20 @@ public class Answer extends Auditable {
     @OneToMany(mappedBy = "answer", cascade = CascadeType.REMOVE)
     private List<Comment> comments;
 
+    private Adopt adopt = Adopt.NONE;
+
+    public enum Adopt {
+        NONE,
+        ADOPT;
+
+        @JsonCreator
+        public static Adopt fromAdopt(String val) {
+            for (Adopt adopt : Adopt.values()) {
+                if (adopt.name().equals(val)) {
+                    return adopt;
+                }
+            }
+            return null;
+        }
+    }
 }

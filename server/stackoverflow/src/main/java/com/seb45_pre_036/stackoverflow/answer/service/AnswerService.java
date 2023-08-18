@@ -6,6 +6,9 @@ import com.seb45_pre_036.stackoverflow.answer.repository.AnswerRepository;
 import com.seb45_pre_036.stackoverflow.auth.jwt.JwtTokenizer;
 import com.seb45_pre_036.stackoverflow.exception.BusinessLogicException;
 import com.seb45_pre_036.stackoverflow.exception.ExceptionCode;
+import com.seb45_pre_036.stackoverflow.question.entity.Question;
+import com.seb45_pre_036.stackoverflow.question.repository.QuestionRepository;
+import com.seb45_pre_036.stackoverflow.question.service.QuestionService;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
@@ -20,10 +23,12 @@ import java.util.Optional;
 public class AnswerService {
 
     private final AnswerRepository answerRepository;
+    private final QuestionService questionService;
     private final JwtTokenizer jwtTokenizer;
 
-    public AnswerService(AnswerRepository answerRepository, JwtTokenizer jwtTokenizer) {
+    public AnswerService(AnswerRepository answerRepository, QuestionService questionService, JwtTokenizer jwtTokenizer) {
         this.answerRepository = answerRepository;
+        this.questionService = questionService;
         this.jwtTokenizer = jwtTokenizer;
     }
 
@@ -57,6 +62,18 @@ public class AnswerService {
 
         Optional.ofNullable(answer.getContent())
                 .ifPresent(content -> findAnswer.setContent(content));
+
+        return answerRepository.save(findAnswer);
+    }
+
+    public Answer updateAnswerAdopt(Answer answer, String accessToken) {
+
+        Answer findAnswer = findVerifiedAnswer(answer.getAnswerId());
+
+        checkMemberId(findAnswer.getQuestion().getQuestionId(), accessToken);
+
+        Optional.ofNullable(answer.getAdopt())
+                .ifPresent(adopt -> findAnswer.setAdopt(adopt));
 
         return answerRepository.save(findAnswer);
     }

@@ -39,7 +39,7 @@ public class AnswerController {
     }
 
     @PostMapping
-    public ResponseEntity postCoffee(@Valid @RequestBody AnswerDto.Post answerPostDto) {
+    public ResponseEntity postAnswer(@Valid @RequestBody AnswerDto.Post answerPostDto) {
         Answer answer = answerService.createAnswer(mapper.answerPostDtoToAnswer(answerPostDto));
         URI location = UriCreator.createUri(ANSWER_DEFAULT_URL, answer.getAnswerId());
         return ResponseEntity.created(location).build();
@@ -50,14 +50,28 @@ public class AnswerController {
     public ResponseEntity patchAnswer(@PathVariable("answer-id") @Positive long answerId,
                                       @Valid @RequestBody AnswerDto.Patch answerPatchDto,
                                       @RequestHeader(HttpHeaders.AUTHORIZATION) String accessToken) {
-
-
         answerPatchDto.setAnswerId(answerId);
 
         Answer answer = answerService.updateAnswer(mapper.answerPatchDtoToAnswer(answerPatchDto), accessToken);
 
         return new ResponseEntity<>(
                 new SingleResponseDto<>(mapper.answerToAnswerResponsesDto(answer)),
+                HttpStatus.OK);
+    }
+
+    //TODO
+    @PatchMapping("/editAnswer/{answer-id}")
+    public ResponseEntity patchAnswerAdopt(@PathVariable("answer-id") @Positive long answerId,
+                                           @Valid @RequestBody AnswerDto.PatchAdopt answerPatchDto,
+                                           @RequestHeader(HttpHeaders.AUTHORIZATION) String accessToken) {
+        answerPatchDto.setAnswerId(answerId);
+
+        Answer getAnswer = mapper.answerPatchAdoptDtoToAnswer(answerPatchDto);
+
+        Answer answer = answerService.updateAnswerAdopt(getAnswer, accessToken);
+
+        return new ResponseEntity<>(
+                new SingleResponseDto<>(mapper.answerToAnswerAdoptResponseDto(answer)),
                 HttpStatus.OK);
     }
 

@@ -36,6 +36,8 @@ public interface AnswerMapper {
 
     Answer answerPatchDtoToAnswer(AnswerDto.Patch answerPatchDto);
 
+    Answer answerPatchAdoptDtoToAnswer(AnswerDto.PatchAdopt answerPatchDto);
+
 
     /*
      * with comments
@@ -45,6 +47,7 @@ public interface AnswerMapper {
         AnswerDto.Responses response = AnswerDto.Responses.builder()
                 .answerId(answer.getAnswerId())
                 .content(answer.getContent())
+                .adopt(answer.getAdopt())
                 .memberId(answer.getMember().getMemberId())
                 .email(answer.getMember().getEmail())
                 .nickName(answer.getMember().getNickName())
@@ -73,6 +76,8 @@ public interface AnswerMapper {
 
         return response;
     }
+
+    AnswerDto.AdoptResponse answerToAnswerAdoptResponseDto(Answer answer);
 
     List<AnswerDto.Response> answerToAnswerResponseDtos(List<Answer> answers);
 
