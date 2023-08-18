@@ -71,9 +71,19 @@ public class QuestionController {
     }
 
     @GetMapping
-    public ResponseEntity getQuestions(@RequestParam @Positive int page,
-                                       @RequestParam @Positive int size){
+    public ResponseEntity getQuestions(@RequestParam(required = false, defaultValue = "1")int page,
+                                       @RequestParam(required = false, defaultValue = "10") int size){
         Page<Question> pageQuestions = questionService.findQuestions(page-1,size);
+        List<Question> questions = pageQuestions.getContent();
+
+        return new ResponseEntity(
+                new MultiResponseDto<>(mapper.questionsToQuestionResponseDtos(questions), pageQuestions), HttpStatus.OK);
+    }
+
+    @GetMapping("/view")
+    public ResponseEntity getQuestionsView(@RequestParam(required = false, defaultValue = "1")int page,
+                                       @RequestParam(required = false, defaultValue = "10") int size){
+        Page<Question> pageQuestions = questionService.findQuestionsView(page-1,size);
         List<Question> questions = pageQuestions.getContent();
 
         return new ResponseEntity(

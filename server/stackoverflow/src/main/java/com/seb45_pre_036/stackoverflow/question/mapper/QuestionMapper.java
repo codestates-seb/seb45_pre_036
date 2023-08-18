@@ -40,6 +40,7 @@ public interface QuestionMapper {
                 .nickName(question.getMember().getNickName())
                 .title(question.getTitle())
                 .content(question.getContent())
+                .view(question.getView())
                 .createdAt(question.getCreatedAt())
                 .modifiedAt(question.getModifiedAt())
                 .build();
@@ -60,6 +61,7 @@ public interface QuestionMapper {
                 .nickName(question.getMember().getNickName())
                 .title(question.getTitle())
                 .content(question.getContent())
+                .view(question.getView())
                 .createdAt(question.getCreatedAt())
                 .modifiedAt(question.getModifiedAt())
                 .build();

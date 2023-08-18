@@ -72,7 +72,13 @@ public class QuestionService {
     }
 
     public Question findQuestion(long questionId) {
-        return findByQuestionId(questionId);
+        Question question = findByQuestionId(questionId);
+
+        // 조회된 질문의 view를 1씩 증가
+        question.setView(question.getView() + 1);
+
+        // 변경된 질문을 저장하여 업데이트
+        return question;
     }
 
     public Page<Question> findQuestions(int page, int size){
@@ -80,6 +86,20 @@ public class QuestionService {
         return questionRepository.findAll(
                 PageRequest.of(page,size, Sort.by("questionId").descending()));
     }
+
+    public Page<Question> findQuestionsView(int page, int size){
+
+        return questionRepository.findAll(
+                PageRequest.of(page,size, Sort.by("view").descending()));
+    }
+
+//    public Page<Question> findQuestionstop(int page, int size){
+//
+//        return questionRepository.findAll(
+//                PageRequest.of(page,size, Sort.by("createdAt").descending()));
+//    }
+
+
 
     public void deleteQuestion(long questionId, String accessToken){
         Question question = findByQuestionId(questionId);

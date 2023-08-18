@@ -25,6 +25,9 @@ public class Question extends Auditable {
     private String title;
     private String content;
 
+    @Column(name = "view")
+    private int view = 0;
+
     @ManyToOne
     @JoinColumn(name = "MEMBER_ID")
     private Member member;
