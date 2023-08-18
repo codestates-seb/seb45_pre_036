@@ -1,16 +1,49 @@
-.menu__container{
-    padding-top: 24px;
-    position: sticky;
-    top: 56px;
-    width: 164px;
-    text-align: left;
-    max-height: 776px; 
+.menu__container {
+  background-color: white;
+  padding-top: 24px;
+  position: sticky;
+  top: 56px;
+  width: 164px;
+  text-align: left;
+  max-height: 776px;
+  overflow-y: auto;
 }
 
-/* .menu {}
+.menu {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
 
-.menu__item{}
+.menu__item {
+  padding: 8px;
+  font-weight: bold;
+}
 
-.submenu{}
+.submenu {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
 
-.submenu__item{} */
+.submenu__item {
+  padding: 8px 16px;
+}
+
+.menu__item a,
+.submenu__item a {
+  text-decoration: none;
+  color: #2d2d2d;
+  display: block;
+}
+
+.submenu li:hover,
+.menu li:hover {
+  background-color: rgb(241, 242, 243);
+}
+
+.menu li:active,
+.submenu li:active {
+  border-right: 3px solid rgb(244, 130, 37);
+  background-color: rgb(241, 242, 243);
+}

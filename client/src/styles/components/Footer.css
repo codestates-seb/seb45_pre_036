@@ -1,13 +1,26 @@
 .footer__container{
     background-color: rgb(35, 38, 41);
     color: #BABFC4;
+    width: 100%;
     font-size: 11px;
     display: flex;
     padding: 16px;
+    position: fixed;
+    left: 0;
+    bottom: 0;
 }
 
-.footer__logo-container{
-    width: 64px;
+/* 나중에 wrapper의 height calc(100% - footer height)로 변경 */
+
+.footer__logo-container {
+    padding: 4px;
+    margin-right: 10px;
+}
+
+.footer__logo-container img {
+    object-fit: cover;
+    width: 30px;
+    height: auto;
 }
 
 /* .footer__content{} */

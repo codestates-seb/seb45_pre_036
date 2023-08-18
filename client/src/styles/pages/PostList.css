@@ -1,0 +1,62 @@
+body{
+    /* width: min-content; */
+    /* wow body는 절대 건드려서는 안됐음. 전부 css 다시 손봐야 할 듯 */
+    background-color: white;
+}
+
+.main-container{
+    display: flex;
+}
+
+.side-menu{
+    flex-shrink: 0;
+    display: flex;
+    justify-content: flex-end;
+    width: 180px;
+    border-right: 1px solid rgb(214, 217, 220)
+}
+
+.post-list__main{
+    flex-grow: 1;
+}
+
+.post-list__header{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px ;
+    width: max-content;
+    gap: 22rem;
+    border-bottom: 1px solid rgb(214, 217, 220);
+}
+
+.post-list__header-title{
+    font-size: 27px;
+    color: rgb(35, 38, 41);
+}
+
+.post-list__header-ask{
+    margin: 2px 0;
+    background-color: rgb(10, 149, 255);
+    border: 2px solid rgba(0, 0, 0, 0);
+    border-radius: 6px;
+    padding: 0 10.4px;
+    color: white;
+    height: 37px;
+}
+
+/* .post-list__container{} */
+
+.post-list__loading{    
+    font-size: 27px;
+    color: rgb(35, 38, 41);
+    text-align: center;
+    margin-top: 20px;
+}
+
+.post-list__no-more-posts{    
+    font-size: 27px;
+    color: rgb(35, 38, 41);
+    text-align: center;
+    margin-top: 20px;
+}
