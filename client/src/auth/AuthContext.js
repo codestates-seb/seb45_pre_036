@@ -1,13 +1,12 @@
 import React, { createContext, useState } from "react";
-import { useNavigate } from "react-router-dom";
-import jwt from "jsonwebtoken";
+import jwtDecode from "jwt-decode";
 import axios from "axios";
 
 export const AuthContext = createContext();
 
 function isValidToken(token) {
   // 유효한 토큰 여부만 반환
-  const decodedToken = jwt.decode(token);
+  const decodedToken = jwtDecode(token);
   const currentTime = Math.floor(Date.now() / 1000);
 
   if (!decodedToken) {
@@ -33,7 +32,6 @@ function getRefresh() {
 }
 
 export const AuthProvider = (props) => {
-  const navigate = useNavigate();
   const [authState, setAuthState] = useState({
     isLoggedIn: false,
     accessToken: "",
@@ -47,7 +45,10 @@ export const AuthProvider = (props) => {
     const refresh = getRefresh();
 
     if (!isValidToken(refresh)) {
-      navigate("/login");
+      // navigate("/login");
+      // 지금 사라질 state가 없어.
+      window.location.href = "/login"; // Redirect to the login page
+      return null;
     }
 
     try {
@@ -67,9 +68,9 @@ export const AuthProvider = (props) => {
     } catch (error) {
       console.log(error);
     }
-
-  } else { // accessToken이 유효하면
-    setAuthState({isLoggedIn:true, accessToken: "newToken"});
+  } else {
+    // accessToken이 유효하면
+    setAuthState({ isLoggedIn: true, accessToken: "newToken" });
     // 스트링으로 주는거 맞..?
   }
 

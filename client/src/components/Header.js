@@ -1,8 +1,8 @@
-import { useContext } from "react";
+
 import "../styles/components/Header.css";
-import { AuthContext } from "../auth/AuthContext";
 import { Link } from "react-router-dom";
 import useAuth from "../auth/useAuth";
+import jwtDecode from 'jwt-decode';
 
 const LoginHeader = () => {
   return (
@@ -18,14 +18,16 @@ const LoginHeader = () => {
   );
 };
 
-export const UserHeader = () => {
+export const UserHeader = ({authState}) => {
+  const userName = jwtDecode(authState.accessToken).username;
+
   return (
     <header className="header__container">
       <Link to={'/'} className="header__logo">
         <img src={require("../static/logo.png")} alt="stackoverflow logo" />
       </Link>
       <div className="header__nav-container">
-        <div className="header__nav-profile">profile</div>
+        <div className="header__nav-username">{userName}</div>
         <nav className="header__nav">
           <ul className="header__nav-list">
             <li className="header__nav-item">
@@ -63,7 +65,7 @@ const Header = () => {
 
   return (
     <>
-    { authState.isLoggedIn ? <UserHeader/> : <LoginHeader />}
+    { authState.isLoggedIn ? <UserHeader authState={authState} /> : <UserHeader authState={authState} />}
     </>
   )
 }

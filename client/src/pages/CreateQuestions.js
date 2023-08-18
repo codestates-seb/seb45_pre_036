@@ -3,8 +3,12 @@ import Header from '../component/Header'
 // import Footer from '../components/Footer'
 // import Menu from '../components/Menu'
 import './CreateQuestions.css';
+import axios from 'axios';
+import useAuth from '../auth/useAuth';
 
 const CreateQuestions = () => {
+  const auth = useAuth()
+
   return (
     <div>
       <div className='createquestions__container'>
@@ -18,7 +22,11 @@ const CreateQuestions = () => {
             <button className='Next'>Next</button>
           </div>
         </div>
-
+        <button onClick={() => {
+          axios.post('', {
+            'Authortization': auth.accesstoken
+          })
+        }}>Submit</button>
       </div>
     </div>
   );
