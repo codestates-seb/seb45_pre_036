@@ -2,9 +2,8 @@
     display: flex;
     justify-content: space-between;
     /* align-items: center; */
-    width: max-content;
+    width: 100%;
     padding: 20px;
-    gap: 50px;
     border-bottom: 1px solid rgb(214, 217, 220);
 }
 

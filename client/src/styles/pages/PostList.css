@@ -1,11 +1,6 @@
-body{
-    /* width: min-content; */
-    /* wow body는 절대 건드려서는 안됐음. 전부 css 다시 손봐야 할 듯 */
-    background-color: white;
-}
-
 .main-container{
     display: flex;
+    margin-top: 56px;
 }
 
 .side-menu{
@@ -25,8 +20,7 @@ body{
     justify-content: space-between;
     align-items: center;
     padding: 20px ;
-    width: max-content;
-    gap: 22rem;
+    width: 60%;
     border-bottom: 1px solid rgb(214, 217, 220);
 }
 
@@ -45,7 +39,9 @@ body{
     height: 37px;
 }
 
-/* .post-list__container{} */
+.post-list__container{
+    width: 60%;
+}
 
 .post-list__loading{    
     font-size: 27px;
