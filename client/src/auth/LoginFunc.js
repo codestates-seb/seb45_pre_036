@@ -15,11 +15,10 @@ export const LoginFunc = async (email, password, setAuthState, setErrorMessage) 
     localStorage.setItem("accessToken", accessToken);
     localStorage.setItem("refreshToken", refreshToken);
 
-    setAuthState({ isLoggedIn: true, memberId });
+    // setAuthState({ isLoggedIn: true, accessToken: accessToken, memberId });
+
   } catch (error) {
     setErrorMessage("Invalid email or password");
   }
 };
-
-  // 응답에서 유효하지 않은 토큰이라고 하면 리프레쉬 토큰 헤더에 넣어서 보내야 함. 
   

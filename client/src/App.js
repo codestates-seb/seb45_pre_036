@@ -19,11 +19,11 @@ function App() {
       <BrowserRouter>
       <Header />
         <Routes>
-          <Route path="/" element={<Login />} />
+          <Route path="/login" element={<Login />} />
           <Route path="/signup" element={<Signup />} />
           <Route path="/logout" element={<Logout />} />
           <Route path="/test-success" element={<Test />} />
-          <Route path="/questions" element={<PostListTest />} />
+          <Route path="/" element={<PostListTest />} />
         </Routes>
       </BrowserRouter>
     </AuthProvider>

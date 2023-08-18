@@ -2,6 +2,7 @@ import { useContext } from "react";
 import "../styles/components/Header.css";
 import { AuthContext } from "../auth/AuthContext";
 import { Link } from "react-router-dom";
+import useAuth from "../auth/useAuth";
 
 const LoginHeader = () => {
   return (
@@ -58,10 +59,11 @@ export const UserHeader = () => {
 };
 
 const Header = () => {
-  const {authState} = useContext(AuthContext);
+  const {authState} = useAuth();
+
   return (
     <>
-    { authState.isLoggedIn ? <LoginHeader/> : <LoginHeader />}
+    { authState.isLoggedIn ? <UserHeader/> : <LoginHeader />}
     </>
   )
 }
