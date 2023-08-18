@@ -67,7 +67,7 @@ const PostList = () => {
         <div className="post-list__container">
           {posts.map((post, idx) => (
             <Post
-              key={post.id}
+              key={post.questionId}
               post={post}
               ref={idx === posts.length - 1 ? lastPostRef : null}
             />

@@ -1,5 +1,6 @@
 body{
     /* width: min-content; */
+    /* wow body는 절대 건드려서는 안됐음. 전부 css 다시 손봐야 할 듯 */
     background-color: white;
 }
 
