@@ -39,7 +39,7 @@ const Signup = () => {
       });
       res.status();
     } catch (error) {
-      setErrorMessage("Signup is denied");
+      console.log(error)
     }
 
     LoginFunc(newEmail, newPassword, setAuthState, (errorMessage) =>{

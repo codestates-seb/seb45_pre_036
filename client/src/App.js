@@ -13,6 +13,7 @@ import Test from "./pages/Test";
 import PostListTest from "./pages/PostListTest";
 import RequireAuthRoute from "./components/RequireAuth";
 import PostDetail from "./pages/PostDetail";
+import CreateQuestion from "./pages/CreateQuestion";
 
 function App() {
   return (
@@ -25,6 +26,7 @@ function App() {
           <Route path="/login" element={<Login />} />
           <Route path="/signup" element={<Signup />} />
           <Route path="/logout" element={<Logout />} />
+          <Route path="/ask" element={<CreateQuestion />} />
           <Route path="/test-success" element={<Test />} />
           <Route path="/questions/:questionId" element={<PostDetail />} />
         </Routes>

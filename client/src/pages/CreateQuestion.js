@@ -7,6 +7,7 @@ import { useNavigate } from "react-router-dom";
 const CreateQuestion = () => {
   const navigate = useNavigate();
   const [title, setTitle] = useState("");
+  const [ body, setBody]=useState('');
 
   const titleChangeHandler = (e) => {
     setTitle(e.target.value);
@@ -17,14 +18,14 @@ const CreateQuestion = () => {
     const headers = {
       // Authorization: `Bearer ${accessToken}`, // 
     };
-    const body = {
+    const requestBody = {
       // memberId, // accessToken payload에 있음. 
       title,
-      // content, // TextEditor에서 가져와야.
+      content: body,
     };
 
     try {
-      const response = await axios.post(url, body, { headers });
+      const response = await axios.post(url, requestBody, { headers });
       console.log("Post created successfully:", response.data);
       navigate('/');
     } catch (error) {
@@ -58,7 +59,7 @@ const CreateQuestion = () => {
           Introduce the problem and expand on what you put in the title.
         </p>
         <div className="ask-question__text-editor">
-          <TextEditor />
+          <TextEditor setBody={setBody} />
         </div>
         <button className="ask-question__button create" onClick={createPostHandler}>Create</button>
       </div>

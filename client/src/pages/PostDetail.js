@@ -36,7 +36,7 @@ const PostDetail = () => {
       </div>
       <div className="post__content">
         <PostContent content={post.content} />
-        <Comment commenst={post.answers} />
+        <Comment comments={post.answers} />
       </div>
       <div className="post__create-answer">
         <div>
