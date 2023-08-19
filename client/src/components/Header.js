@@ -11,7 +11,7 @@ const LoginHeader = () => {
         <img src={require("../static/logo.png")} alt="Stack Overflow logo" />
       </Link>
       <div className="login-header__nav-container">
-        <Link to={'/'}><button className="login-header__nav-item login-btn">Login</button></Link>
+        <Link to={'/login'}><button className="login-header__nav-item login-btn">Login</button></Link>
         <Link to={'/signup'}><button className="login-header__nav-item signup-btn">Signup</button></Link>
       </div>
     </header>
@@ -65,7 +65,7 @@ const Header = () => {
 
   return (
     <>
-    { authState.isLoggedIn ? <UserHeader authState={authState} /> : <UserHeader authState={authState} />}
+    { authState.isLoggedIn ? <UserHeader authState={authState} /> : <LoginHeader />}
     </>
   )
 }

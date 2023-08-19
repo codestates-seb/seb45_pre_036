@@ -5,28 +5,7 @@ import Menu from "../components/Menu";
 import "../styles/pages/PostList.css";
 
 const dummy = {
-  data: [
-    {
-      questionId: 2,
-      memberId: 1,
-      email: "abc1@gmail.com",
-      nickName: "닉네임1",
-      title: "질문2 제목",
-      content: "질문2 내용",
-      createdAt: "2023-08-16T22:25:22.434105",
-      modifiedAt: "2023-08-16T22:25:22.434105",
-    },
-    {
-      questionId: 1,
-      memberId: 1,
-      email: "abc1@gmail.com",
-      nickName: "닉네임1",
-      title: "질문 제목",
-      content: "질문 내용",
-      createdAt: "2023-08-16T22:25:08.157506",
-      modifiedAt: "2023-08-16T22:25:08.157506",
-    },
-  ],
+  data: [],
   pageInfo: {
     page: 1,
     size: 10,
@@ -52,7 +31,7 @@ const PostListTest = () => {
       setTimeout(() => {
         setPost((prev) => [...prev, ...dummy.data]);
         setHasmore(page < dummy.pageInfo.totalPages);
-      }, 1000); // network latency 고려
+      }, 500); // network latency 고려
     } catch (err) {
       console.log(err);
     } finally {
@@ -66,16 +45,34 @@ const PostListTest = () => {
   const lastPostRef = (node) => {
     // node? 마지막 포스트의 DOM el node.
     if (loading) return;
-    if (observer.current) observer.current.disconnect(); // previous observer disconnecting
-    observer.current = new IntersectionObserver((entries) => {
-      // new observer
-      if (entries[0].isIntersecting && hasmore) {
-        // 더 있나?
-        setPage((prev) => prev + 1); // 페이지 + 1
-      }
-    });
+    // if (observer.current) observer.current.disconnect(); // previous observer disconnecting
+    observer.current = new IntersectionObserver(
+      (entries) => {
+        // new observer
+        if (entries[0].isIntersecting && hasmore) {
+          // 더 있나?
+          setPage((prev) => prev + 1); // 페이지 + 1
+        }
+      },
+      { threshold: 0.5 }
+    );
     if (node) observer.current.observe(node); // 마지막 post observer
   };
+
+  useEffect(() => {
+    dummy.data = new Array(10).fill(null).map((_, index) => {
+      return {
+        questionId: index + 1, // Unique integer starting from 1
+        memberId: 1,
+        email: "abc1@gmail.com",
+        nickName: "닉네임1",
+        title: `질문${index} 제목`,
+        content: "질문2 내용",
+        createdAt: "2023-08-16T22:25:22.434105",
+        modifiedAt: "2023-08-16T22:25:22.434105",
+      };
+    });
+  }, []);
 
   useEffect(() => {
     getPosts();
@@ -93,17 +90,22 @@ const PostListTest = () => {
         </div>
         <div className="post-list__container">
           {posts.map((post, idx) => (
-            <PostTest
-              key={post.questionId}
-              post={post}
-              ref={idx === posts.length - 1 ? lastPostRef : null}
-            />
+            <PostTest key={post.questionId + Math.random()} post={post} />
           ))}
           {/* 마지막 포스트면 ref 넣어주기. */}
           {loading && <div className="post-list__loading">Loading...</div>}
           {!hasmore && (
             <div className="post-list__no-more-posts">No more posts</div>
           )}
+        </div>
+        <div
+          style={{
+            backgroundColor: "red",
+            height: "100px",
+          }}
+          ref={lastPostRef}
+        >
+          Bottom
         </div>
       </main>
     </div>

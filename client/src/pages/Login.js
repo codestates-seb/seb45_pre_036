@@ -23,7 +23,7 @@ const Login = () => {
 
     // navigate to main page -> App()리렌더링인지 확인하기 -> X; 어찌됐든 state의 변화가 있어야...
     // 안 되면 refresh해서 /questions로.
-    window.location.href = '/';
+    // window.location.href = '/';
     // 이렇게 하면...state 사라짐.
 
     
@@ -60,7 +60,7 @@ const Login = () => {
 
   return (
     <>
-      <container className="login-container">
+      <div className="login-container">
         <div className="login-form__logo"><img src={require("../static/logo-short.png")} alt="stackoverflow logo img only" /></div>
         <form className="login-form__form" onSubmit={loginHandler}>
           <div className="login-form__item top">
@@ -100,7 +100,7 @@ const Login = () => {
             Sign up
           </Link>
         </p>
-      </container>
+      </div>
     </>
   );
 };
