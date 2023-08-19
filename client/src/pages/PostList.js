@@ -2,6 +2,7 @@ import { useState, useRef, useEffect } from "react";
 import axios from "axios";
 import Post from "../components/Post";
 import Menu from "../components/Menu";
+import { Link } from "react-router-dom";
 
 const PostList = () => {
   const [posts, setPost] = useState([]);
@@ -25,7 +26,7 @@ const PostList = () => {
       // 스프레드로 줘야하는지, 아닌지 체크가 필요함.
 
       setHasmore(res.data.length === 10);
-      // 10개 미만으로 주면 더이상 줄게 없다는 거잖아. 그럼 false가 되는거지.
+      // 10개 미만으로 주면 더이상 줄게 없다는 거잖아. 그럼 false.
     } catch (err) {
       console.log(err);
     } finally {
@@ -62,7 +63,7 @@ const PostList = () => {
       <main className="post-list__main">
         <div className="post-list__header">
           <h1 className="post-list__header-title">All Questions</h1>
-          <button className="post-list__header-ask">Add New Question</button>
+          <Link to={'/ask'}><button className="post-list__header-ask">Add New Question</button></Link>
         </div>
         <div className="post-list__container">
           {posts.map((post, idx) => (

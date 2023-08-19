@@ -3,6 +3,7 @@ import { useState, useRef, useEffect } from "react";
 import PostTest from "../components/PostTest";
 import Menu from "../components/Menu";
 import "../styles/pages/PostList.css";
+import { Link } from "react-router-dom";
 
 const dummy = {
   data: [],
@@ -31,7 +32,7 @@ const PostListTest = () => {
       setTimeout(() => {
         setPost((prev) => [...prev, ...dummy.data]);
         setHasmore(page < dummy.pageInfo.totalPages);
-      }, 500); // network latency 고려
+      }, 500); // network latency
     } catch (err) {
       console.log(err);
     } finally {
@@ -86,7 +87,9 @@ const PostListTest = () => {
       <main className="post-list__main">
         <div className="post-list__header">
           <h1 className="post-list__header-title">All Questions</h1>
-          <button className="post-list__header-ask">Ask Question</button>
+          <Link to={"/ask"}>
+            <button className="post-list__header-ask">Ask Question</button>
+          </Link>
         </div>
         <div className="post-list__container">
           {posts.map((post, idx) => (

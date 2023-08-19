@@ -19,7 +19,7 @@ const PostTest = ({ post }) => {
             </div>
             <div className="post__meta">
                 <ul className="post__meta-list">
-                    <li className="post__meta-item">{post.createdAt}</li>
+                    <li className="post__meta-item"><FormattedDate dateString={post.createdAt} /></li>
                     <li className="post__meta-item"><FormattedDate dateString={post.modifiedAt} /></li>
                     <li className="post__meta-item">{post.nickName}</li>
                 </ul>
