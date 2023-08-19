@@ -1,7 +1,9 @@
 import '../styles/components/Post.css';
 import FormattedDate from './FormattedDate';
+import { useNavigate } from 'react-router-dom';
 
 const Post = ({ post }) => {
+    const navigate = useNavigate();
     
     return (
         <div className="post">
@@ -13,7 +15,7 @@ const Post = ({ post }) => {
                 </div>
             </div>
             <div className="post__content">
-                <h1 className="post__content-title">{post.title}</h1>
+                <h1 className="post__content-title" onClick={() => navigate(`/questions/${post.questionId}`)}>{post.title}</h1>
                 {/* 제목 클릭하면...detail view 열리게 구현... */}
                 <p className="post__content-text">{post.content}</p>
             </div>

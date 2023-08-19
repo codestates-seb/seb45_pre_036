@@ -35,9 +35,10 @@ export const AuthProvider = (props) => {
   const accessToken = localStorage.getItem("accessToken");
 
   if (accessToken && isValidToken(accessToken)) {
-    // 스트링으로 주는거 맞..?
     // accessToken이 유효하면
-    setAuthState({ isLoggedIn: true, accessToken: accessToken });
+    if (!authState.isLoggedIn){
+      setAuthState({ isLoggedIn: true, accessToken: accessToken });
+    }
   } else {
     localStorage.removeItem("accessToken");
 
@@ -45,7 +46,7 @@ export const AuthProvider = (props) => {
     if (refresh && isValidToken(refresh)) {
       try {
         const res = axios.post(
-          "/getRefreshToken",
+          "http://localhost:8080/members/renewAccessToken",
           {},
           {
             headers: {
@@ -64,7 +65,7 @@ export const AuthProvider = (props) => {
   }
 
   return (
-    <AuthContext.Provider value={{ authState, setAuthState }}>
+    <AuthContext.Provider value={{ authState }}>
       {props.children}
     </AuthContext.Provider>
   );

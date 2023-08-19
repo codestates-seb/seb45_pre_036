@@ -12,6 +12,7 @@ import Login from "./pages/Login";
 import Test from "./pages/Test";
 import PostListTest from "./pages/PostListTest";
 import RequireAuthRoute from "./components/RequireAuth";
+import PostDetail from "./pages/PostDetail";
 
 function App() {
   return (
@@ -19,12 +20,13 @@ function App() {
       <BrowserRouter>
         <Header />
         <Routes>
-          <Route path="/setting" Component={RequireAuthRoute} />
+          <Route path="/setting" element={<RequireAuthRoute />} />
           <Route path="/" element={<PostListTest />} />
           <Route path="/login" element={<Login />} />
           <Route path="/signup" element={<Signup />} />
           <Route path="/logout" element={<Logout />} />
           <Route path="/test-success" element={<Test />} />
+          <Route path="/questions/:questionId" element={<PostDetail />} />
         </Routes>
       </BrowserRouter>
     </AuthProvider>

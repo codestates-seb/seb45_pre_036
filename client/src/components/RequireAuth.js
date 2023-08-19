@@ -3,7 +3,7 @@ import Setting from "../components/Setting";
 import Login from "../pages/Login";
 
 export default function RequireAuthRoute() {
-  const authstate = useAuth();
+  const { authState } = useAuth();
 
-  return authstate.isLoggedIn ? <Setting /> : <Login />;
+  return authState.isLoggedIn ? <Setting /> : <Login />;
 }
