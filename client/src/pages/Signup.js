@@ -5,6 +5,8 @@ import { useContext, useState } from "react";
 import { AuthContext } from "../auth/AuthContext";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
+import Axiosinstance from "../auth/AxiosConfig";
+import useAuth from "../auth/useAuth";
 
 // sign up 하고 그 state받아서 로그인으로 내린 담에 로그인 요청도 갈 수 있게 해야 함.
 
@@ -29,26 +31,31 @@ const Signup = () => {
   const signupHandler = async (e) => {
     e.preventDefault();
     try {
-      const res = await axios.post(
-        "http://ec2-13-125-169-3.ap-northeast-2.compute.amazonaws.com:8080/members/signup",
+      const res = await Axiosinstance.post(
+        "/members/signup",
         {
           nickName: newName,
           email: newEmail,
           password: newPassword,
-        },
-        {
-          headers: {
-            "Content-Type": "application/json",
-          },
         }
       );
+
       console.info("status", res.status);
     } catch (error) {
       console.log(error);
     }
 
-    LoginFunc(newEmail, newPassword);
-    navigate("/");
+    try {
+      const result = await LoginFunc(newEmail, newPassword);
+      if (result) {
+        window.location.href='/';
+        // 라우팅 문제 발생 시 여기부터 체크
+      } else{
+        navigate('/login');
+      }
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   return (
