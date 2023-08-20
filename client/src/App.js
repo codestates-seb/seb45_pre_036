@@ -10,7 +10,7 @@ import Header from "./components/Header";
 import Logout from "./pages/Logout";
 import Login from "./pages/Login";
 import Test from "./pages/Test";
-import RequireAuthRoute from "./components/RequireAuth";
+import RequireAuthRoute from "./auth/RequireAuth";
 import PostDetail from "./pages/PostDetail";
 import CreateQuestion from "./pages/CreateQuestion";
 // import PostList from "./pages/PostList";

@@ -1,4 +1,4 @@
-import useAuth from "../auth/useAuth";
+import useAuth from "./useAuth";
 import Setting from "../components/Setting";
 import Login from "../pages/Login";
 
