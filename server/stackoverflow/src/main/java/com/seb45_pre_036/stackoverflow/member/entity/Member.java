@@ -24,8 +24,13 @@ public class Member extends Auditable {
     @Column(nullable = false, unique = true, updatable = false)
     private String email;
 
-    @Column(nullable = false)
+    @Column(nullable = true)
     private String password;
+    // -> OAuth2 로그인 수행 시 -> password 정보 따로 db 저장하지 않기 때문에
+    // -> nullable -> default or true 설정
+    // -> 서버를 통해 회원가입 시 -> postDto -> password 입력 값 -> NotBlank 설정
+    // -> 서버 측 가입한 회원 -> password -> table 에 null 값이 존재하지 않음.
+
 
     @Column(length = 50, nullable = false)
     private String nickName;
@@ -35,7 +40,7 @@ public class Member extends Auditable {
 
     @Column(length = 500, nullable = true)
     private String aboutMe;
-
+    
     @ElementCollection(fetch = FetchType.EAGER)
     List<String> roles = new ArrayList<>();
 
@@ -45,5 +50,6 @@ public class Member extends Auditable {
     @OneToMany(mappedBy = "member")
     List<Answer> answers = new ArrayList<>();
 
+    // Server 회원가입 유저 / OAuth2 로그인 유저 -> ENUM 타입으로 구분 처리할 수 있음.
 
 }

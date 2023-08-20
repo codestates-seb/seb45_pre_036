@@ -16,6 +16,20 @@ spring:
     init:
       data-locations: classpath*:db/h2/data.sql
 
+  security:
+    oauth2:
+      client:
+        registration:
+          google:
+            clientId: ${G_CLIENT_ID} # 구글 Oauth2 클라이언트 생성 -> 클라이언트 ID
+            clientSecret: ${G_CLIENT_SECRET} # 구글 클라이언트 Secret -> 클라이언트 보안 비밀번호
+            scope: # Resource Owner 의 Resource -> 접근 범위 목록 설정
+              - email # Resource Owner 의 email 접근 설정
+              - profile # Resource Owner 의 profile 접근 설정
+              # OAuth2 클라이언트 등록 정보 추가
+              # 민감 정보 -> yml 파일에 그대로 노출 -> 보안상 문제
+              # Client Id / Secret -> 프로퍼티 정보 값 -> 환경 변수 or 외부 안전 경로에 설정
+
 logging:
   level:
     org:
@@ -32,4 +46,4 @@ mail:
 jwt:
 #  key: ${JWT_SECRET_KEY}
   access-token-expiration-minutes: 30
-  refresh-token-expiration-minutes: 420
+  refresh-token-expiration-minutes: 30
