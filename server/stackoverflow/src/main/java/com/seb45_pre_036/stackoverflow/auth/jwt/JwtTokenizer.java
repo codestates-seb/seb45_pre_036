@@ -66,12 +66,14 @@ public class JwtTokenizer {
                 .compact();
     }
 
-    public String generateRefreshToken(String subject,
+    public String generateRefreshToken(Map<String, Object> claims,
+                                       String subject,
                                        Date expiration,
                                        String base64EncodedSecretKey){
         Key key = getKeyFromBase64EncodedSecretKey(base64EncodedSecretKey);
 
         return Jwts.builder()
+                .setClaims(claims)
                 .setSubject(subject)
                 .setIssuedAt(Calendar.getInstance().getTime())
                 .setExpiration(expiration)
@@ -91,19 +93,7 @@ public class JwtTokenizer {
         return claims;
     }
 
-    public void verifyRefreshToken(String jws, String base64EncodedSecretKey){
-
-        Key key = getKeyFromBase64EncodedSecretKey(base64EncodedSecretKey);
-
-        Jws<Claims> claims = Jwts.parserBuilder()
-                .setSigningKey(key)
-                .build()
-                .parseClaimsJws(jws);
-    }
-
     public long getMemberIdFromAccessToken(String accessToken, String base64EncodedSecretKey){
-        // accessToken / base64 인코딩된 시크릿 키
-        // -> memberId 값 return
 
         String jws = accessToken.replace("Bearer ", "");
 
@@ -115,13 +105,32 @@ public class JwtTokenizer {
                 .parseClaimsJws(jws)
                 .getBody();
 
-        // payload(claim)
+        int memberId = (int) claims.get("memberId");
+
+        return (long) memberId;
+
+    }
+
+    // refreshToken 검증
+    // claims 담긴 -> memberId 값 return
+    public long getMemberIdFromRefreshToken(String refreshToken, String base64EncodedSecretKey){
+
+        String jws = refreshToken;
+
+        Key key = getKeyFromBase64EncodedSecretKey(base64EncodedSecretKey);
+
+        Map<String, Object> claims = Jwts.parserBuilder()
+                .setSigningKey(key)
+                .build()
+                .parseClaimsJws(jws)
+                .getBody();
 
         int memberId = (int) claims.get("memberId");
 
         return (long) memberId;
 
     }
+
 
 
     public Date getTokenExpiration(int expirationMinutes){

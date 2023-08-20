@@ -19,16 +19,24 @@ public interface MemberMapper {
 
     MemberDto.Response memberToMemberResponseDto(Member member);
 
+
     default MemberDto.MyPageResponse memberToMyPageResponseDto(Member member){
+
+        MemberDto.PatchInfoResponse patchInfoResponse = MemberDto.PatchInfoResponse.builder()
+                .nickName(member.getNickName())
+                .title(member.getTitle())
+                .aboutMe(member.getAboutMe())
+                .build();
 
         MemberDto.MyPageResponse response = MemberDto.MyPageResponse.builder()
                                 .memberId(member.getMemberId())
                                 .email(member.getEmail())
-                                .nickName(member.getNickName()).build();
+                                .nickName(member.getNickName())
+                .patchInfoResponse(patchInfoResponse)
+                .questionCount(member.getQuestions().size())
+                .answerCount(member.getAnswers().size())
+                .build();
 
-
-        // List<QuestionDto.Response> questions;
-        // List<Question> -> List<QuestionDto.Response>
 
         List<Question> getQuestions = member.getQuestions();
 
@@ -45,7 +53,6 @@ public interface MemberMapper {
 
         response.setQuestions(questionResponseDtos);
 
-        // List<Answer> -> List<AnswerDto.Response>
 
         List<Answer> getAnswers = member.getAnswers();
 

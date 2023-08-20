@@ -1,5 +1,6 @@
 package com.seb45_pre_036.stackoverflow.answer.entity;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
 import com.seb45_pre_036.stackoverflow.audit.Auditable;
 import com.seb45_pre_036.stackoverflow.comment.entity.Comment;
 import com.seb45_pre_036.stackoverflow.member.entity.Member;
@@ -21,7 +22,7 @@ public class Answer extends Auditable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long answerId;
 
-    @Column(nullable = false)
+    @Column(length = 1000, nullable = false)
     private String content;
 
     @ManyToOne
@@ -34,5 +35,27 @@ public class Answer extends Auditable {
 
     @OneToMany(mappedBy = "answer", cascade = CascadeType.REMOVE)
     private List<Comment> comments;
+
+
+    @Enumerated(EnumType.STRING)
+    @Column(length = 10, nullable = false)
+    private Adopt adopt = Adopt.NONE;
+
+    public enum Adopt {
+        NONE,
+        ADOPT;
+
+                @JsonCreator
+        public static Adopt fromAdopt(String val) {
+            for (Adopt adopt : Adopt.values()) {
+                if (adopt.name().equals(val)) {
+                    return adopt;
+                }
+            }
+            return null;
+        }
+    }
+
+
 
 }

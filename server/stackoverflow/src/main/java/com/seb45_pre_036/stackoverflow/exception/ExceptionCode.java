@@ -3,7 +3,7 @@ package com.seb45_pre_036.stackoverflow.exception;
 import lombok.Getter;
 
 public enum ExceptionCode {
-    MEMBER_NOT_MATCHED(403, "MemberId is not matched"),
+    MEMBER_NOT_MATCHED(403, "MemberId not matched"),
     MEMBER_NOT_FOUND(404, "Member not found"),
     MEMBER_EXISTS(409, "Member exists"),
     QUESTION_NOT_FOUND(404, "Question not found"),

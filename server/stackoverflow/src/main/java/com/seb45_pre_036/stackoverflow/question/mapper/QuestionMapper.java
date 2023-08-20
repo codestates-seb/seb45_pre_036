@@ -10,6 +10,7 @@ import com.seb45_pre_036.stackoverflow.question.dto.QuestionDto;
 import com.seb45_pre_036.stackoverflow.question.entity.Question;
 import org.mapstruct.Mapper;
 
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -42,6 +43,8 @@ public interface QuestionMapper {
                 .content(question.getContent())
                 .createdAt(question.getCreatedAt())
                 .modifiedAt(question.getModifiedAt())
+                .view(question.getView()) // view 추가
+                .answerCount(question.getAnswers().size()) // answerCount 추가
                 .build();
 
         return response;
@@ -49,7 +52,6 @@ public interface QuestionMapper {
     }
 
     List<QuestionDto.Response> questionsToQuestionResponseDtos(List<Question> questions);
-
 
     default QuestionDto.DetailResponse questionToQuestionDetailResponseDto(Question question){
 
@@ -62,6 +64,7 @@ public interface QuestionMapper {
                 .content(question.getContent())
                 .createdAt(question.getCreatedAt())
                 .modifiedAt(question.getModifiedAt())
+                .view(question.getView()) // view 추가
                 .build();
 
 
@@ -77,6 +80,7 @@ public interface QuestionMapper {
                 .email(answer.getMember().getEmail())
                 .nickName(answer.getMember().getNickName())
                 .questionId(answer.getQuestion().getQuestionId())
+                .adopt(answer.getAdopt()) // 추가
                 .comments(answer.getComments().stream()
                         .map(comment -> QuestionDto.CommentResponse.builder()
                                 .commentId(comment.getCommentId())

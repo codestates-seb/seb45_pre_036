@@ -4,6 +4,7 @@ import com.seb45_pre_036.stackoverflow.auth.jwt.JwtTokenizer;
 import com.seb45_pre_036.stackoverflow.exception.BusinessLogicException;
 import com.seb45_pre_036.stackoverflow.exception.ExceptionCode;
 import com.seb45_pre_036.stackoverflow.member.entity.Member;
+import com.seb45_pre_036.stackoverflow.member.repository.MemberRepository;
 import com.seb45_pre_036.stackoverflow.member.service.MemberService;
 import com.seb45_pre_036.stackoverflow.question.entity.Question;
 import com.seb45_pre_036.stackoverflow.question.mapper.QuestionMapper;
@@ -51,10 +52,9 @@ public class QuestionService {
     }
 
     public Question createQuestion(Question question){
+
         return questionRepository.save(question);
     }
-
-
 
 
     public Question updateQuestion(Question question, String accessToken){
@@ -72,7 +72,21 @@ public class QuestionService {
     }
 
     public Question findQuestion(long questionId) {
-        return findByQuestionId(questionId);
+
+        Question findQuestion = findByQuestionId(questionId);
+
+        findQuestion.setView(findQuestion.getView() + 1);
+
+        return findQuestion;
+
+//        return questionRepository.save(findQuestion);
+        // return findQuestion -> repository 를 통해 해당 값을 저장하지 않더라도
+        // setter 를 통해 해당 값을 저장하면 -> 테이블에 자동 등록됨.
+        // @Transaction
+        // 해당 영역 -> 영속성 컨텍스트 영역
+        // 트랜잭션 작업 종료 후 -> commit -> db 반영
+
+//        return findByQuestionId(questionId);
     }
 
     public Page<Question> findQuestions(int page, int size){
@@ -80,6 +94,14 @@ public class QuestionService {
         return questionRepository.findAll(
                 PageRequest.of(page,size, Sort.by("questionId").descending()));
     }
+
+    public Page<Question> findQuestionsView(int page, int size){
+
+        return questionRepository.findAll(
+                PageRequest.of(page,size, Sort.by("view").descending()));
+    }
+
+
 
     public void deleteQuestion(long questionId, String accessToken){
         Question question = findByQuestionId(questionId);

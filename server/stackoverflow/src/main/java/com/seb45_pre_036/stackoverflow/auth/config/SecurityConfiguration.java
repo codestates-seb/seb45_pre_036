@@ -2,12 +2,10 @@ package com.seb45_pre_036.stackoverflow.auth.config;
 
 import com.seb45_pre_036.stackoverflow.auth.filter.JwtAuthenticationFilter;
 import com.seb45_pre_036.stackoverflow.auth.filter.JwtVerificationFilter;
-import com.seb45_pre_036.stackoverflow.auth.handler.CustomAccessDeniedHandler;
-import com.seb45_pre_036.stackoverflow.auth.handler.CustomAuthenticationEntryPoint;
-import com.seb45_pre_036.stackoverflow.auth.handler.CustomAuthenticationFailureHandler;
-import com.seb45_pre_036.stackoverflow.auth.handler.CustomAuthenticationSuccessHandler;
+import com.seb45_pre_036.stackoverflow.auth.handler.*;
 import com.seb45_pre_036.stackoverflow.auth.jwt.JwtTokenizer;
 import com.seb45_pre_036.stackoverflow.auth.utils.CustomAuthorityUtils;
+import com.seb45_pre_036.stackoverflow.member.repository.MemberRepository;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpMethod;
@@ -30,11 +28,14 @@ public class SecurityConfiguration {
 
     private final JwtTokenizer jwtTokenizer;
     private final CustomAuthorityUtils customAuthorityUtils;
+    private final MemberRepository memberRepository;
 
-    public SecurityConfiguration(JwtTokenizer jwtTokenizer, CustomAuthorityUtils customAuthorityUtils) {
+    public SecurityConfiguration(JwtTokenizer jwtTokenizer, CustomAuthorityUtils customAuthorityUtils, MemberRepository memberRepository) {
         this.jwtTokenizer = jwtTokenizer;
         this.customAuthorityUtils = customAuthorityUtils;
+        this.memberRepository = memberRepository;
     }
+
 
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception{
@@ -54,20 +55,23 @@ public class SecurityConfiguration {
                 .apply(new CustomFilterConfigurer())
                 .and()
                 .authorizeHttpRequests(authorize -> authorize
-                        .antMatchers(HttpMethod.POST, "/members").permitAll()
-                        .antMatchers(HttpMethod.PATCH, "/members/**").hasRole("USER")
-//                        .antMatchers(HttpMethod.GET, "/members").hasRole("USER")
-                        .antMatchers(HttpMethod.GET, "/members/myPage/**").hasRole("USER")
-                        .antMatchers(HttpMethod.DELETE, "/members/**").hasRole("USER")
-                        .antMatchers(HttpMethod.POST, "/questions/ask").hasRole("USER")
-                        .antMatchers(HttpMethod.PATCH, "/questions/**").hasRole("USER")
-                        .antMatchers(HttpMethod.DELETE, "/questions/**").hasRole("USER")
-                        .antMatchers(HttpMethod.PATCH, "/answers/**").hasRole("USER")
-                        .antMatchers(HttpMethod.DELETE, "/answers/**").hasRole("USER")
-                        .antMatchers(HttpMethod.PATCH, "/comments/**").hasRole("USER")
-                        .antMatchers(HttpMethod.DELETE, "/comments/**").hasRole("USER")
+                        .antMatchers(HttpMethod.POST, "/members/signup").permitAll() // 회원가입
+                        .antMatchers(HttpMethod.PATCH, "/members/**").hasRole("USER") // 마이페이지 수정
+                        .antMatchers(HttpMethod.GET, "/members/myPage/**").hasRole("USER") // 마이페이지
+                        .antMatchers(HttpMethod.DELETE, "/members/**").hasRole("USER") // 회원탈퇴
+                        .antMatchers(HttpMethod.POST, "/questions/ask").hasRole("USER") // 질문 생성
+                        .antMatchers(HttpMethod.PATCH, "/questions/**").hasRole("USER") // 질문 수정
+                        .antMatchers(HttpMethod.DELETE, "/questions/**").hasRole("USER") // 질문 삭제
+                        .antMatchers(HttpMethod.POST, "/answers").hasRole("USER") // 답변 생성
+                        .antMatchers(HttpMethod.PATCH, "/answers/adopt/**").hasRole("USER") // 답변 채택
+                        .antMatchers(HttpMethod.PATCH, "/answers/**").hasRole("USER") // 답변 수정
+                        .antMatchers(HttpMethod.DELETE, "/answers/**").hasRole("USER") // 답변 삭제
+                        .antMatchers(HttpMethod.POST, "/comments").hasRole("USER") // 댓글 생성
+                        .antMatchers(HttpMethod.PATCH, "/comments/**").hasRole("USER") // 댓글 수정
+                        .antMatchers(HttpMethod.DELETE, "/comments/**").hasRole("USER") // 댓글 삭제
                         .anyRequest().permitAll()
                 );
+
         return http.build();
 
     }
@@ -94,6 +98,7 @@ public class SecurityConfiguration {
         }
     }
 
+
     @Bean
     public PasswordEncoder passwordEncoder(){
         return PasswordEncoderFactories.createDelegatingPasswordEncoder();
@@ -102,11 +107,20 @@ public class SecurityConfiguration {
     @Bean
     CorsConfigurationSource corsConfigurationSource(){
         CorsConfiguration configuration = new CorsConfiguration();
+
         configuration.setAllowedOrigins(Arrays.asList("*"));
+
         configuration.setAllowedMethods(Arrays.asList("GET", "POST", "PATCH", "DELETE"));
+
+        configuration.setAllowedHeaders(Arrays.asList("*"));
+
+        configuration.setExposedHeaders(Arrays.asList("*"));
+
+        configuration.setAllowCredentials(true);
 
         UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
         source.registerCorsConfiguration("/**", configuration);
+
 
         return source;
     }

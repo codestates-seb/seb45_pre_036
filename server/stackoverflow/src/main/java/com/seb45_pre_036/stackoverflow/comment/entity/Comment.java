@@ -23,7 +23,7 @@ public class Comment extends Auditable {
     @Column(name = "COMMENT_ID")
     private Long commentId;
 
-    @Column(nullable = false)
+    @Column(length = 500, nullable = false)
     private String content;
 
     @ManyToOne

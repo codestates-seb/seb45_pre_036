@@ -27,9 +27,14 @@ public class Member extends Auditable {
     @Column(nullable = false)
     private String password;
 
-    @Column(nullable = false)
+    @Column(length = 50, nullable = false)
     private String nickName;
 
+    @Column(length = 100, nullable = true)
+    private String title;
+
+    @Column(length = 500, nullable = true)
+    private String aboutMe;
 
     @ElementCollection(fetch = FetchType.EAGER)
     List<String> roles = new ArrayList<>();
@@ -39,5 +44,6 @@ public class Member extends Auditable {
 
     @OneToMany(mappedBy = "member")
     List<Answer> answers = new ArrayList<>();
+
 
 }

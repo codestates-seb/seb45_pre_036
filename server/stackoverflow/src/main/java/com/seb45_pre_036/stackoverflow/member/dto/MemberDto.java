@@ -1,28 +1,28 @@
 package com.seb45_pre_036.stackoverflow.member.dto;
 
-import com.seb45_pre_036.stackoverflow.answer.dto.AnswerDto;
-import com.seb45_pre_036.stackoverflow.answer.entity.Answer;
-import com.seb45_pre_036.stackoverflow.question.dto.QuestionDto;
-import com.seb45_pre_036.stackoverflow.question.entity.Question;
-import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
+import org.hibernate.validator.constraints.Length;
 
-import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotEmpty;
-import javax.validation.constraints.NotNull;
+import javax.validation.constraints.*;
 import java.time.LocalDateTime;
 import java.util.List;
 
 public class MemberDto {
     @Getter
     public static class Post{
+
         @NotBlank
+        @Email(message = "유효한 이메일 주소를 입력해주세요.")
         private String email;
+
         @NotBlank
+        @Size(max = 20)
         private String password;
-        @NotEmpty
+
+        @NotBlank
+        @Size(min = 2, max = 20, message = "문자 길이는 2에서 20 사이여야 합니다.")
         private String nickName;
 
     }
@@ -34,7 +34,14 @@ public class MemberDto {
         private long memberId;
 
         @NotNull
+        @Size(min = 2, max = 20, message = "문자 길이는 2에서 20 사이여야 합니다.")
         private String nickName;
+
+        @Size(max = 100, message = "100자 이하로 입력해 주세요.")
+        private String title;
+
+        @Size(max = 500, message = "500자 이하로 입력해 주세요.")
+        private String aboutMe;
 
     }
 
@@ -59,8 +66,8 @@ public class MemberDto {
         private LocalDateTime modifiedAt;
         private long questionId;
 
-
     }
+
 
     @Getter
     @Setter
@@ -72,7 +79,15 @@ public class MemberDto {
         private LocalDateTime createdAt;
         private LocalDateTime modifiedAt;
 
+    }
 
+    @Getter
+    @Setter
+    @Builder
+    public static class PatchInfoResponse{
+        private String nickName;
+        private String title;
+        private String aboutMe;
     }
 
     @Getter
@@ -82,6 +97,11 @@ public class MemberDto {
         private long memberId;
         private String email;
         private String nickName;
+
+        private PatchInfoResponse patchInfoResponse;
+
+        private int questionCount; // questionCount 추가
+        private int answerCount; // answerCount 추가
 
         private List<MemberDto.QuestionResponse> questions;
         private List<MemberDto.AnswerResponse> answers;

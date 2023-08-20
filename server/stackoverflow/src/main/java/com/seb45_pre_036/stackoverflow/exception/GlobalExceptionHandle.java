@@ -1,5 +1,7 @@
 package com.seb45_pre_036.stackoverflow.exception;
 
+import io.jsonwebtoken.ExpiredJwtException;
+import io.jsonwebtoken.security.SignatureException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.http.converter.HttpMessageNotReadableException;
@@ -23,6 +25,7 @@ public class GlobalExceptionHandle {
         return new ResponseEntity(response, HttpStatus.BAD_REQUEST);
     }
 
+
     @ExceptionHandler
     public ResponseEntity handleConstraintViolationException(ConstraintViolationException e){
 
@@ -40,6 +43,28 @@ public class GlobalExceptionHandle {
 
         return new ResponseEntity(response, HttpStatus.valueOf(e.getExceptionCode().getStatus()));
     }
+
+
+    // refreshToken 유효 시간 만료 예외 처리
+    @ExceptionHandler
+    public ResponseEntity handleExpiredJwtException(ExpiredJwtException e){
+
+        ErrorResponse response = new ErrorResponse();
+        response.setStatusAndMessageFromHttpStatusAndMessage(HttpStatus.UNAUTHORIZED, "RefreshToken expired");
+
+        return new ResponseEntity(response, HttpStatus.UNAUTHORIZED);
+    }
+
+    // refreshToken signature 예외 처리
+    @ExceptionHandler
+    public ResponseEntity handleSignatureException(SignatureException e){
+
+        ErrorResponse response = new ErrorResponse();
+        response.setStatusAndMessageFromHttpStatus(HttpStatus.UNAUTHORIZED);
+
+        return new ResponseEntity(response, HttpStatus.UNAUTHORIZED);
+    }
+
 
     @ExceptionHandler
     public ResponseEntity handleHttpRequestMethodNotSupportedException(HttpRequestMethodNotSupportedException e){

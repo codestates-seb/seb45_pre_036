@@ -14,6 +14,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
 import javax.validation.constraints.Positive;
 import java.net.URI;
@@ -42,6 +43,17 @@ public class MemberController {
 
         return ResponseEntity.created(location).build();
 
+    }
+
+    @PostMapping("/renewAccessToken")
+    public ResponseEntity renewAccessToken(@RequestHeader("Refresh") String refreshToken){
+
+        String accessToken = memberService.renewAccessToken(refreshToken);
+
+        HttpHeaders headers = new HttpHeaders();
+        headers.add("Authorization", accessToken);
+
+        return new ResponseEntity(headers, HttpStatus.OK);
     }
 
     @PatchMapping("{member-id}")
@@ -75,6 +87,7 @@ public class MemberController {
         return new ResponseEntity(
                 new MultiResponseDto<>(mapper.membersToMemberResponseDtos(members), pageMembers), HttpStatus.OK);
     }
+
 
     @DeleteMapping("/{member-id}")
     public ResponseEntity deleteMember(@PathVariable("member-id") @Positive long memberId,

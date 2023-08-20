@@ -6,6 +6,8 @@ import com.seb45_pre_036.stackoverflow.exception.BusinessLogicException;
 import com.seb45_pre_036.stackoverflow.exception.ExceptionCode;
 import com.seb45_pre_036.stackoverflow.member.entity.Member;
 import com.seb45_pre_036.stackoverflow.member.repository.MemberRepository;
+import io.jsonwebtoken.ExpiredJwtException;
+import io.jsonwebtoken.security.SignatureException;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
@@ -13,8 +15,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 
 @Service
 @Transactional
@@ -35,7 +36,7 @@ public class MemberService {
     }
 
     // 검증된 회원 조회
-    public Member findVerifiedMember(long memberId){
+    private Member findVerifiedMember(long memberId){
         Optional<Member> optionalMember = memberRepository.findById(memberId);
 
         Member findMember = optionalMember
@@ -54,7 +55,7 @@ public class MemberService {
     }
 
     // 요청을 보낸 회원 -> 본인 검증
-    public void checkMemberId(long memberId, String accessToken){
+    private void checkMemberId(long memberId, String accessToken){
 
         String base64EncodedSecretKey = jwtTokenizer.encodeBase64SecretKey(jwtTokenizer.getSecretKey());
         long findMemberId = jwtTokenizer.getMemberIdFromAccessToken(accessToken, base64EncodedSecretKey);
@@ -63,6 +64,16 @@ public class MemberService {
             throw new BusinessLogicException(ExceptionCode.MEMBER_NOT_MATCHED);
         }
     }
+
+    // refreshToken 검증 -> memberId 값 return
+    // refreshToken 만료 / signature 예외 / 그외 예외 발생 -> GlobalExceptionHandler 통해 -> 예외 정보 제공
+    private long verifyRefreshToken(String refreshToken, String base64EncodedSecretKey){
+
+        long findMemberId = jwtTokenizer.getMemberIdFromRefreshToken(refreshToken, base64EncodedSecretKey);
+
+        return findMemberId;
+    }
+
 
 
     public Member createMember(Member member){
@@ -78,6 +89,36 @@ public class MemberService {
         return memberRepository.save(member);
     }
 
+
+    // refreshToken 검증 -> accessToken 생성 후 return
+    public String renewAccessToken(String refreshToken){
+        String base64EncodedSecretKey = jwtTokenizer.encodeBase64SecretKey(jwtTokenizer.getSecretKey());
+        // base64 인코딩 SecretKey 생성
+
+        long findMemberId = verifyRefreshToken(refreshToken, base64EncodedSecretKey);
+        // refreshToken 검증 -> refreshToken 담긴 memberId 값을 가져옴.
+
+        Member findMember = findVerifiedMember(findMemberId);
+        // memberId 값 가진 회원이 있는지 조회
+        // -> 조회 후 해당 회원 정보를 가져옴.
+
+        // 조회한 회원 정보 -> accessToken 필요한 정보 생성
+        // -> 해당 정보 활용 -> accessToken 발행 -> return
+        Map<String, Object> claims = new HashMap<>();
+        claims.put("memberId", findMember.getMemberId());
+        claims.put("email", findMember.getEmail());
+        claims.put("roles", findMember.getRoles());
+
+        String subject = findMember.getEmail();
+        Date expiration = jwtTokenizer.getTokenExpiration(jwtTokenizer.getAccessTokenExpirationMinutes());
+
+        String accessToken = "Bearer "
+                + jwtTokenizer.generateAccessToken(claims, subject, expiration, base64EncodedSecretKey);
+
+        return accessToken;
+    }
+
+
     public Member updateMember(Member member, String accessToken){
 
         Member findMember = findVerifiedMember(member.getMemberId());
@@ -86,6 +127,11 @@ public class MemberService {
 
         Optional.ofNullable(member.getNickName())
                 .ifPresent(nickName -> findMember.setNickName(nickName));
+        Optional.ofNullable(member.getTitle())
+                .ifPresent(title -> findMember.setTitle(title));
+        Optional.ofNullable(member.getAboutMe())
+                .ifPresent(aboutMe -> findMember.setAboutMe(aboutMe));
+
 
         return memberRepository.save(findMember);
     }

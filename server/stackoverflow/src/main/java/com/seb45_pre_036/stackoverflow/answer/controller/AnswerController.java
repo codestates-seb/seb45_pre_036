@@ -51,7 +51,6 @@ public class AnswerController {
                                       @Valid @RequestBody AnswerDto.Patch answerPatchDto,
                                       @RequestHeader(HttpHeaders.AUTHORIZATION) String accessToken) {
 
-
         answerPatchDto.setAnswerId(answerId);
 
         Answer answer = answerService.updateAnswer(mapper.answerPatchDtoToAnswer(answerPatchDto), accessToken);
@@ -61,10 +60,26 @@ public class AnswerController {
                 HttpStatus.OK);
     }
 
+    @PatchMapping("/adopt/{answer-id}")
+    public ResponseEntity patchAnswerAdopt(@PathVariable("answer-id") @Positive long answerId,
+                                           @Valid @RequestBody AnswerDto.PatchAdopt answerAdoptPatchDto,
+                                           @RequestHeader(HttpHeaders.AUTHORIZATION) String accessToken) {
+        answerAdoptPatchDto.setAnswerId(answerId);
+
+        Answer getAnswer = mapper.answerPatchAdoptDtoToAnswer(answerAdoptPatchDto);
+
+        Answer answer = answerService.updateAnswerAdopt(getAnswer, accessToken);
+
+        return new ResponseEntity<>(
+                new SingleResponseDto<>(mapper.answerToAnswerAdoptResponseDto(answer)),
+                HttpStatus.OK);
+    }
+
+
     @DeleteMapping("/{answer-id}")
-    public ResponseEntity deleteAnswer(@RequestBody @Valid AnswerDto.Patch answerPatchDto,
-                                       @PathVariable("answer-id") @Positive long answerId,
+    public ResponseEntity deleteAnswer(@PathVariable("answer-id") @Positive long answerId,
                                        @RequestHeader(HttpHeaders.AUTHORIZATION) String accessToken) {
+
         answerService.deleteAnswer(answerId, accessToken);
 
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);

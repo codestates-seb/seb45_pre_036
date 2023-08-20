@@ -22,13 +22,19 @@ public class Question extends Auditable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long questionId;
+
+    @Column(length = 100, nullable = false)
     private String title;
+
+    @Column(length = 2000, nullable = false)
     private String content;
+
+    @Column(nullable = false)
+    private int view = 0;
 
     @ManyToOne
     @JoinColumn(name = "MEMBER_ID")
     private Member member;
-
 
     @OneToMany(mappedBy = "question", cascade = CascadeType.REMOVE)
     private List<Answer> answers = new ArrayList<>();

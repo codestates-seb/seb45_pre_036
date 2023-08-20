@@ -20,6 +20,19 @@ public class ErrorResponder {
         response.setContentType(MediaType.APPLICATION_JSON_VALUE);
         response.getWriter().write(gson.toJson(errorResponse, ErrorResponse.class));
 
+    }
+
+    public static void sendJwtErrorResponse(HttpServletResponse response, HttpStatus httpStatus) throws IOException{
+
+        ErrorResponse errorResponse = new ErrorResponse();
+        errorResponse.setStatusAndMessageFromHttpStatusAndMessage(
+                httpStatus, "AccessToken expired");
+
+        Gson gson = new Gson();
+
+        response.setStatus(httpStatus.value());
+        response.setContentType(MediaType.APPLICATION_JSON_VALUE);
+        response.getWriter().write(gson.toJson(errorResponse, ErrorResponse.class));
 
     }
 }

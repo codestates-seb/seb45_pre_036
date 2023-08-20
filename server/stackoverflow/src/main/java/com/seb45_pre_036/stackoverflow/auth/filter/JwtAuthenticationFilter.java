@@ -63,6 +63,10 @@ public class JwtAuthenticationFilter extends UsernamePasswordAuthenticationFilte
 
     }
 
+    // 로그인 인증 요청 -> Access Token 서버에서 발급 -> 클라이언트 제공
+    // payload(claims) - id값
+    // 클라이언트 요청 -> header 에 accessToken 담아서 서버쪽으로 요청을 보냄.
+
     private String delegateAccessToken(Member member){
         Map<String, Object> claims = new HashMap<>();
         claims.put("memberId", member.getMemberId());
@@ -79,11 +83,15 @@ public class JwtAuthenticationFilter extends UsernamePasswordAuthenticationFilte
     }
 
     private String delegateRefreshToken(Member member){
+
+        Map<String, Object> claims = new HashMap<>();
+        claims.put("memberId", member.getMemberId());
+
         String subject = member.getEmail();
         Date expiration = jwtTokenizer.getTokenExpiration(jwtTokenizer.getRefreshTokenExpirationMinutes());
 
         String base64EncodedSecretKey = jwtTokenizer.encodeBase64SecretKey(jwtTokenizer.getSecretKey());
 
-        return jwtTokenizer.generateRefreshToken(subject, expiration, base64EncodedSecretKey);
+        return jwtTokenizer.generateRefreshToken(claims, subject, expiration, base64EncodedSecretKey);
     }
 }
