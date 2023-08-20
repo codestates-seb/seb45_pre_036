@@ -31,27 +31,27 @@ export const UserHeader = ({authState}) => {
         <nav className="header__nav">
           <ul className="header__nav-list">
             <li className="header__nav-item">
-              <div>
+              {/* <div> */}
                 <img src={require("../static/inbox.png")} alt="alarm-inbox" />
-              </div>
+              {/* </div> */}
             </li>
             <li className="header__nav-item">
-              <div>
+              {/* <div> */}
                 <img src={require("../static/trophy.png")} alt="achievement" />
-              </div>
+              {/* </div> */}
             </li>
             <li className="header__nav-item">
-              <div>
+              {/* <div> */}
                 <img src={require("../static/help.png")} alt="help" />
-              </div>
+              {/* </div> */}
             </li>
-            <li className="header__nav-item">
-              <div>
-                <img
+            <li className="header__nav-item logout">
+              {/* <div> */}
+                <Link to={'/logout'}><img
                   src={require("../static/stack.png")}
                   alt="stack-exchange"
-                />
-              </div>
+                /></Link>
+              {/* </div> */}
             </li>
           </ul>
         </nav>

@@ -1,21 +1,16 @@
 import "../styles/pages/Logout.css";
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
 
 const Logout = () => {
   const [isChecked, setIsChecked] = useState(false);
   const [alert, setAlert] = useState(false);
-  const navigate = useNavigate();
-
-  // checkbox 확인 후 log out 클릭 시 logout 되도록.
-  // logout은 토큰 삭제
-  // 로그인 페이지로 리다이렉
 
   const logoutHandler = () => {
     if (isChecked) {
       localStorage.removeItem("accessToken");
       localStorage.removeItem("refreshToken");
-      navigate("/");
+      window.location.href='/';
+      // 라우터 문제 시에 여기부터 체크
     } else {
       setAlert(true);
     }

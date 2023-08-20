@@ -28,25 +28,40 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
+  /* gap: 10px; */
 }
 
-/* .header__nav-username {
+.header__nav-username{
+  padding: 16px 8px;
+}
 
-} */
-
-/* .header__nav {} */
+.header__nav-username:hover {
+  background-color: rgb(215, 215, 215);
+  cursor: pointer;
+}
 
 .header__nav-list {
   list-style: none;
   padding: 0;
+  margin: 0;
   display: flex;
 }
 
-.header__nav-list div {
-  display: flex;
-  padding: 0 8px;
-  align-items: center;
-  justify-content: center;
+.header__nav-item {
+  /* display: flex; */
+  padding: 14px 8px;
+  height: 100%;
+  /* align-items: center; */
+  /* justify-content: center; */
+  gap: 10px;
+}
+
+.header__nav-list li:hover {
+  background-color: rgb(215, 215, 215);
+}
+
+.header__nav-item.logout {
+  cursor: pointer;
 }
 
 .header__nav-item img {
