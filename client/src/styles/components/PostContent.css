@@ -1,0 +1,36 @@
+.post-content__container {
+  display: flex;
+  flex-direction: column;
+}
+
+.post-content__content {
+  padding: 8px;
+}
+
+.post-content__meta {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+/* .post-content__actions{
+} */
+
+.post-content__actions button {
+  background-color: transparent;
+  border: 0;
+}
+
+.post-content__details {
+  padding: 8px;
+  border-radius: 7px;
+  background-color: hsl(205, 57%, 81%);
+}
+
+.post-content__timestamp {
+  color: rgb(106, 115, 124);
+}
+
+.post-content__author {
+  color: rgb(0, 116, 204);
+}
