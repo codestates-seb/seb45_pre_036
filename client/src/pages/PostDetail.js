@@ -45,7 +45,7 @@ const PostDetail = () => {
           </ul>
         </div>
         <div className="post__content">
-          <PostContent content={post.content} />
+          <PostContent content={post.content} nickname={post.nickName} modifiedAt={post.modifiedAt} />
           {/* 글, 답변이 렌더링 되어야 함 */}
           <Comment comments={post.answers} />
         </div>
