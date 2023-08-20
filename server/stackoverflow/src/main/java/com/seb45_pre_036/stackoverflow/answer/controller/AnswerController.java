@@ -39,7 +39,7 @@ public class AnswerController {
     }
 
     @PostMapping
-    public ResponseEntity postCoffee(@Valid @RequestBody AnswerDto.Post answerPostDto) {
+    public ResponseEntity postAnswer(@Valid @RequestBody AnswerDto.Post answerPostDto) {
         Answer answer = answerService.createAnswer(mapper.answerPostDtoToAnswer(answerPostDto));
         URI location = UriCreator.createUri(ANSWER_DEFAULT_URL, answer.getAnswerId());
         return ResponseEntity.created(location).build();
