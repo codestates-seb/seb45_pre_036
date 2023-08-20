@@ -15,6 +15,8 @@ import PostDetail from "./pages/PostDetail";
 import CreateQuestion from "./pages/CreateQuestion";
 // import PostList from "./pages/PostList";
 import PostListScroll from "./pages/PostListScroll";
+import Setting from "./components/Setting";
+
 
 function App() {
   return (
@@ -22,12 +24,12 @@ function App() {
       <BrowserRouter>
         <Header />
         <Routes>
-          <Route path="/setting" element={<RequireAuthRoute />} />
+          <Route path="/setting" element={<RequireAuthRoute component={<Setting />} />} />
+          <Route path="/ask" element={<RequireAuthRoute component={<CreateQuestion />} />} />
           <Route path="/" element={<PostListScroll />} />
           <Route path="/login" element={<Login />} />
           <Route path="/signup" element={<Signup />} />
           <Route path="/logout" element={<Logout />} />
-          <Route path="/ask" element={<CreateQuestion />} />
           <Route path="/test-success" element={<Test />} />
           <Route path="/questions/:questionId" element={<PostDetail />} />
         </Routes>

@@ -51,7 +51,7 @@ const CreateQuestion = () => {
           value={title}
           onChange={titleChangeHandler}
         ></input>
-        <button class="ask-question__button next" type="button">
+        <button className="ask-question__button next" type="button">
           Next
         </button>
       </div>

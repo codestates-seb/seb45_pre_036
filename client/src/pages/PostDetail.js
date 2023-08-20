@@ -1,6 +1,5 @@
 import PostContent from "../components/PostContent";
 import Comment from "../components/Comment";
-import axios from "axios";
 import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import FormattedDate from "../components/FormattedDate";

@@ -1,9 +1,8 @@
 import useAuth from "./useAuth";
-import Setting from "../components/Setting";
 import Login from "../pages/Login";
 
-export default function RequireAuthRoute() {
+export default function RequireAuthRoute({ component: Component }) {
   const { authState } = useAuth();
 
-  return authState.isLoggedIn ? <Setting /> : <Login />;
+  return authState.isLoggedIn ? Component : <Login />;
 }
