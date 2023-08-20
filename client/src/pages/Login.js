@@ -6,7 +6,7 @@ import { LoginFunc } from "../auth/LoginFunc";
 const Login = () => {
   const [enteredEmail, setEmail] = useState("");
   const [enteredPassword, setPassword] = useState("");
-  const [errorMessage, setErrorMessage] = useState(null);
+  // const [errorMessage, setErrorMessage] = useState(null);
 
   const emailChangeHandler = (e) => {
     setEmail(e.target.value);
@@ -19,7 +19,7 @@ const Login = () => {
   const loginHandler = async (e) => {
     e.preventDefault();
 
-    LoginFunc(enteredEmail, enteredPassword, setErrorMessage);
+    LoginFunc(enteredEmail, enteredPassword);
 
     // navigate to main page -> App()리렌더링인지 확인하기 -> X; 어찌됐든 state의 변화가 있어야...
     // 안 되면 refresh해서 /questions로.

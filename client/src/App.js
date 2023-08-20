@@ -10,10 +10,11 @@ import Header from "./components/Header";
 import Logout from "./pages/Logout";
 import Login from "./pages/Login";
 import Test from "./pages/Test";
-import PostListTest from "./pages/PostListTest";
+// import PostListTest from "./pages/PostListTest";
 import RequireAuthRoute from "./components/RequireAuth";
 import PostDetail from "./pages/PostDetail";
 import CreateQuestion from "./pages/CreateQuestion";
+import PostList from "./pages/PostList";
 
 function App() {
   return (
@@ -22,7 +23,7 @@ function App() {
         <Header />
         <Routes>
           <Route path="/setting" element={<RequireAuthRoute />} />
-          <Route path="/" element={<PostListTest />} />
+          <Route path="/" element={<PostList />} />
           <Route path="/login" element={<Login />} />
           <Route path="/signup" element={<Signup />} />
           <Route path="/logout" element={<Logout />} />
