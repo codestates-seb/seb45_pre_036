@@ -1,12 +1,9 @@
 import "../styles/pages/Signup.css";
 import { Link } from "react-router-dom";
 import { LoginFunc } from "../auth/LoginFunc";
-import { useContext, useState } from "react";
-import { AuthContext } from "../auth/AuthContext";
+import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import axios from "axios";
 import Axiosinstance from "../auth/AxiosConfig";
-import useAuth from "../auth/useAuth";
 
 // sign up 하고 그 state받아서 로그인으로 내린 담에 로그인 요청도 갈 수 있게 해야 함.
 
