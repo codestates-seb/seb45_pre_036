@@ -38,32 +38,3 @@
 
 .post__create-answer {
 }
-
-.post__create-title {
-  font-size: 19px;
-  font-weight: 400;
-  color: rgb(35, 38, 41);
-}
-
-.post__create-editor {
-}
-
-.post__create-button {
-  margin: 2px 0;
-  background-color: rgb(10, 149, 255);
-  border: 2px solid rgba(0, 0, 0, 0);
-  border-radius: 6px;
-  padding: 0 10.4px;
-  color: white;
-  height: 37px;
-  width: min-content;
-}
-
-.post__create-button:hover {
-  background-color: hsl(206, 100%, 40%);
-}
-
-.post__create-button:active {
-  background-color: hsl(206, 100%, 35%);
-  border: 4px solid rgb(225, 236, 244);
-}

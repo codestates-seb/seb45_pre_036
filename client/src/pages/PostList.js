@@ -3,6 +3,7 @@ import axios from "axios";
 import Post from "../components/Post";
 import Menu from "../components/Menu";
 import { Link } from "react-router-dom";
+import '../styles/pages/PostList.css';
 
 const PostList = () => {
   const [posts, setPost] = useState([]);
@@ -40,14 +41,14 @@ const PostList = () => {
   const lastPostRef = (node) => {
     // node? 마지막 포스트의 DOM el node.
     if (loading) return;
-    if (observer.current) observer.current.disconnect(); // previous observer disconnecting
+    // if (observer.current) observer.current.disconnect(); // previous observer disconnecting
     observer.current = new IntersectionObserver((entries) => {
       // new observer
       if (entries[0].isIntersecting && hasmore) {
         // 더 있나?
         setPage((prev) => prev + 1); // 페이지 + 1
       }
-    });
+    }, {threshold: 0.5});
     if (node) observer.current.observe(node); // 마지막 post observer
   };
 
@@ -70,12 +71,12 @@ const PostList = () => {
             <Post
               key={post.questionId}
               post={post}
-              ref={idx === posts.length - 1 ? lastPostRef : null}
             />
           ))}
           {/* 마지막 포스트면 ref 넣어주기.  */}
           {loading && <div className="post-list__loading">Loading...</div>}
-          {!hasmore && <div className="post-list__no-more-posts">No more posts</div>}
+          {!hasmore && <div className="post-list__no-more-posts" ref={lastPostRef} >No more posts</div>}
+          {/* 여기에 observer 쓰면 안 되나. */}
         </div>
       </main>
     </div>
