@@ -1,9 +1,10 @@
 import { useState, useRef, useEffect } from "react";
-import axios from "axios";
 import Post from "../components/Post";
 import Menu from "../components/Menu";
 import { Link } from "react-router-dom";
 import '../styles/pages/PostList.css';
+import Axiosinstance from "../auth/AxiosConfig";
+// import jwtDecode from "jwt-decode";
 
 const PostList = () => {
   const [posts, setPost] = useState([]);
@@ -19,8 +20,8 @@ const PostList = () => {
   const getPosts = async () => {
     setLoading(true);
     try {
-      const res = await axios.get(
-        `http://localhost:8080/questions?page=${page}&size=10`
+      const res = await Axiosinstance.get(
+        `/questions?page=${page}&size=10`
       );
       setPost((prev) => [...prev, res.data]);
       // setPost((prev) => [...prev, ...res.data]);
@@ -41,7 +42,6 @@ const PostList = () => {
   const lastPostRef = (node) => {
     // node? 마지막 포스트의 DOM el node.
     if (loading) return;
-    // if (observer.current) observer.current.disconnect(); // previous observer disconnecting
     observer.current = new IntersectionObserver((entries) => {
       // new observer
       if (entries[0].isIntersecting && hasmore) {
@@ -69,11 +69,10 @@ const PostList = () => {
         <div className="post-list__container">
           {posts.map((post, idx) => (
             <Post
-              key={post.questionId}
+              key={post.questionId + Math.random()}
               post={post}
             />
           ))}
-          {/* 마지막 포스트면 ref 넣어주기.  */}
           {loading && <div className="post-list__loading">Loading...</div>}
           {!hasmore && <div className="post-list__no-more-posts" ref={lastPostRef} >No more posts</div>}
           {/* 여기에 observer 쓰면 안 되나. */}

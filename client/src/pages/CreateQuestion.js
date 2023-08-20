@@ -1,12 +1,13 @@
 import { useState } from "react";
 import TextEditor from "../components/TextEditor";
 import "../styles/pages/CreateQuestion.css";
-import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import Axiosinstance from "../auth/AxiosConfig";
+import jwtDecode from "jwt-decode";
 
 const CreateQuestion = () => {
   const navigate = useNavigate();
-  const [title, setTitle] = useState("");
+  const [ title, setTitle] = useState("");
   const [ body, setBody]=useState('');
 
   const titleChangeHandler = (e) => {
@@ -14,18 +15,21 @@ const CreateQuestion = () => {
   };
 
   const createPostHandler = async () => {
-    const url = "http://localhost:8080/questions/ask";
+    const accessToken = localStorage.getItem('accessToken');
+    const memberId = jwtDecode(accessToken).memberId;
+    // jwt payload에 있는데...
+
     const headers = {
-      // Authorization: `Bearer ${accessToken}`, // 
+      Authorization: `Bearer${accessToken}`,
     };
     const requestBody = {
-      // memberId, // accessToken payload에 있음. 
-      title,
+      memberId: memberId,
+      title: title,
       content: body,
     };
 
     try {
-      const response = await axios.post(url, requestBody, { headers });
+      const response = await Axiosinstance.post('/questions/ask', requestBody, { headers });
       console.log("Post created successfully:", response.data);
       navigate('/');
     } catch (error) {
