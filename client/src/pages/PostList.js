@@ -1,7 +1,7 @@
 // Without infinite scroll
 
 import { useState, useEffect } from "react";
-import Post from "../components/Post";
+import PostItem from "../components/PostItem";
 import Menu from "../components/Menu";
 import { Link } from "react-router-dom";
 import '../styles/pages/PostList.css';
@@ -43,7 +43,7 @@ const PostList = () => {
         </div>
         <div className="post-list__container">
           {posts.map((post) => (
-            <Post
+            <PostItem
               key={post.questionId + Math.random()}
               post={post}
             />

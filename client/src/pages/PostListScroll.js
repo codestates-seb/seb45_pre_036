@@ -1,5 +1,5 @@
 import { useState, useRef, useEffect } from "react";
-import Post from "../components/Post";
+import Post from "../components/PostItem";
 import Menu from "../components/Menu";
 import { Link } from "react-router-dom";
 import '../styles/pages/PostList.css';
