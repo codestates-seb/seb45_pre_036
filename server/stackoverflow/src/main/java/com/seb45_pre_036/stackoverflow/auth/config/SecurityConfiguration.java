@@ -117,7 +117,7 @@ public class SecurityConfiguration {
     CorsConfigurationSource corsConfigurationSource(){
         CorsConfiguration configuration = new CorsConfiguration();
 
-        configuration.setAllowedOrigins(Arrays.asList("*"));
+        configuration.setAllowedOrigins(Arrays.asList("http://localhost:3000"));
         // http://localhost:3000 -> Origin(출처, 도메인)
         // http://localhost:8080
         // 백엔드 측으로 접근할 수 있는, 요청을 보낼 수 있는 -> 다른 origin(출처, 도메인) -> 모두 허용
