@@ -1,16 +1,12 @@
-body {
-  background-color: rgb(214, 217, 220);
-  display: flex;
-  justify-content: center;
-}
-
 .logout-confirm {
-  margin-top: 50px;
+  background-color: rgb(214, 217, 220);
+  /* margin-top: 50px; */
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  width: 288px;
+  width: 100vw;
+  height: 100vh;
 }
 
 .logout-confirm__title {
@@ -23,14 +19,13 @@ body {
   margin-top: 20px;
   background-color: white;
   border-radius: 8px;
-  width: 100%;
+  width: 20rem;
   padding: 24px;
   box-shadow: 0px 10px 24px 0px rgba(0, 0, 0, 0.05);
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  width: 100%;
 }
 
 .logout-confirm__logo-container {

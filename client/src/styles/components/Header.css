@@ -27,9 +27,12 @@
 .header__nav-container {
   display: flex;
   justify-content: space-between;
+  align-items: center;
 }
 
-/* .header__nav-profile {} */
+/* .header__nav-username {
+
+} */
 
 /* .header__nav {} */
 

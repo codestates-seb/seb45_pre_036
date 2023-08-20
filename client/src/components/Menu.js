@@ -1,19 +1,19 @@
-import '../styles/components/Menu.css'
+import "../styles/components/Menu.css";
+import { Link } from "react-router-dom";
 
 const Menu = () => {
   return (
     <nav className="menu__container">
       <ul className="menu">
         <li className="menu__item">
-          <a href>Home</a>
+          <Link to={"/"}>Home</Link>
         </li>
         <ul className="submenu">
           <li className="submenu__item">
-            <a href>Questions</a>
+            <Link to={"/"}>Questions</Link>
           </li>
-          <li className="submenu__item">
-            <a href>User profile</a>
-          </li>
+          <li className="submenu__item">User profile</li>
+          {/* Link to myPage */}
         </ul>
       </ul>
     </nav>

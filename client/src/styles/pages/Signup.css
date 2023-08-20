@@ -1,12 +1,17 @@
-body {
+.signup-page {
   background-color: rgb(214, 217, 220);
   display: flex;
   justify-content: center;
+  width: 100vw;
+  height: 100vh;
+  padding: 56px 0;
 }
 
 .signup {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
+  display: flex;
+  width: 90%;
+  justify-content: center;
+  gap: 50px;
 }
 
 .signup-message {
@@ -17,8 +22,8 @@ body {
 
 .signup-message__title {
   font-size: 21px;
-  text-align: left;
-  padding: 50px;
+  /* text-align: left; */
+  /* padding: 50px; */
 }
 
 .login-form__logo img{
@@ -28,12 +33,12 @@ body {
 }
 
 .signup-container {
-  margin-top: 60px;
+  padding-top: 40px;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  width: 288px;
+  width: 20rem;
 }
 
 .signup-form__form {
@@ -46,7 +51,6 @@ body {
   display: flex;
   flex-direction: column;
   align-items: space-between;
-  width: 100%;
 }
 
 .signup-form__item {
@@ -54,10 +58,10 @@ body {
   flex-direction: column;
   justify-content: center;
   flex: 1;
-  padding: 2px 0;
-  margin-top: 10px;
+  padding: 10px 0;
+  gap: 10px;
 }
-
+/* 
 .signup-form__item.top {
   padding-top: 0;
   margin-top: 0;
@@ -69,11 +73,7 @@ body {
 
 .signup-form__item.signup {
   margin-top: 20px;
-}
-
-.signup-form__item.divider {
-  height: 10px;
-}
+} */
 
 .signup-form__item label {
   text-align: left;
@@ -96,12 +96,21 @@ body {
   border-radius: 6px;
   padding: 10.4px;
   color: white;
+  width: 100%;
 }
 
-.signup-form__item hr {
-  width: 100%;
-  border: 1px solid rgb(186, 191, 196);
-  /* margin: 1px; */
+
+.signup-form__button:hover {
+  background-color: hsl(206, 100%, 40%);
+}
+
+.signup-form__button:active {
+  background-color: hsl(206, 100%, 35%);
+  border: 4px solid rgb(225, 236, 244);
+  /* width: 69.625px; */
+  height: 41px;
+  border-radius: 6px;
+  margin-left: 0px;
 }
 
 .oauth__github-button {

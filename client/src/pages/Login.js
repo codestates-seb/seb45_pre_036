@@ -1,16 +1,12 @@
 import "../styles/pages/Login.css";
-import axios from "axios";
-// import jwt from "jsonwebtoken";
-import { useContext, useState } from "react";
-import { AuthContext } from "../auth/AuthContext";
+import { useState } from "react";
 import { Link } from "react-router-dom";
 import { LoginFunc } from "../auth/LoginFunc";
 
 const Login = () => {
-  const { setAuthState } = useContext(AuthContext);
   const [enteredEmail, setEmail] = useState("");
   const [enteredPassword, setPassword] = useState("");
-  const [errorMessage, setErrorMessage] = useState(null);
+  // const [errorMessage, setErrorMessage] = useState(null);
 
   const emailChangeHandler = (e) => {
     setEmail(e.target.value);
@@ -23,9 +19,15 @@ const Login = () => {
   const loginHandler = async (e) => {
     e.preventDefault();
 
-    LoginFunc(enteredEmail, enteredPassword, setAuthState, setErrorMessage)
+    LoginFunc(enteredEmail, enteredPassword);
+
+    // navigate to main page -> App()리렌더링인지 확인하기 -> X; 어찌됐든 state의 변화가 있어야...
+    // 안 되면 refresh해서 /questions로.
+    // window.location.href = '/';
+    // 이렇게 하면...state 사라짐.
+
     
-    // 이하 로직을 Loginfunc에 담음: 회원가입 후 로그인 다시하는 번거로움 없애기 위해서
+    // 이하 로직을 Loginfunc에 담음: 회원가입 후 로그인 다시하는 과정 없애기 위해서
     // try {
     //   const res = await axios.post("http://localhost:8080/auth/login", {
     //     email: enteredEmail,
@@ -54,11 +56,11 @@ const Login = () => {
     // }
   };
 
-  // 토큰 유효성 체크 및 토큰 요청
+  // 토큰 유효성 체크 및 토큰 요청은 AuthContext.js로 빼냄. 
 
   return (
     <>
-      <container className="login-container">
+      <div className="login-container">
         <div className="login-form__logo"><img src={require("../static/logo-short.png")} alt="stackoverflow logo img only" /></div>
         <form className="login-form__form" onSubmit={loginHandler}>
           <div className="login-form__item top">
@@ -98,7 +100,7 @@ const Login = () => {
             Sign up
           </Link>
         </p>
-      </container>
+      </div>
     </>
   );
 };

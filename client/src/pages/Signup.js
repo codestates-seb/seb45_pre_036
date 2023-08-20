@@ -1,4 +1,3 @@
-import Header from "../components/Header";
 import "../styles/pages/Signup.css";
 import { Link } from "react-router-dom";
 import { LoginFunc } from "../auth/LoginFunc";
@@ -13,8 +12,6 @@ const Signup = () => {
   const [newEmail, setNewEmail] = useState("");
   const [newPassword, setNewPassword] = useState("");
   const [newName, setNewName] = useState("");
-  const [errorMessage, setErrorMessage] = useState(null);
-  const { setAuthState } = useContext(AuthContext);
   const navigate = useNavigate();
 
   const newNameChangeHandler = (e) => {
@@ -32,29 +29,30 @@ const Signup = () => {
   const signupHandler = async (e) => {
     e.preventDefault();
     try {
-      const res = await axios.post("http://localhost:8080/members/signup", {
-        nickname: newName,
-        email: newEmail,
-        password: newPassword,
-      });
-      res.status();
+      const res = await axios.post(
+        "http://ec2-13-125-169-3.ap-northeast-2.compute.amazonaws.com:8080/members/signup",
+        {
+          nickName: newName,
+          email: newEmail,
+          password: newPassword,
+        },
+        {
+          headers: {
+            "Content-Type": "application/json",
+          },
+        }
+      );
+      console.info("status", res.status);
     } catch (error) {
-      setErrorMessage("Signup is denied");
+      console.log(error);
     }
 
-    LoginFunc(newEmail, newPassword, setAuthState, (errorMessage) =>{
-      if(errorMessage){
-        setErrorMessage("Signup is denied");
-      } else {
-        navigate('/test-success');
-        // 이후 홈페이지로 이동하게끔.
-      }
-    })
+    LoginFunc(newEmail, newPassword);
+    navigate("/");
   };
 
   return (
-    <>
-      <Header />
+    <div className="signup-page">
       <div className="signup">
         <container className="signup-message">
           <h1 className="signup-message__title">Welcome to stackoverflow</h1>
@@ -67,9 +65,14 @@ const Signup = () => {
             />
           </div>
           <form className="signup-form__form" onSubmit={signupHandler}>
-            <div className="signup-form__item top">
+            <div className="signup-form__item">
               <label htmlFor="nickname">Display name</label>
-              <input id="nickname" type="text" value={newName} onChange={newNameChangeHandler}></input>
+              <input
+                id="nickname"
+                type="text"
+                value={newName}
+                onChange={newNameChangeHandler}
+              ></input>
             </div>
             <div className="signup-form__item">
               <label htmlFor="email">Email</label>
@@ -93,8 +96,8 @@ const Signup = () => {
                 least 1 letter and 1 number.
               </p>
             </div>
-            <div className="signup-form__item signup">
-              <button className="signup-form__button">Sign up</button>
+            <div className="signup-form__item">
+              <button className="signup-form__button signup">Sign up</button>
             </div>
             <div className="signup-form__item">
               <p>
@@ -104,10 +107,7 @@ const Signup = () => {
                 <span>code of conduct</span>.
               </p>
             </div>
-            <div className="signup-form__item divider">
-              <hr />
-            </div>
-            <div className="signup-form__item bottom">
+            <div className="signup-form__item">
               <button
                 type="button"
                 className="signup-form__button oauth__github-button"
@@ -125,7 +125,7 @@ const Signup = () => {
           </p>
         </container>
       </div>
-    </>
+    </div>
   );
 };
 

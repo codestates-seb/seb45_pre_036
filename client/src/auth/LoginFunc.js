@@ -1,25 +1,34 @@
 import axios from "axios";
 
-export const LoginFunc = async (email, password, setAuthState, setErrorMessage) => {
+export const LoginFunc = async (email, password) => {
   try {
-    const res = await axios.post("http://localhost:8080/auth/login", {
+    const res = await axios.post("http://ec2-13-125-169-3.ap-northeast-2.compute.amazonaws.com:8080/auth/login", {
       email: email,
       password: password,
+    }, {
+      headers: {
+        'Content-Type': 'application/json'
+      }
     });
 
-    const { memberId } = res.data;
+    // const { memberId } = res.data;
+    // payload에 있음. 
 
-    const accessToken = res.headers["Authorization"];
-    const refreshToken = res.headers["Refresh"];
+    
+    const auth = res.headers.getAuthorization()
+
+    const accessToken = auth.split('Bearer')[1]
+    const refreshToken = res.headers.get('Refresh')
+
+    console.info(accessToken)
 
     localStorage.setItem("accessToken", accessToken);
     localStorage.setItem("refreshToken", refreshToken);
 
-    setAuthState({ isLoggedIn: true, memberId });
+    // setAuthState({ isLoggedIn: true, accessToken: accessToken, memberId });
+    // 로그인 함수에서 할 필요 없음. 
   } catch (error) {
-    setErrorMessage("Invalid email or password");
+    console.log(error);
   }
 };
-
-  // 응답에서 유효하지 않은 토큰이라고 하면 리프레쉬 토큰 헤더에 넣어서 보내야 함. 
   

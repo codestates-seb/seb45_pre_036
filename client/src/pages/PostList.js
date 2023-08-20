@@ -2,6 +2,8 @@ import { useState, useRef, useEffect } from "react";
 import axios from "axios";
 import Post from "../components/Post";
 import Menu from "../components/Menu";
+import { Link } from "react-router-dom";
+import '../styles/pages/PostList.css';
 
 const PostList = () => {
   const [posts, setPost] = useState([]);
@@ -25,7 +27,7 @@ const PostList = () => {
       // 스프레드로 줘야하는지, 아닌지 체크가 필요함.
 
       setHasmore(res.data.length === 10);
-      // 10개 미만으로 주면 더이상 줄게 없다는 거잖아. 그럼 false가 되는거지.
+      // 10개 미만으로 주면 더이상 줄게 없다는 거잖아. 그럼 false.
     } catch (err) {
       console.log(err);
     } finally {
@@ -39,14 +41,14 @@ const PostList = () => {
   const lastPostRef = (node) => {
     // node? 마지막 포스트의 DOM el node.
     if (loading) return;
-    if (observer.current) observer.current.disconnect(); // previous observer disconnecting
+    // if (observer.current) observer.current.disconnect(); // previous observer disconnecting
     observer.current = new IntersectionObserver((entries) => {
       // new observer
       if (entries[0].isIntersecting && hasmore) {
         // 더 있나?
         setPage((prev) => prev + 1); // 페이지 + 1
       }
-    });
+    }, {threshold: 0.5});
     if (node) observer.current.observe(node); // 마지막 post observer
   };
 
@@ -62,19 +64,19 @@ const PostList = () => {
       <main className="post-list__main">
         <div className="post-list__header">
           <h1 className="post-list__header-title">All Questions</h1>
-          <button className="post-list__header-ask">Add New Question</button>
+          <Link to={'/ask'}><button className="post-list__header-ask">Add New Question</button></Link>
         </div>
         <div className="post-list__container">
           {posts.map((post, idx) => (
             <Post
               key={post.questionId}
               post={post}
-              ref={idx === posts.length - 1 ? lastPostRef : null}
             />
           ))}
           {/* 마지막 포스트면 ref 넣어주기.  */}
           {loading && <div className="post-list__loading">Loading...</div>}
-          {!hasmore && <div className="post-list__no-more-posts">No more posts</div>}
+          {!hasmore && <div className="post-list__no-more-posts" ref={lastPostRef} >No more posts</div>}
+          {/* 여기에 observer 쓰면 안 되나. */}
         </div>
       </main>
     </div>
