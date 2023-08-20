@@ -21,7 +21,7 @@ const PostList = () => {
     setLoading(true);
     try {
       const res = await Axiosinstance.get(
-        `/questions?page=${page}&size=10`
+        '/questions'
       );
       setPost((prev) => [...prev, res.data]);
       // setPost((prev) => [...prev, ...res.data]);
