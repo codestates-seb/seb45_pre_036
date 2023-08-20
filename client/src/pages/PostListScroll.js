@@ -4,7 +4,6 @@ import Menu from "../components/Menu";
 import { Link } from "react-router-dom";
 import '../styles/pages/PostList.css';
 import Axiosinstance from "../auth/AxiosConfig";
-// import jwtDecode from "jwt-decode";
 
 const PostList = () => {
   const [posts, setPost] = useState([]);
@@ -23,9 +22,7 @@ const PostList = () => {
       const res = await Axiosinstance.get(
         '/questions'
       );
-      setPost((prev) => [...prev, res.data]);
-      // setPost((prev) => [...prev, ...res.data]);
-      // 스프레드로 줘야하는지, 아닌지 체크가 필요함.
+      setPost((prev) => [...prev, ...res.data.data]);
 
       setHasmore(res.data.length === 10);
       // 10개 미만으로 주면 더이상 줄게 없다는 거잖아. 그럼 false.
@@ -67,7 +64,7 @@ const PostList = () => {
           <Link to={'/ask'}><button className="post-list__header-ask">Add New Question</button></Link>
         </div>
         <div className="post-list__container">
-          {posts.map((post, idx) => (
+          {posts.map((post) => (
             <Post
               key={post.questionId + Math.random()}
               post={post}
