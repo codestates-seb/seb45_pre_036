@@ -58,10 +58,10 @@ const Signup = () => {
   return (
     <div className="signup-page">
       <div className="signup">
-        <container className="signup-message">
+        <div className="signup-message">
           <h1 className="signup-message__title">Welcome to stackoverflow</h1>
-        </container>
-        <container className="signup-container">
+        </div>
+        <div className="signup-container">
           <div className="login-form__logo">
             <img
               src={require("../static/logo-short.png")}
@@ -127,7 +127,7 @@ const Signup = () => {
               Log in
             </Link>
           </p>
-        </container>
+        </div>
       </div>
     </div>
   );
