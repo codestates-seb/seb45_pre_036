@@ -7,6 +7,7 @@ import FormattedDate from "../components/FormattedDate";
 import Menu from "../components/Menu";
 import "../styles/pages/PostDetail.css";
 import AnswerForm from '../components/AnswerForm';
+import Axiosinstance from "../auth/AxiosConfig";
 
 const PostDetail = () => {
   const { questionId } = useParams();
@@ -14,8 +15,8 @@ const PostDetail = () => {
 
   const getPost = async () => {
     try {
-      const res = await axios.get(
-        `http://localhost:8080/questions/${questionId}`
+      const res = await Axiosinstance.get(
+        `/questions/${questionId}`
       );
       setPost(res.data.data);
     } catch (err) {
