@@ -1,29 +1,35 @@
 import { useState } from "react";
 import TextEditor from "./TextEditor";
-import axios from "axios";
+import Axiosinstance from "../auth/AxiosConfig";
 import { useNavigate } from "react-router-dom";
+import "../styles/components/AnswerForm.css";
+import jwtDecode from "jwt-decode";
 
-const AnswerForm = () => {
+const AnswerForm = ({ questionId }) => {
   const navigate = useNavigate();
   const [body, setBody] = useState("");
 
   const createAnswerHandler = async () => {
-    const url = "http://localhost:8080/answers";
+    const accessToken = localStorage.getItem("accessToken");
+    const memberId = jwtDecode(accessToken).memberId;
     const headers = {
-      // Authorization: `Bearer ${accessToken}`, //
+      Authorization: `Bearer${accessToken}`,
     };
     const requestBody = {
-      // memberId, // accessToken payload에 있음.
-      // questionId, // param에서 가지고 와야 할 듯.
+      memberId: memberId,
+      questionId: questionId,
       content: body,
     };
 
     try {
-      const response = await axios.post(url, requestBody, { headers });
-      console.log("Post created successfully:", response.data);
+      const response = await Axiosinstance.post("/answers", requestBody, {
+        headers,
+      });
+      console.log("Post created successfully");
       navigate("/");
     } catch (error) {
       console.error("Error creating post:", error);
+      navigate("/login");
     }
   };
 

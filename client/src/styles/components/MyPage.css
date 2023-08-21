@@ -1,99 +1,91 @@
-* {
-    box-sizing: border-box;
-    --black-100: hsl(210,8%,75%);
-    --black-200: #333333; 
-}
-
-
 /* .container {
     display: flex;
     flex-direction: column;    
 } */
+/* 
+.top__line {
+  display: flex;
+  flex-direction: row;
+  margin: 10px 0 0 0;
+  margin: 0;
+  padding: 0;
+}
 
-        .top__line {
-            display: flex;
-            flex-direction: row;
-            margin: 10px 0 0 0;
-            margin: 0;
-            padding: 0;
+img {
+  flex: 0 1 auto;
+  max-width: 143px;
+  max-height: 143px;
+  margin: 25px;
+}
 
-        }
+.user__box {
+  display: flex;
+  flex-direction: column;
+  flex: 4;
+  justify-content: center;
+}
 
-                img {
-                    flex: 0 1 auto;
-                    max-width: 143px;
-                    max-height: 143px;
-                    margin: 25px;
-                }
-        
-                .user__box {
-                    display: flex;
-                    flex-direction: column;
-                    flex: 4;
-                    justify-content: center;
-                }
-                        
-                                .username {
-                                    font-size: 34px;
-                                }
+.username {
+  font-size: 34px;
+}
 
-                                .icon1 {    
-                                    color: 6A737C;
-                                    list-style: none;
-                                    font-size: 11px;
-                                    display: inline-block;
-                                    padding: 0 7px 0 0;
-                                }
-                
-                .button__box {
-                    display: flex;
-                    flex: 3;
-                    margin: 15px 40px 0 0;
-                }
+.icon1 {
+  color: 6A737C;
+  list-style: none;
+  font-size: 11px;
+  display: inline-block;
+  padding: 0 7px 0 0;
+}
 
-                        .button {
-                            height: 30px;
-                        }
-                                .edit {
-                                    width: 100px;
-                                    margin: 0px 10px 0px 0px;
-                                }
+.button__box {
+  display: flex;
+  flex: 3;
+  margin: 15px 40px 0 0;
+}
 
-                                .delete {
-                                    width: 104px;
-                                }
+.button {
+  height: 30px;
+}
+.edit {
+  width: 100px;
+  margin: 0px 10px 0px 0px;
+}
 
+.delete {
+  width: 104px;
+}
 
-                        .border {
-                            border: 1px solid var(--black-100);
-                            padding: 9.6px;
-                            border-radius: 7px;
-                            font-size: 12px;
-                        }
+.border {
+  border: 1px solid var(--black-100);
+  padding: 9.6px;
+  border-radius: 7px;
+  font-size: 12px;
+}
 
-        .profile__contents {
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-            max-width: 100%;
-            padding: 15px 60px 15px 25px;
-        }
-        
-                .contents__title {
-                    font-size: 21px;
-                    margin: 0 0 5px 0;
-                }
+.profile__contents {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  max-width: 100%;
+  padding: 15px 60px 15px 25px;
+}
 
-                /* 가로 길이 맞춰야 함 - 우측에 여백 */
-                .contents__box {
-                    flex: 1;
-                    margin: 0 0 20px 0;
-                    padding: 30px;
-                    text-align: center;
-                }
+.contents__title {
+  font-size: 21px;
+  margin: 0 0 5px 0;
+} */
 
+/* 여기서 잘못 건드려서 sign up 깃헙 버튼 망가짐 */
+
+/* 가로 길이 맞춰야 함 - 우측에 여백 */
+.contents__box {
+  flex: 1;
+  margin: 0 0 20px 0;
+  padding: 30px;
+  text-align: center;
+}
 
 /* 질문/퀘스천 색상 적용 안 되는 중 */
 .title {
-    color: 0074CC;
+  color: 0074CC;
 }

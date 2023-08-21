@@ -30,7 +30,7 @@ const CreateQuestion = () => {
 
     try {
       const response = await Axiosinstance.post('/questions/ask', requestBody, { headers });
-      console.log("Post created successfully:", response.data);
+      console.log("Post created successfully");
       navigate('/');
     } catch (error) {
       console.error("Error creating post:", error);

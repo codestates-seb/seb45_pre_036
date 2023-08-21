@@ -7,11 +7,17 @@ import Menu from "../components/Menu";
 import "../styles/pages/PostDetail.css";
 import AnswerForm from "../components/AnswerForm";
 import Axiosinstance from "../auth/AxiosConfig";
+import useAuth from "../auth/useAuth";
 
 const PostDetail = () => {
   const { questionId } = useParams();
   const [post, setPost] = useState({});
+  const { authState } = useAuth();
 
+  // answers / answerId, content, crete,modifi, email, nckN,
+  // answers -> comments / commentId, nickN, cre, modi
+  // 가지고 온 post의 answers필드 길이가 1이상이면 PostContent에 내려줘서 렌더링
+  
   useEffect(() => {
     const getPost = async () => {
       try {
@@ -23,7 +29,6 @@ const PostDetail = () => {
       }
     };
     getPost();
-
   }, []);
 
   return (
@@ -36,21 +41,33 @@ const PostDetail = () => {
           <h1 className="post__header-title">{post.title}</h1>
           <ul className="post__header-meta">
             <li>
+              <p>Asked</p>
               <FormattedDate dateString={post.createdAt} />
             </li>
             <li>
+              <p>Modified</p>
               <FormattedDate dateString={post.modifiedAt} />
             </li>
           </ul>
         </div>
         <div className="post__content">
-          {/* <PostContent content={post.content} nickname={post.nickName} modifiedAt={post.modifiedAt} memberId={post.memberId} /> */}
+          <PostContent
+            questionId={questionId}
+            content={post.content}
+            nickname={post.nickName}
+            modifiedAt={post.modifiedAt}
+            memberId={post.memberId}
+          />
           {/* 글, 답변이 렌더링 되어야 함 */}
-          {/* <Comment comments={post.answers} /> */}
+          <div className="post__answer">
+            {post.answers && post.answers.length >=1 && post.answers.map((answer)=>(
+              <PostContent key={answer.answerId} content={answer.content} nickname={answer.nickName} modifiedAt={answer.modifiedAt} createdAt={answer.createdAt} answerId={answer.answerId} questionId={questionId} />
+            ))}
+          </div>
+          <Comment comments={post.answers} />
         </div>
         <div className="post__create-answer">
-          {/* <AnswerForm /> */}
-          {/* lifting content up 필요 */}
+          {authState.isLoggedIn && <AnswerForm questionId={questionId} />}
         </div>
       </main>
     </div>

@@ -115,6 +115,7 @@
 
 .oauth__github-button {
   background-color: rgb(47, 51, 55);
+  height: 41px;
 }
 
 /* .login-form__github-logo {

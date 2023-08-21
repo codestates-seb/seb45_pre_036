@@ -20,7 +20,7 @@ const PostList = () => {
     setLoading(true);
     try {
       const res = await Axiosinstance.get(
-        '/questions'
+        '/questions/view'
       );
       setPost((prev) => [...prev, ...res.data.data]);
 

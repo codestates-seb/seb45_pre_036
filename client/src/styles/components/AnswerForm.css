@@ -13,9 +13,10 @@
   border: 2px solid rgba(0, 0, 0, 0);
   border-radius: 6px;
   padding: 0 10.4px;
+  margin-top: 1rem;
   color: white;
   height: 37px;
-  width: min-content;
+  width: fit-content;
 }
 
 .answer__create-button:hover {

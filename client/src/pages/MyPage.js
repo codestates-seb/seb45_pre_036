@@ -22,7 +22,7 @@ const MyPage = () => {
   useEffect(() => {
     async function fetchUserData() {
       try {
-        const res = await Axiosinstance.patch("/members/" + memberId); 
+        const res = await Axiosinstance.get("/members/Mypage/" + memberId); 
         console.log(res.data.data); // 어떤 데이터 오는지 확인 필요
         setUserData(res.data.data);
       } catch (err) {
