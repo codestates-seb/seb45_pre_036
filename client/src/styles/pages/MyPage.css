@@ -2,8 +2,26 @@
     display: flex;
     flex-direction: column;    
 } */
-/* 
-.top__line {
+
+.main-container {
+  display: flex;
+  margin-top: 56px;
+}
+
+.side-menu {
+  flex-shrink: 0;
+  display: flex;
+  justify-content: flex-end;
+  width: 180px;
+  border-right: 1px solid rgb(214, 217, 220);
+}
+
+.profile-main {
+  flex-grow: 1;
+}
+
+
+.profile-top__line {
   display: flex;
   flex-direction: row;
   margin: 10px 0 0 0;
@@ -11,25 +29,25 @@
   padding: 0;
 }
 
-img {
+.profile-top__image {
   flex: 0 1 auto;
   max-width: 143px;
   max-height: 143px;
   margin: 25px;
 }
 
-.user__box {
+.user-info {
   display: flex;
   flex-direction: column;
   flex: 4;
   justify-content: center;
 }
 
-.username {
+.user-info__username {
   font-size: 34px;
 }
 
-.icon1 {
+.user-info__icon-item {
   color: 6A737C;
   list-style: none;
   font-size: 11px;
@@ -37,21 +55,21 @@ img {
   padding: 0 7px 0 0;
 }
 
-.button__box {
+.button-box {
   display: flex;
   flex: 3;
   margin: 15px 40px 0 0;
 }
 
-.button {
+.button-box__button {
   height: 30px;
 }
-.edit {
+.button-box__edit {
   width: 100px;
   margin: 0px 10px 0px 0px;
 }
 
-.delete {
+.button-box__delete {
   width: 104px;
 }
 
@@ -62,7 +80,7 @@ img {
   font-size: 12px;
 }
 
-.profile__contents {
+.profile-contents {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -70,15 +88,15 @@ img {
   padding: 15px 60px 15px 25px;
 }
 
-.contents__title {
+.profile-contents__title {
   font-size: 21px;
   margin: 0 0 5px 0;
-} */
+}
 
 /* 여기서 잘못 건드려서 sign up 깃헙 버튼 망가짐 */
 
 /* 가로 길이 맞춰야 함 - 우측에 여백 */
-.contents__box {
+.profile-contents__title {
   flex: 1;
   margin: 0 0 20px 0;
   padding: 30px;
@@ -86,6 +104,6 @@ img {
 }
 
 /* 질문/퀘스천 색상 적용 안 되는 중 */
-.title {
+.profile-contents__title {
   color: 0074CC;
 }

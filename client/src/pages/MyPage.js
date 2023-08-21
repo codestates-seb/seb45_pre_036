@@ -9,7 +9,8 @@ import {
   faClock,
 } from "@fortawesome/free-solid-svg-icons";
 import Axiosinstance from "../auth/AxiosConfig";
-import { useParams } from 'react-router-dom';
+import { useParams } from "react-router-dom";
+import Menu from "../components/Menu";
 
 const MyPage = () => {
   const memberId = useParams();
@@ -22,7 +23,7 @@ const MyPage = () => {
   useEffect(() => {
     async function fetchUserData() {
       try {
-        const res = await Axiosinstance.get("/members/Mypage/" + memberId); 
+        const res = await Axiosinstance.get("/members/Mypage/" + memberId);
         console.log(res.data.data); // 어떤 데이터 오는지 확인 필요
         setUserData(res.data.data);
       } catch (err) {
@@ -56,49 +57,70 @@ const MyPage = () => {
   // };
 
   return (
-    <div>
-      <div className="top__line"></div>
-      <img src={require("../static/profile-picture.png")} alt="profile" />
-      <div className="user__box">
-        <div className="username">{userData.nickName}</div>
-        <div>{userData.title}</div>
-        <ul>
-          <li className="icon1">
-            <FontAwesomeIcon icon={faCakeCandles} /> Member for n days
-          </li>
-          <li className="icon1">
-            <FontAwesomeIcon icon={faClock} /> Last seen this week
-          </li>
-          <li className="icon1">
-            <FontAwesomeIcon icon={faCalendarDays} /> Visited 2 days, 2
-            consecutive
-          </li>
-        </ul>
+    <div className="main-container">
+      <div className="side-menu">
+        <Menu />
       </div>
-      <div className="button__box">
-        <div className="edit button border" onClick={handleEdit}>
-          <a href="/members/edit/{member-id}">
-            <FontAwesomeIcon icon={faPencil} /> Edit Profile
+      <div className="profile-main">
+        <div className="profile-top__line"></div>
+        <img
+          className="profile-top__image"
+          src={require("../static/profile-picture.png")}
+          alt="profile"
+        />
+        <div className="user-info">
+          <div className="user-info__username">{userData.nickName}</div>
+          <div className="user-info__title">{userData.title}</div>
+          <ul className="user-info__icon-list">
+            <li className="user-info__icon-item">
+              <FontAwesomeIcon icon={faCakeCandles} /> Member for n days
+            </li>
+            <li className="user-info__icon-item">
+              <FontAwesomeIcon icon={faClock} /> Last seen this week
+            </li>
+            <li className="user-info__icon-item">
+              <FontAwesomeIcon icon={faCalendarDays} /> Visited 2 days, 2
+              consecutive
+            </li>
+          </ul>
+        </div>
+        <div className="button-box">
+          <div
+            className="button-box__edit button-box__button border"
+            onClick={handleEdit}
+          >
+            <a href="/members/edit/{member-id}">
+              <FontAwesomeIcon icon={faPencil} /> Edit Profile
+            </a>
+          </div>
+          <a
+            className="button-box__delete button-box__button border"
+            href="members/delete/{member-id}"
+          >
+            <FontAwesomeIcon icon={faExclamation} /> Delete Profile
           </a>
         </div>
-        <a className="delete button border" href="members/delete/{member-id}">
-          <FontAwesomeIcon icon={faExclamation} /> Delete Profile
-        </a>
-      </div>
-      <div>
-        <div className="profile__contents">
-          <div className="contents__title">About</div>
-          <div className="contents__box border">{userData.content}</div>
-          <div className="contents__title">{userData.questionCount} Questions</div>
-          <div className="contents__box border">
-            <div>{userData.questions}</div>
-            {/* <div className="qna__title">question title</div>
+        <div className="profile-contents">
+          <div className="profile-contents__section">
+            <div className="profile-contents__title">About</div>
+            <div className="profile-contents__title border">
+              {userData.content}
+            </div>
+            <div className="profile-contents__title">
+              {userData.questionCount} Questions
+            </div>
+            <div className="profile-contents__box border">
+              <div>{userData.questions}</div>
+              {/* <div className="qna__title">question title</div>
             <div>asked when</div> */}
-          </div>
-          <div className="contents__title">{userData.answerCount} Answers</div>
-          <div className="contents__box border">
-            <div>{userData.answers}</div>
-            {/* 제목, answered when */}
+            </div>
+            <div className="profile-contents__title">
+              {userData.answerCount} Answers
+            </div>
+            <div className="profile-contents__box border">
+              <div>{userData.answers}</div>
+              {/* 제목, answered when */}
+            </div>
           </div>
         </div>
       </div>
