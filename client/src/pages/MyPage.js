@@ -14,16 +14,13 @@ import { useParams } from 'react-router-dom';
 const MyPage = () => {
   const memberId = useParams();
   const [userData, setUserData] = useState({});
-  const [nickName, setNickName] = useState("");
-  const [title, setTitle] = useState("");
-  const [content, setContent] = useState("");
-  const [isEditing, setIsEditing] = useState(false);
+
 
   useEffect(() => {
     async function fetchUserData() {
       try {
-        const res = await Axiosinstance.patch("/members/" + memberId); 
-        console.log(res.data.data); // 어떤 데이터 오는지 확인 필요
+        const res = await Axiosinstance.get("/members/myPage/" + memberId); 
+        console.log(res.data); // 어떤 데이터 오는지 확인 필요
         setUserData(res.data.data);
       } catch (err) {
         console.log("error getting profile data :", err);
@@ -31,29 +28,9 @@ const MyPage = () => {
     }
 
     fetchUserData();
-  }, []);
+  }, [memberId]
+  );
 
-  const handleEdit = () => {
-    setIsEditing(true);
-  };
-
-  // const handleSubmit = async (e) => {
-  //   e.preventDefault();
-
-  //   const updatedData = {
-  //     nickName: nickName,
-  //     title: title,
-  //     content: content,
-  //   };
-
-  //   try {
-  //     const res = await Axiosinstance.patch("members/{member-id}", updatedData);
-  //     setUserData(res.data);
-  //     setIsEditing(false);
-  //   } catch (err) {
-  //     console.log("Error updating profile data: ", err);
-  //   }
-  // };
 
   return (
     <div>
@@ -76,7 +53,7 @@ const MyPage = () => {
         </ul>
       </div>
       <div className="button__box">
-        <div className="edit button border" onClick={handleEdit}>
+        <div className="edit button border">
           <a href="/members/edit/{member-id}">
             <FontAwesomeIcon icon={faPencil} /> Edit Profile
           </a>
