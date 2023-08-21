@@ -26,7 +26,7 @@ const AnswerForm = ({ questionId }) => {
         headers,
       });
       console.log("Post created successfully");
-      navigate("/");
+      window.location.href = `/questions/${questionId}`;
     } catch (error) {
       console.error("Error creating post:", error);
       navigate("/login");
