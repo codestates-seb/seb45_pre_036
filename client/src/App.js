@@ -16,6 +16,7 @@ import CreateQuestion from "./pages/CreateQuestion";
 // import PostList from "./pages/PostList";
 import PostListScroll from "./pages/PostListScroll";
 import Setting from "./components/Setting";
+import MyPage from "./pages/MyPage";
 
 
 function App() {
@@ -31,6 +32,7 @@ function App() {
           <Route path="/signup" element={<Signup />} />
           <Route path="/logout" element={<Logout />} />
           <Route path="/test-success" element={<Test />} />
+          <Route path="/members/:memberId" element={<MyPage />} />
           <Route path="/questions/:questionId" element={<PostDetail />} />
         </Routes>
       </BrowserRouter>

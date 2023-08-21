@@ -1,6 +1,6 @@
 import React, { createContext, useState } from "react";
 import jwtDecode from "jwt-decode";
-import axios from "axios";
+import Axiosinstance from "./AxiosConfig";
 
 export const AuthContext = createContext();
 
@@ -45,8 +45,8 @@ export const AuthProvider = (props) => {
     const refresh = getRefresh();
     if (refresh && isValidToken(refresh)) {
       try {
-        const res = axios.post(
-          "http://localhost:8080/members/renewAccessToken",
+        const res = Axiosinstance.post(
+          "/members/renewAccessToken",
           {},
           {
             headers: {

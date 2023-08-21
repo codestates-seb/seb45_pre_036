@@ -5,25 +5,25 @@ import { useParams } from "react-router-dom";
 import FormattedDate from "../components/FormattedDate";
 import Menu from "../components/Menu";
 import "../styles/pages/PostDetail.css";
-import AnswerForm from '../components/AnswerForm';
+import AnswerForm from "../components/AnswerForm";
 import Axiosinstance from "../auth/AxiosConfig";
 
 const PostDetail = () => {
   const { questionId } = useParams();
-  const [post, setPost] = useState(null);
+  const [post, setPost] = useState({});
 
-  const getPost = async () => {
-    try {
-      const res = await Axiosinstance.get(
-        `/questions/${questionId}`
-      );
-      setPost(res.data.data);
-    } catch (err) {
-      console.log(err);
-    }
-  };
   useEffect(() => {
+    const getPost = async () => {
+      try {
+        const res = await Axiosinstance.get("/questions/" + questionId);
+        // console.log(res.data.data);
+        setPost(res.data.data);
+      } catch (err) {
+        console.log(err);
+      }
+    };
     getPost();
+
   }, []);
 
   return (
@@ -44,12 +44,12 @@ const PostDetail = () => {
           </ul>
         </div>
         <div className="post__content">
-          <PostContent content={post.content} nickname={post.nickName} modifiedAt={post.modifiedAt} />
+          {/* <PostContent content={post.content} nickname={post.nickName} modifiedAt={post.modifiedAt} memberId={post.memberId} /> */}
           {/* 글, 답변이 렌더링 되어야 함 */}
-          <Comment comments={post.answers} />
+          {/* <Comment comments={post.answers} /> */}
         </div>
         <div className="post__create-answer">
-          <AnswerForm />
+          {/* <AnswerForm /> */}
           {/* lifting content up 필요 */}
         </div>
       </main>

@@ -1,9 +1,10 @@
 import '../styles/components/PostItem.css';
 import FormattedDate from './FormattedDate';
-import { useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 const Post = ({ post }) => {
-    const navigate = useNavigate();
+    // const navigate = useNavigate();
+    console.log(post.title);
     
     return (
         <div className="post">
@@ -15,7 +16,7 @@ const Post = ({ post }) => {
                 </div>
             </div>
             <div className="post__content">
-                <h1 className="post__content-title" onClick={() => navigate(`/questions/${post.questionId}`)}>{post.title}</h1>
+                <Link to={`/questions/${post.questionId}`}><h1 className="post__content-title">{post.title}</h1></Link>
                 <p className="post__content-text">{post.content}</p>
             </div>
             <div className="post__meta">

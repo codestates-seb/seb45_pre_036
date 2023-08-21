@@ -1,5 +1,5 @@
 import "../styles/components/PostContent.css";
-import { useNavigate, Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 const PostContent = ({ content, nickName, modifiedAt, memberId }) => {
     const navigate = useNavigate();
@@ -8,7 +8,7 @@ const PostContent = ({ content, nickName, modifiedAt, memberId }) => {
       <div className="post-content__content">{content}</div>
       <div className="post-content__meta">
         <div className="post-content__actions">
-          <Link to={'#'}>Edit</Link>
+          <p>Edit</p>
           <p>Delete</p>
           <p>Add a comment</p>
         </div>
