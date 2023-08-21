@@ -1,8 +1,11 @@
-import '../styles/components/Post.css';
+import '../styles/components/PostItem.css';
 import FormattedDate from './FormattedDate';
+import { Link } from 'react-router-dom';
 
-const PostTest = ({ post }) => {
-
+const Post = ({ post }) => {
+    // const navigate = useNavigate();
+    console.log(post.title);
+    
     return (
         <div className="post">
             <div className="post__info">
@@ -13,19 +16,18 @@ const PostTest = ({ post }) => {
                 </div>
             </div>
             <div className="post__content">
-                <h1 className="post__content-title">{post.title}</h1>
-                {/* 제목 클릭하면...detail view 열리게 구현... */}
+                <Link to={`/questions/${post.questionId}`}><h1 className="post__content-title">{post.title}</h1></Link>
                 <p className="post__content-text">{post.content}</p>
             </div>
             <div className="post__meta">
                 <ul className="post__meta-list">
                     <li className="post__meta-item"><FormattedDate dateString={post.createdAt} /></li>
                     <li className="post__meta-item"><FormattedDate dateString={post.modifiedAt} /></li>
-                    <li className="post__meta-item">{post.nickName}</li>
+                    <li className="post__meta-item">{post.nickname}</li>
                 </ul>
             </div>
         </div>
     )
 }
 
-export default PostTest;
+export default Post;

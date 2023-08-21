@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-import axios from "axios";
 import "../styles/components/MyPage.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
@@ -9,60 +8,60 @@ import {
   faCakeCandles,
   faClock,
 } from "@fortawesome/free-solid-svg-icons";
-import MyPageEdit from "./MyPageEdit";
+import Axiosinstance from "../auth/AxiosConfig";
+import { useParams } from 'react-router-dom';
 
 const MyPage = () => {
-  const memberId = "정해진 ID";
-  const [profileData, setProfileData] = useState({});
+  const memberId = useParams();
+  const [userData, setUserData] = useState({});
   const [nickName, setNickName] = useState("");
   const [title, setTitle] = useState("");
   const [content, setContent] = useState("");
   const [isEditing, setIsEditing] = useState(false);
 
   useEffect(() => {
-    async function fetchProfileData() {
+    async function fetchUserData() {
       try {
-        const res = await axios.patch("/members/{member-id}"); // get 아닌가?
-        console.log(res.data); // 어떤 데이터 오는지 확인 필요
-        setProfileData(res.data); // res.data.nikcName
-        // 여기서 Q&A도 받아옴
+        const res = await Axiosinstance.patch("/members/" + memberId); 
+        console.log(res.data.data); // 어떤 데이터 오는지 확인 필요
+        setUserData(res.data.data);
       } catch (err) {
         console.log("error getting profile data :", err);
       }
     }
 
-    fetchProfileData();
+    fetchUserData();
   }, []);
 
   const handleEdit = () => {
     setIsEditing(true);
   };
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
+  // const handleSubmit = async (e) => {
+  //   e.preventDefault();
 
-    const updatedData = {
-      nickName: nickName,
-      title: title,
-      content: content,
-    };
+  //   const updatedData = {
+  //     nickName: nickName,
+  //     title: title,
+  //     content: content,
+  //   };
 
-    try {
-      const res = await axios.patch("members/{member-id}", updatedData);
-      setProfileData(res.data); // 이게 맞나?
-      setIsEditing(false);
-    } catch (err) {
-      console.log("Error updating profile data: ", err);
-    }
-  };
+  //   try {
+  //     const res = await Axiosinstance.patch("members/{member-id}", updatedData);
+  //     setUserData(res.data);
+  //     setIsEditing(false);
+  //   } catch (err) {
+  //     console.log("Error updating profile data: ", err);
+  //   }
+  // };
 
   return (
     <div>
       <div className="top__line"></div>
       <img src={require("../static/profile-picture.png")} alt="profile" />
       <div className="user__box">
-        <div className="username">Charlie{profileData.nickName}</div>
-        <div>{profileData.title}</div>
+        <div className="username">{userData.nickName}</div>
+        <div>{userData.title}</div>
         <ul>
           <li className="icon1">
             <FontAwesomeIcon icon={faCakeCandles} /> Member for n days
@@ -82,26 +81,24 @@ const MyPage = () => {
             <FontAwesomeIcon icon={faPencil} /> Edit Profile
           </a>
         </div>
-        <a className="delete button border" href>
-          <FontAwesomeIcon icon={faExclamation} />
-          <span className> Delete Profile</span>
+        <a className="delete button border" href="members/delete/{member-id}">
+          <FontAwesomeIcon icon={faExclamation} /> Delete Profile
         </a>
       </div>
       <div>
         <div className="profile__contents">
           <div className="contents__title">About</div>
-          <div className="contents__box border">{profileData.content}</div>
-          <div className="contents__title">the number of question</div>
+          <div className="contents__box border">{userData.content}</div>
+          <div className="contents__title">{userData.questionCount} Questions</div>
           <div className="contents__box border">
-            <div>{profileData.question}</div>
-            <div className="qna__title">question title</div>
-            <div>asked when</div>
+            <div>{userData.questions}</div>
+            {/* <div className="qna__title">question title</div>
+            <div>asked when</div> */}
           </div>
-          <div className="contents__title">the number of annswer</div>
+          <div className="contents__title">{userData.answerCount} Answers</div>
           <div className="contents__box border">
-            <div>{profileData.answer}</div>
-            <div className="qna__title">question title</div>
-            <div>asked when</div>
+            <div>{userData.answers}</div>
+            {/* 제목, answered when */}
           </div>
         </div>
       </div>

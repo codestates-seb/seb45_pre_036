@@ -10,11 +10,14 @@ import Header from "./components/Header";
 import Logout from "./pages/Logout";
 import Login from "./pages/Login";
 import Test from "./pages/Test";
-// import PostListTest from "./pages/PostListTest";
-import RequireAuthRoute from "./components/RequireAuth";
+import RequireAuthRoute from "./auth/RequireAuth";
 import PostDetail from "./pages/PostDetail";
 import CreateQuestion from "./pages/CreateQuestion";
-import PostList from "./pages/PostList";
+// import PostList from "./pages/PostList";
+import PostListScroll from "./pages/PostListScroll";
+import Setting from "./components/Setting";
+import MyPage from "./pages/MyPage";
+
 
 function App() {
   return (
@@ -22,13 +25,14 @@ function App() {
       <BrowserRouter>
         <Header />
         <Routes>
-          <Route path="/setting" element={<RequireAuthRoute />} />
-          <Route path="/" element={<PostList />} />
+          <Route path="/setting" element={<RequireAuthRoute component={<Setting />} />} />
+          <Route path="/ask" element={<RequireAuthRoute component={<CreateQuestion />} />} />
+          <Route path="/" element={<PostListScroll />} />
           <Route path="/login" element={<Login />} />
           <Route path="/signup" element={<Signup />} />
           <Route path="/logout" element={<Logout />} />
-          <Route path="/ask" element={<CreateQuestion />} />
           <Route path="/test-success" element={<Test />} />
+          <Route path="/members/:memberId" element={<MyPage />} />
           <Route path="/questions/:questionId" element={<PostDetail />} />
         </Routes>
       </BrowserRouter>

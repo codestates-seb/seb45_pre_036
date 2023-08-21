@@ -1,33 +1,25 @@
-import { useState, useRef, useEffect } from "react";
-import axios from "axios";
-import Post from "../components/Post";
+// Without infinite scroll
+
+import { useState, useEffect } from "react";
+import PostItem from "../components/PostItem";
 import Menu from "../components/Menu";
 import { Link } from "react-router-dom";
 import '../styles/pages/PostList.css';
+import Axiosinstance from "../auth/AxiosConfig";
+// import jwtDecode from "jwt-decode";
 
 const PostList = () => {
   const [posts, setPost] = useState([]);
-  const [page, setPage] = useState(1);
-  // for pagination logging
+  // const [page, setPage] = useState(1);
   const [loading, setLoading] = useState(false);
-  const [hasmore, setHasmore] = useState(true);
-  // more posts to load
-
-  const observer = useRef();
-  // last post observer
 
   const getPosts = async () => {
     setLoading(true);
     try {
-      const res = await axios.get(
-        `http://localhost:8080/questions?page=${page}&size=10`
+      const res = await Axiosinstance.get(
+        '/questions'
       );
-      setPost((prev) => [...prev, res.data]);
-      // setPost((prev) => [...prev, ...res.data]);
-      // 스프레드로 줘야하는지, 아닌지 체크가 필요함.
-
-      setHasmore(res.data.length === 10);
-      // 10개 미만으로 주면 더이상 줄게 없다는 거잖아. 그럼 false.
+      setPost((prev) => [...prev, ...res.data.data]);
     } catch (err) {
       console.log(err);
     } finally {
@@ -35,26 +27,9 @@ const PostList = () => {
     }
   };
 
-  // 무한 스크롤하려면 필요함. 마지막 글에 대한 참조를 만들기 위한 함수
-  // 유저가 스크롤해서 가장 마지막 포스트가 뷰포트에 보면 intersection observer가 콜백함수 트리거.
-  // 이 콜백함수는 페이지 숫자 업데이트해. 그럼 page가 바뀔때 새 포스트 패치해오게 useEffect로 의존성 만들어주면 되겠지.
-  const lastPostRef = (node) => {
-    // node? 마지막 포스트의 DOM el node.
-    if (loading) return;
-    // if (observer.current) observer.current.disconnect(); // previous observer disconnecting
-    observer.current = new IntersectionObserver((entries) => {
-      // new observer
-      if (entries[0].isIntersecting && hasmore) {
-        // 더 있나?
-        setPage((prev) => prev + 1); // 페이지 + 1
-      }
-    }, {threshold: 0.5});
-    if (node) observer.current.observe(node); // 마지막 post observer
-  };
-
   useEffect(() => {
     getPosts();
-  }, [page]);
+  }, []);
 
   return (
     <div className="main-container">
@@ -67,16 +42,13 @@ const PostList = () => {
           <Link to={'/ask'}><button className="post-list__header-ask">Add New Question</button></Link>
         </div>
         <div className="post-list__container">
-          {posts.map((post, idx) => (
-            <Post
-              key={post.questionId}
+          {posts.map((post) => (
+            <PostItem
+              key={post.questionId + Math.random()}
               post={post}
             />
           ))}
-          {/* 마지막 포스트면 ref 넣어주기.  */}
           {loading && <div className="post-list__loading">Loading...</div>}
-          {!hasmore && <div className="post-list__no-more-posts" ref={lastPostRef} >No more posts</div>}
-          {/* 여기에 observer 쓰면 안 되나. */}
         </div>
       </main>
     </div>

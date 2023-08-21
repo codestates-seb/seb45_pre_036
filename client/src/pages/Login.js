@@ -19,8 +19,15 @@ const Login = () => {
   const loginHandler = async (e) => {
     e.preventDefault();
 
-    LoginFunc(enteredEmail, enteredPassword);
-
+    try {
+      const result = await LoginFunc(enteredEmail, enteredPassword);
+      if (result) {
+        window.location.href='/';
+        // 라우팅 문제 발생 시 여기부터 체크
+      } 
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   return (
