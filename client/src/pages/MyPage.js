@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import "../styles/components/MyPage.css";
+import "../styles/pages/MyPage.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faCalendarDays,
@@ -9,7 +9,7 @@ import {
   faClock,
 } from "@fortawesome/free-solid-svg-icons";
 import Axiosinstance from "../auth/AxiosConfig";
-import { useParams } from "react-router-dom";
+import { useParams, Link } from "react-router-dom";
 import Menu from "../components/Menu";
 
 const MyPage = () => {
@@ -89,16 +89,16 @@ const MyPage = () => {
             className="button-box__edit button-box__button border"
             onClick={handleEdit}
           >
-            <a href="/members/edit/{member-id}">
+            <Link to={`/members/edit/${memberId}`}>
               <FontAwesomeIcon icon={faPencil} /> Edit Profile
-            </a>
+            </Link>
           </div>
-          <a
+          <Link
             className="button-box__delete button-box__button border"
-            href="members/delete/{member-id}"
+            to={`/members/edit/${memberId}`}
           >
             <FontAwesomeIcon icon={faExclamation} /> Delete Profile
-          </a>
+          </Link>
         </div>
         <div className="profile-contents">
           <div className="profile-contents__section">

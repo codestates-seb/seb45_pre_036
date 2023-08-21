@@ -1,4 +1,4 @@
-import '../styles/components/MyPage.css';
+import '../styles/pages/MyPage.css';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCalendarDays, faPencil, faExclamation, faCakeCandles, faClock } from "@fortawesome/free-solid-svg-icons";
 import React from 'react';

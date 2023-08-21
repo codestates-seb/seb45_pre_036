@@ -17,6 +17,8 @@ import CreateQuestion from "./pages/CreateQuestion";
 import PostListScroll from "./pages/PostListScroll";
 import Setting from "./components/Setting";
 import MyPage from "./pages/MyPage";
+import MyPageEdit from "./pages/MyPageEdit";
+import MyPageDelete from "./pages/MyPageDelete";
 
 
 function App() {
@@ -27,13 +29,15 @@ function App() {
         <Routes>
           <Route path="/setting" element={<RequireAuthRoute component={<Setting />} />} />
           <Route path="/ask" element={<RequireAuthRoute component={<CreateQuestion />} />} />
+          {/* <Route path="/members/:memberId" element={<RequireAuthRoute component={<MyPage />} />} />
+          <Route path="/members/edit/:memberId" element={<RequireAuthRoute component={<MyPageEdit />} />} />
+          <Route path="/members/delete/:memberId" element={<RequireAuthRoute component={<MyPageDelete />} />} /> */}
           <Route path="/" element={<PostListScroll />} />
+          <Route path="/questions/:questionId" element={<PostDetail />} />
           <Route path="/login" element={<Login />} />
           <Route path="/signup" element={<Signup />} />
           <Route path="/logout" element={<Logout />} />
           <Route path="/test-success" element={<Test />} />
-          <Route path="/members/:memberId" element={<MyPage />} />
-          <Route path="/questions/:questionId" element={<PostDetail />} />
         </Routes>
       </BrowserRouter>
     </AuthProvider>
