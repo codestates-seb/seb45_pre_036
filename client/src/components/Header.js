@@ -19,6 +19,7 @@ const LoginHeader = () => {
 
 export const UserHeader = ({authState}) => {
   const userName = jwtDecode(authState.accessToken).username;
+  const memberId = jwtDecode(authState.accessToken).memberId;
 
   return (
     <header className="header__container">
@@ -26,7 +27,7 @@ export const UserHeader = ({authState}) => {
         <img src={require("../static/logo.png")} alt="stackoverflow logo" />
       </Link>
       <div className="header__nav-container">
-        <div className="header__nav-username">{userName}</div>
+        <Link to={`/members/${memberId}`}><div className="header__nav-username">{userName}</div></Link>
         <nav className="header__nav">
           <ul className="header__nav-list">
             <li className="header__nav-item">

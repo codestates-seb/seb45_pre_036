@@ -1,8 +1,3 @@
-/* .container {
-    display: flex;
-    flex-direction: column;    
-} */
-
 .main-container {
   display: flex;
   margin-top: 56px;
@@ -20,12 +15,10 @@
   flex-grow: 1;
 }
 
-.profile-top__line {
+.profile-header {
   display: flex;
-  flex-direction: row;
-  margin: 10px 0 0 0;
-  margin: 0;
-  padding: 0;
+  /* padding: 25px; */
+  width: 80%;
 }
 
 .profile-top__image {
@@ -38,71 +31,80 @@
 .user-info {
   display: flex;
   flex-direction: column;
-  flex: 4;
+  /* flex: 4; */
   justify-content: center;
 }
 
 .user-info__username {
-  font-size: 34px;
+  font-size: 27px;
+}
+
+.user-info__title{
+  font-size: 17px;
+  color: #6a737c;
+
+}
+
+.user-info {
+  flex-grow: 1;
+  margin: 25px 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.user-info__icon-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  /* justify-content: space-between; */
+  gap: 2rem;
 }
 
 .user-info__icon-item {
-  color: 6A737C;
-  list-style: none;
+  color: #6a737c;
   font-size: 11px;
-  display: inline-block;
-  padding: 0 7px 0 0;
+  gap: 5px;
 }
 
-.button-box {
+.setting__buttons {
   display: flex;
-  flex: 3;
-  margin: 15px 40px 0 0;
+  justify-content: flex-end;
 }
 
-.button-box__button {
-  height: 30px;
+.setting__button {
+  height: 33px;
+  border-radius: 8px;
+  padding: 0 1rem;
+  border: 1px solid #6a737c;
+  background-color: rgb(241, 242, 243);
 }
-.button-box__edit {
-  width: 100px;
+
+.setting__button:hover {
+  background-color: rgb(232, 232, 232);
+}
+.setting__button:active {
+  background-color: rgb(198, 198, 198);
+}
+
+
+.edit {
+  width: max-content;
   margin: 0px 10px 0px 0px;
 }
 
-.button-box__delete {
-  width: 104px;
+.delete {
+  width: max-content;
 }
 
-.border {
+/* .border {
   border: 1px solid var(--black-100);
   padding: 9.6px;
   border-radius: 7px;
   font-size: 12px;
-}
+} */
 
-.profile-contents {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  max-width: 100%;
-  padding: 15px 60px 15px 25px;
-}
-
-.profile-contents__title {
-  font-size: 21px;
-  margin: 0 0 5px 0;
-}
-
-/* 여기서 잘못 건드려서 sign up 깃헙 버튼 망가짐 */
-
-/* 가로 길이 맞춰야 함 - 우측에 여백 */
-.profile-contents__title {
-  flex: 1;
-  margin: 0 0 20px 0;
-  padding: 30px;
-  text-align: center;
-}
-
-/* 질문/퀘스천 색상 적용 안 되는 중 */
-.profile-contents__title {
-  color: 0074CC;
+.profile-content__changed-section {
+  width: 80%;
 }
