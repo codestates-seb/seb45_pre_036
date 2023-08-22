@@ -7,7 +7,10 @@ import com.seb45_pre_036.stackoverflow.comment.entity.Comment;
 import com.seb45_pre_036.stackoverflow.member.dto.MemberDto;
 import com.seb45_pre_036.stackoverflow.member.entity.Member;
 import com.seb45_pre_036.stackoverflow.question.dto.QuestionDto;
+import com.seb45_pre_036.stackoverflow.question.dto.QuestionTagDto;
 import com.seb45_pre_036.stackoverflow.question.entity.Question;
+import com.seb45_pre_036.stackoverflow.question.entity.QuestionTag;
+import com.seb45_pre_036.stackoverflow.tag.entity.Tag;
 import org.mapstruct.Mapper;
 
 import java.time.LocalDateTime;
@@ -27,7 +30,30 @@ public interface QuestionMapper {
         question.setContent(questionPostDto.getContent());
         question.setMember(member);
 
+        // questionPostDto -> List<QuestionTagDto> -> List<QuestionTag>
+
+        List<QuestionTag> questionTags =
+        questionPostDto.getQuestionTagDtos().stream()
+
+                        .map(questionTagDto -> {
+
+                            QuestionTag questionTag = new QuestionTag();
+
+                            Tag tag = new Tag();
+                            tag.setTagId(questionTagDto.getTagId());
+                            tag.setTagName(questionTagDto.getTagName());
+
+                            questionTag.setTag(tag);
+                            questionTag.setQuestion(question);
+
+                            return questionTag;
+                        }).collect(Collectors.toList());
+
+        question.setQuestionTags(questionTags);
+
         return question;
+
+
     }
 
     Question questionPatchDtoToQuestion(QuestionDto.Patch questionPatchDto);
@@ -97,6 +123,21 @@ public interface QuestionMapper {
         ).collect(Collectors.toList());
 
         detailResponse.setAnswers(answerDtoResponses);
+
+
+        List<QuestionTag> questionTags = question.getQuestionTags(); // -> question 엔티티 -> List<QuestionTag>
+        // List<QuestionTag> -> List<QuestionDto.QuestionTagResponse>
+
+        List<QuestionDto.QuestionTagResponse> questionTagResponses
+                = questionTags.stream()
+                .map(questionTag -> QuestionDto.QuestionTagResponse.builder()
+                        .tagId(questionTag.getTag().getTagId())
+                        .tagName(questionTag.getTag().getTagName())
+                        .build()
+                ).collect(Collectors.toList());
+
+        detailResponse.setQuestionTagResponses(questionTagResponses);
+
 
 
         return detailResponse;

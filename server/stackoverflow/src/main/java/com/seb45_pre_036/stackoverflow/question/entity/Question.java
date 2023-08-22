@@ -40,4 +40,8 @@ public class Question extends Auditable {
     private List<Answer> answers = new ArrayList<>();
 
 
+    @OneToMany(mappedBy = "question", cascade = {CascadeType.PERSIST, CascadeType.REMOVE})
+    private List<QuestionTag> questionTags = new ArrayList<>();
+
+
 }
