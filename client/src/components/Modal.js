@@ -1,11 +1,13 @@
 import React, { useState } from 'react';
 import '../styles/components/Modal.css';
 import Axiosinstance from "../auth/AxiosConfig";
+import { useParams } from 'react-router-dom';
 
 // 탈퇴 처리하는 모달
 
 const Modal = (  ) => {
 
+    const { memberId } = useParams();
     // 모달 창 관리
     const [ isOpen, setIsOpen ] = useState(false);
 
@@ -19,7 +21,7 @@ const Modal = (  ) => {
         e.preventDefault();
     
         try {
-            await Axiosinstance.delete("/members/{member-id}"); 
+            await Axiosinstance.delete("/members/myPage/" + memberId); 
             console.log('회원 탈퇴');
             }
         catch (err) {

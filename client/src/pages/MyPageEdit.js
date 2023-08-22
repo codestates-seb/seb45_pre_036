@@ -15,16 +15,17 @@ const MyPageEdit = () => {
   const { memberId } = useParams();
   // 서버에서 profileData 받아오기
 
-  useEffect(() => {
-    async function fetchUserData() {
-      try {
-        const res = await Axiosinstance.patch("/members/" + memberId);
-        setUserData(res.data.data);
-        console.log(res.data.data); // 뭐가 나오는지 확인
-      } catch (err) {
-        console.log("Error getting profile data: ", err);
-      }
-    }
+    useEffect(() => {
+        async function fetchUserData() {
+            try {
+                const res = await Axiosinstance.patch('/members/' + memberId);
+                setUserData(res.data.data);
+                console.log(res.data.data); // 뭐가 나오는지 확인
+           }
+            catch (err) {
+                console.log('Error getting profile data: ', err);
+            }
+        }
 
     fetchUserData();
   }, []);
@@ -39,16 +40,16 @@ const MyPageEdit = () => {
       content: newContent,
     };
 
-    try {
-      const res = await Axiosinstance.patch(
-        "/members/{member-id}",
-        updatedData
-      );
-      setUserData(res.data.data);
-    } catch (err) {
-      console.log("Error updating profile data: ", err);
+        try {
+            const res = await Axiosinstance.patch('/members/{member-id}', updatedData);
+            setUserData(res.data.data); 
+        }
+
+        catch (err) {
+                console.log('Error updating profile data: ', err);
+        }
     }
-  };
+
 
   const handleCancel = () => {
     setIsEditing(false);
