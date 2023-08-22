@@ -1,0 +1,33 @@
+.main-container {
+  display: flex;
+  margin-top: 56px;
+}
+
+.side-menu {
+  flex-shrink: 0;
+  display: flex;
+  justify-content: flex-end;
+  width: 180px;
+  border-right: 1px solid rgb(214, 217, 220);
+}
+
+.delete-main {
+  flex-grow: 1;
+}
+
+.delete-profile__container {
+  padding: 0px 0px 0px 15px;
+}
+
+.delete-profile__title {
+  font-size: 27px;
+}
+
+.delete-profile__container {
+  font-size: 15px;
+  padding: 0px 0px 0px 15px;
+}
+
+.delete-profile__content {
+  padding: 0px 0px 0px 15px;
+}

@@ -1,0 +1,27 @@
+.profile-contents {
+  margin-left: 25px;
+  padding-top: 25px;
+  border-top: 1px solid rgb(214, 217, 220);
+}
+
+.profile-contents__section {
+}
+
+.about {
+}
+
+.profile-contents__title {
+  font-size: 21px;
+  margin: 0 0 5px 0;
+  color: #0074cc;
+}
+
+.profile-contents__about-content {
+}
+
+.profile-contents__box {
+  border: 1px solid rgb(214, 217, 220);
+  border-radius: 8px;
+  min-height: 50px;
+  padding: 1rem;
+}
