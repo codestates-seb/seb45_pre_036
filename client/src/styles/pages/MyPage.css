@@ -1,8 +1,3 @@
-/* .container {
-    display: flex;
-    flex-direction: column;    
-} */
-
 .main-container {
   display: flex;
   margin-top: 56px;
@@ -20,13 +15,7 @@
   flex-grow: 1;
 }
 
-.profile-top__line {
-  display: flex;
-  flex-direction: row;
-  margin: 10px 0 0 0;
-  margin: 0;
-  padding: 0;
-}
+.profile-top__image-container{}
 
 .profile-top__image {
   flex: 0 1 auto;
@@ -46,6 +35,9 @@
   font-size: 34px;
 }
 
+.user-info__title{}
+
+
 .user-info__icon-item {
   color: 6A737C;
   list-style: none;
@@ -54,55 +46,30 @@
   padding: 0 7px 0 0;
 }
 
-.button-box {
+.setting__buttons {
   display: flex;
   flex: 3;
   margin: 15px 40px 0 0;
 }
 
-.button-box__button {
+.setting__button {
   height: 30px;
 }
-.button-box__edit {
+.edit {
   width: 100px;
   margin: 0px 10px 0px 0px;
 }
 
-.button-box__delete {
+.delete {
   width: 104px;
 }
 
-.border {
+/* .border {
   border: 1px solid var(--black-100);
   padding: 9.6px;
   border-radius: 7px;
   font-size: 12px;
-}
+} */
 
-.profile-contents {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  max-width: 100%;
-  padding: 15px 60px 15px 25px;
-}
 
-.profile-contents__title {
-  font-size: 21px;
-  margin: 0 0 5px 0;
-}
-
-/* 여기서 잘못 건드려서 sign up 깃헙 버튼 망가짐 */
-
-/* 가로 길이 맞춰야 함 - 우측에 여백 */
-.profile-contents__title {
-  flex: 1;
-  margin: 0 0 20px 0;
-  padding: 30px;
-  text-align: center;
-}
-
-/* 질문/퀘스천 색상 적용 안 되는 중 */
-.profile-contents__title {
-  color: 0074CC;
-}
+.profile-content__changed-section{}

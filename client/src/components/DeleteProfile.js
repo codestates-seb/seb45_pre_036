@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-// import Modal from "../components/Modal";
+import '../styles/components/DeleteProfile.css';
 import Axiosinstance from "../auth/AxiosConfig";
 
 const DeleteProfile = ({ memberId }) => {
@@ -31,7 +31,7 @@ const DeleteProfile = ({ memberId }) => {
 
   return (
     <div className="delete-main">
-      <div className="delete-profile__container">
+      <div className="delete-profile">
         <h1 className="delete-profile__title">Delete Profile</h1>
         <div className="delete-profile__desc">
           Before confirming that you would like your profile deleted, we'd like
@@ -72,10 +72,9 @@ const DeleteProfile = ({ memberId }) => {
           deletion of my profile.
         </label>
       </div>
-      <button type="button" disabled={!isChecked} onClick={deleteHandler}>
+      <button className="delete-button" type="button" disabled={!isChecked} onClick={deleteHandler}>
         Delete
       </button>
-      {/* <Modal /> */}
     </div>
   );
 };

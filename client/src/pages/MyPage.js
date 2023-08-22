@@ -63,19 +63,27 @@ const MyPage = () => {
             </li>
           </ul>
         </div>
-        <div className="button-box">
-          <div className="button-box__edit button-box__button border">
-            <button type="button" onClick={()=>setView("edit")}>
-              <FontAwesomeIcon icon={faPencil} /> Edit Profile
-            </button>
-          </div>
-          <button type="button" onClick={()=>setView("delete")}>
+        <div className="setting__buttons">
+          <button
+            className="setting__button edit"
+            type="button"
+            onClick={() => setView("edit")}
+          >
+            <FontAwesomeIcon icon={faPencil} /> Edit Profile
+          </button>
+          <button
+            className="setting__button delete"
+            type="button"
+            onClick={() => setView("delete")}
+          >
             <FontAwesomeIcon icon={faExclamation} /> Delete Profile
           </button>
         </div>
-        { view === "profile" && <Profile data={userData} />}
-        { view === "edit" && <EditForm data={userData} />}
-        { view === "delete" && <DeleteProfile memberId={memberId} />}
+      </div>
+      <div className="profile-content__changed-section">
+        {view === "profile" && <Profile data={userData} />}
+        {view === "edit" && <EditForm data={userData} />}
+        {view === "delete" && <DeleteProfile memberId={memberId} />}
       </div>
     </div>
   );
