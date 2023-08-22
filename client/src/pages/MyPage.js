@@ -21,6 +21,7 @@ const MyPage = () => {
   const memberId = decodedToken.memberId;
 
   const [userData, setUserData] = useState({});
+  
   const [view, setView] = useState("profile");
 
   const headers = {

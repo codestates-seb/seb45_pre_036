@@ -1,7 +1,9 @@
 import "../styles/pages/Logout.css";
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 const Logout = () => {
+  const navigate = useNavigate();
   const [isChecked, setIsChecked] = useState(false);
   const [alert, setAlert] = useState(false);
 
@@ -57,7 +59,7 @@ const Logout = () => {
           >
             Log out
           </button>
-          <button className="logout-confirm__buttons cancel" type="button">
+          <button className="logout-confirm__buttons cancel" type="button" onClick={()=>navigate('/')}>
             Cancel
           </button>
         </div>

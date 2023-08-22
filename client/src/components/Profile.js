@@ -1,4 +1,4 @@
-import '../styles/components/Profile.css';
+import "../styles/components/Profile.css";
 
 const Profile = ({ data }) => {
   const userdata = data.patchInfoResponse;
@@ -9,7 +9,11 @@ const Profile = ({ data }) => {
     <div className="profile-contents">
       <div className="profile-contents__section about">
         <div className="profile-contents__title">About</div>
-        {/* <div className="profile-contents__about-content">{userdata.aboutMe && userdata.aboutMe}</div> */}
+        <div className="profile-contents__box">
+          <div className="profile-contents__about-content">
+            {/* {userdata.aboutMe ? userdata.aboutMe : "Edit your profile"} */}
+          </div>
+        </div>
       </div>
 
       <div className="profile-contents__section">

@@ -1,9 +1,7 @@
 .profile-contents {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  max-width: 100%;
-  padding: 15px 60px 15px 25px;
+  margin-left: 25px;
+  padding-top: 25px;
+  border-top: 1px solid rgb(214, 217, 220);
 }
 
 .profile-contents__section {
@@ -22,4 +20,8 @@
 }
 
 .profile-contents__box {
+  border: 1px solid rgb(214, 217, 220);
+  border-radius: 8px;
+  min-height: 50px;
+  padding: 1rem;
 }

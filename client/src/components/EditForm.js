@@ -30,9 +30,9 @@ export const EditForm = ({ data }) => {
         }
       );
       console.log("Updated successfully");
-      navigate(`/members/${memberId}`);
+    //   navigate(`/members/${memberId}`);
       // 새로고침 안되면
-      // window.location.href =`/members/${memberId}`;
+      window.location.href =`/members/${memberId}`;
     } catch (error) {
       console.error("Error updating profile:", error);
     }

@@ -21,7 +21,9 @@ const DeleteProfile = ({ memberId }) => {
           const res = await Axiosinstance.delete(`/members/${memberId}`, {
             headers,
           });
-          window.location.href = `/members/${memberId}`;
+          localStorage.removeItem("accessToken");
+          localStorage.removeItem("refreshToken");
+          window.location.href = `/signup`;
         } catch (err) {
           console.log(err);
         }

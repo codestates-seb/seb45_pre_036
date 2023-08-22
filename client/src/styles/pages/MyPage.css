@@ -36,7 +36,13 @@
 }
 
 .user-info__username {
-  font-size: 34px;
+  font-size: 27px;
+}
+
+.user-info__title{
+  font-size: 17px;
+  color: #6a737c;
+
 }
 
 .user-info {
