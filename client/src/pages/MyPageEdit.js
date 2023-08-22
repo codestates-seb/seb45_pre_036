@@ -17,7 +17,7 @@ const MyPageEdit = () => {
     useEffect(() => {
         async function fetchUserData() {
             try {
-                const res = await Axiosinstance.patch('/members/' + memberId);
+                const res = await Axiosinstance.patch('/members/myPage/' + memberId);
                 setUserData(res.data.data);
                 console.log(res.data.data); // 뭐가 나오는지 확인
            }
@@ -41,7 +41,7 @@ const MyPageEdit = () => {
         };
 
         try {
-            const res = await Axiosinstance.patch('/members/{member-id}', updatedData);
+            const res = await Axiosinstance.patch('/members/myPage' + memberId, updatedData);
             setUserData(res.data.data); 
         }
 
