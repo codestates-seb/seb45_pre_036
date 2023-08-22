@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import axios from 'axios';
 import '../styles/components/Modal.css';
 import Axiosinstance from "../auth/AxiosConfig";
 import { useParams } from 'react-router-dom';
@@ -32,19 +31,19 @@ const Modal = (  ) => {
     
 
     return (
-        <div className="container">
-            <button className="delete__button" onClick={handleModal}>Delete Button</button>
+        <div className="modal__container">
+            <button className="modal__delete-button" onClick={handleModal}>Delete Button</button>
             { isOpen && (
                 <div className="modal__box">
                     <button className="modal__content">
-                        <span className="exit__button" onClick={handleModal}>&times;</span>
+                        <span className="modal__exit-button" onClick={handleModal}>&times;</span>
                         <div>
                             <p>Are you sure?</p>
                             <p>Are you sure you want to delete your account? This cannot be undone.</p>
                         </div>
-                        <div className="buttons">
-                            <a className="delete__button" onClick={handleSubmit} href="로그아웃 페이지">Delete Profile</a>
-                            <button className="cancle__button" onClick={handleModal}>Cancle</button>
+                        <div className="modal__buttons">
+                            <a className="modal__delete-button" onClick={handleSubmit} href="로그아웃 페이지">Delete Profile</a>
+                            <button className="modal__cancel-button" onClick={handleModal}>Cancle</button>
                         </div>
                     </button>
                 </div>

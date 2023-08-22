@@ -18,15 +18,15 @@
     border-radius: 4px;
 }
 
-.exit__button {
+.modal__exit-button {
     position: absolute;
     top: 8px;
     right: 11px;
     height: 30px;
-    weight: 30px;
+    /* weight: 30px; */
 }
 
-.delete__button {
+.modal__delete-button {
     background-color: red;
     border: none;
     color: white;
@@ -36,7 +36,7 @@
     text-align: left;
 }
 
-.cancle__button {
+.modal__cancel-button {
     background-color: white;
     border: none;
     padding: 5px 5px 5px 15px;

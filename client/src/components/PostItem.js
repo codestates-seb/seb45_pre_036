@@ -11,8 +11,8 @@ const Post = ({ post }) => {
             <div className="post__info">
                 <div className="post__info-list">
                     <div className="post__info-item">0 votes</div>
-                    <div className="post__info-item">0 answers</div>
-                    <div className="post__info-item">0 views</div>
+                    <div className="post__info-item">{post.answerCount} answers</div>
+                    <div className="post__info-item">{post.view} views</div>
                 </div>
             </div>
             <div className="post__content">
@@ -23,7 +23,7 @@ const Post = ({ post }) => {
                 <ul className="post__meta-list">
                     <li className="post__meta-item"><FormattedDate dateString={post.createdAt} /></li>
                     <li className="post__meta-item"><FormattedDate dateString={post.modifiedAt} /></li>
-                    <li className="post__meta-item">{post.nickname}</li>
+                    <li className="post__meta-item">Author {post.nickName}</li>
                 </ul>
             </div>
         </div>

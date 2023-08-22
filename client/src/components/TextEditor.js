@@ -16,15 +16,18 @@ export default function TextEditor({setBody}) {
             console.log("Editor is ready to use!", editor);
           }}
           onChange={(event, editor) => {
-            const data = editor.getData();
-            setBody(data);
-            console.log({ event, editor, data });
+            const htmlData = editor.getData();
+            const parser = new DOMParser();
+            const doc = parser.parseFromString(htmlData, 'text/html');
+            const textData = doc.body.textContent || "";
+            setBody(textData);
+            // console.log({ event, editor, textData });
           }}
           onBlur={(event, editor) => {
-            console.log("Blur.", editor);
+            // console.log("Blur.", editor);
           }}
           onFocus={(event, editor) => {
-            console.log("Focus.", editor);
+            // console.log("Focus.", editor);
           }}
         />
       </div>
