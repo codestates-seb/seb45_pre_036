@@ -43,27 +43,45 @@ export const EditForm = ({ data }) => {
       <div className="edit-form__title">
         <h1>Edit Your Profile</h1>
       </div>
-      <div className="edit-form__form">
-        <label className="edit-form__form-title" htmlFor="edit-name">Display Name</label>
-        <input
-          id="edit-name"
-          placeholder={data.nickName}
-          type="text"
-          value={newNickName}
-          onChange={(e) => setNewNickName(e.target.value)}
-        />
-        <label className="edit-form__form-title" htmlFor="edit-title">Title</label>
-        <input
-          id="edit-title"
-          type="text"
-          value={newTitle}
-          onChange={(e) => setNewTitle(e.target.value)}
-        />
+      <div className="edit-form__content">
+        <div className="edit-form__form-container">
+          <div className="edit-form__form">
+            <label className="edit-form__form-title" htmlFor="edit-name">
+              Display Name
+            </label>
+            <input
+              id="edit-name"
+              placeholder={data.nickName}
+              type="text"
+              value={newNickName}
+              onChange={(e) => setNewNickName(e.target.value)}
+            />
+          </div>
+          <div className="edit-form__form">
+            <label className="edit-form__form-title" htmlFor="edit-title">
+              Title
+            </label>
+            <input
+              id="edit-title"
+              type="text"
+              value={newTitle}
+              onChange={(e) => setNewTitle(e.target.value)}
+            />
+          </div>
+        </div>
         <TextEditor setBody={setAbout} />
-        <button className="edit-form__button save" type="button" onClick={patchHandler}>
-          Save profile
-        </button>
-        <button className="edit-form__button cancel" type="button">Cancel</button>
+        <div className="edit-form__buttons">
+          <button
+            className="edit-form__button save"
+            type="button"
+            onClick={patchHandler}
+          >
+            Save profile
+          </button>
+          <button className="edit-form__button cancel" type="button">
+            Cancel
+          </button>
+        </div>
       </div>
     </div>
   );

@@ -1,19 +1,24 @@
-.delete-main{}
+.delete-main{
+    margin-left: 25px;
+    border-top: 1px solid rgb(214, 217, 220) ;
+}
 
-.delete-profile{}
+.delete-profile__content{
+    display: flex;
+    flex-direction: column;
+    gap: 0.8rem;
+}
 
-.delete-profile__title{}
+.delete-profile__checkbox{
+    margin: 0;
+    margin-right: 5px;
+}
 
-.delete-profile__desc{}
-
-.delete-profile__content{}
-
-.delete-profile__item{}
-
-.delete-profile__notice{}
-
-.delete-profile__checkbox{}
-
-.delete-profile__confirmation{}
-
-.delete-button{}
+.delete-button{
+    background-color: #fd412f;
+    border: 2px solid rgba(0, 0, 0, 0);
+    border-radius: 6px;
+    padding: 10.4px;
+    color: white;
+    width: max-content;
+}

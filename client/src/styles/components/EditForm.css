@@ -1,13 +1,75 @@
-.edit-form__container{}
+.edit-form__container {
+  margin-left: 25px;
+  border-top: 1px solid rgb(214, 217, 220);
+}
 
-.edit-form__title{}
+.edit-form__content {
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+}
 
-.edit-form__form{}
+.edit-form__form-container {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
 
-.edit-form__form-title {}
+.edit-form__form {
+  display: flex;
+  flex-direction: column;
+}
 
-.edit-form__button{}
+.edit-form__form input {
+  border: 1px solid rgb(186, 191, 196);
+  border-radius: 6px;
+  padding: 7.8px 9.1px;
+  margin-top: 0.5rem;
+}
 
-.save{}
+#edit-name {
+  width: 30%;
+}
 
-.cancel{}
+.edit-form__form-title {
+  font-size: 17px;
+  font-weight: 600;
+  /* margin-top: 1rem; */
+}
+
+.edit-form__buttons {
+  display: flex;
+  gap: 1rem;
+}
+
+.edit-form__button {
+  margin: 2px 0;
+  background-color: rgb(10, 149, 255);
+  border: 2px solid rgba(0, 0, 0, 0);
+  border-radius: 6px;
+  padding: 10.4px;
+  color: white;
+}
+
+.save:hover{
+    background-color: hsl(206, 100%, 40%);
+}
+
+.save:active{
+    background-color: hsl(206, 100%, 35%);
+}
+
+.cancel {
+  background-color: white;
+  border: 1px solid rgb(10, 149, 255);
+  color: rgb(10, 149, 255);
+}
+
+.cancel:hover{
+    background-color: rgb(235, 246, 255);
+}
+
+.cancel:active{
+    background-color: rgb(128, 200, 255);
+    color: white;
+}
