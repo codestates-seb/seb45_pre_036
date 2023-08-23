@@ -20,8 +20,8 @@ import java.util.Map;
 public class JwtTokenizer {
 
     @Getter
-//    @Value("${jwt.key}")
-    private String secretKey = "aaaaaaaaaaaaaaaaabbbbbbbbbbbbbbbbb";
+    @Value("${jwt.key}")
+    private String secretKey;
 
     @Getter
     @Value("${jwt.access-token-expiration-minutes}")
