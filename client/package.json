@@ -27,7 +27,7 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "deploy": "npm run build && aws s3 sync build/ s3://seb45-pre-036 --delete"
+    "deploy": "env-cmd npm run build && aws s3 sync build/ s3://seb45-pre-036 --delete"
   },
   "eslintConfig": {
     "extends": [
@@ -46,5 +46,8 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "env-cmd": "^10.1.0"
   }
 }

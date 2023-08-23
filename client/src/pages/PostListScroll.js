@@ -27,7 +27,7 @@ const PostList = () => {
       setHasmore(res.data.length === 10);
       // 10개 미만으로 주면 더이상 줄게 없다는 거잖아. 그럼 false.
     } catch (err) {
-      console.log(err);
+      console.error(err);
     } finally {
       setLoading(false);
     }
