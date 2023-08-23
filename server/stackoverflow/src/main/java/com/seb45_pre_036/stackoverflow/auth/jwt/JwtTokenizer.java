@@ -34,19 +34,13 @@ public class JwtTokenizer {
     public String encodeBase64SecretKey(String secretKey){
         return Encoders.BASE64.encode(secretKey.getBytes(StandardCharsets.UTF_8));
 
-        // String secretKey 값 -> base64 인코딩 -> return
-        // secretKey -> byte[] -> base64 인코딩 -> return
-
     }
 
     public Key getKeyFromBase64EncodedSecretKey(String base64EncodedSecretKey){
-        // base64 인코딩된 secret Key 받음
 
         byte[] keyByte = Decoders.BASE64.decode(base64EncodedSecretKey);
-        // base64 인코딩된 secret key -> byte[] 디코딩
 
         Key key = Keys.hmacShaKeyFor(keyByte);
-        // 해싱처리(암호화) -> key 생성 -> return
 
         return key;
 
@@ -111,8 +105,7 @@ public class JwtTokenizer {
 
     }
 
-    // refreshToken 검증
-    // claims 담긴 -> memberId 값 return
+    
     public long getMemberIdFromRefreshToken(String refreshToken, String base64EncodedSecretKey){
 
         String jws = refreshToken;
