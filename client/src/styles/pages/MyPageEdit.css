@@ -1,0 +1,16 @@
+.main-container {
+  display: flex;
+  margin-top: 56px;
+}
+
+.side-menu {
+  flex-shrink: 0;
+  display: flex;
+  justify-content: flex-end;
+  width: 180px;
+  border-right: 1px solid rgb(214, 217, 220);
+}
+
+.edit-main {
+  flex-grow: 1;
+}

@@ -1,0 +1,13 @@
+.container{
+    margin-top: 56px;
+    display: grid;
+    grid-template-columns: 164px auto;
+}
+
+/* .menu-container{
+
+}
+
+.main-containter{
+
+} */
