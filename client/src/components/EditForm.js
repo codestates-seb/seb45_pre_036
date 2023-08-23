@@ -1,11 +1,9 @@
 import Axiosinstance from "../auth/AxiosConfig";
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
 import TextEditor from "./TextEditor";
 import "../styles/components/EditForm.css";
 
 export const EditForm = ({ data }) => {
-  const navigate = useNavigate();
   const [newNickName, setNewNickName] = useState("");
   const [newTitle, setNewTitle] = useState("");
   const [about, setAbout] = useState("");
