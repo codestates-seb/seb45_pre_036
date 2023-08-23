@@ -9,5 +9,5 @@ import lombok.Setter;
 public class QuestionTagDto {
     private long tagId;
 
-    private String tagName;
+    // private String tagName;
 }
