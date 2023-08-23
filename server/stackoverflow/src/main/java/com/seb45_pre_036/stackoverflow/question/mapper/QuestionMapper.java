@@ -41,7 +41,7 @@ public interface QuestionMapper {
 
                             Tag tag = new Tag();
                             tag.setTagId(questionTagDto.getTagId());
-                            tag.setTagName(questionTagDto.getTagName());
+                            // tag.setTagName(questionTagDto.getTagName());
 
                             questionTag.setTag(tag);
                             questionTag.setQuestion(question);
