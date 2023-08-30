@@ -106,7 +106,7 @@ public class MemberService {
         // -> 해당 정보 활용 -> accessToken 발행 -> return
         Map<String, Object> claims = new HashMap<>();
         claims.put("memberId", findMember.getMemberId());
-        claims.put("email", findMember.getEmail());
+        claims.put("username", findMember.getEmail());
         claims.put("roles", findMember.getRoles());
 
         String subject = findMember.getEmail();
